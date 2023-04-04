@@ -15,11 +15,12 @@ public class PlayerMovement : MonoBehaviour
 
     bool isGrounded;
     public float jumpHeight = 20f;
-
+    public Vector3 startPosition;
     // Start is called before the first frame update
     void Start()
-    {
-        
+    {   
+        // initializing start position
+        startPosition = new Vector3(0,2,0);
     }
 
     // Update is called once per frame
@@ -48,6 +49,12 @@ public class PlayerMovement : MonoBehaviour
         if(Input.GetKeyDown(KeyCode.Space) && isGrounded)
             {
                 velocity.y = Mathf.Sqrt(jumpHeight * -2f * gravity);
+            }
+        
+        // if the player goes below y -5 they are jumped back to the start, incase they fall off of the map
+        if(groundCheck.position.y  < -5)
+            {
+                transform.position = startPosition;
             }
     }
 }
