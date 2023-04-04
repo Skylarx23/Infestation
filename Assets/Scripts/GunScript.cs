@@ -1,6 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.UI;
 
 public class GunScript : MonoBehaviour
 {
@@ -9,19 +10,43 @@ public class GunScript : MonoBehaviour
     public float FireRate = 10;
     private float NextTimetoFire = 0;
 
+    public int AmmoMax = 20;
+    private int Ammo;
+    public float ReloadTime = 2;
+    public Text AmmoText;
+
     public Camera PlayerCam;
     public ParticleSystem MuzzleFlash;
     public Light Flash;
     public GameObject BulletHole;
 
+    private void Start()
+    {
+        Ammo = AmmoMax;
+    }
+
     private void Update()
     {
-        if (Input.GetButton("Fire1") && Time.time >= NextTimetoFire)
+        // Checks to see if R key has been pressed or if you're out of Ammo and then reloads
+        if (Input.GetKeyUp(KeyCode.R) || Ammo <= 0) StartCoroutine(Reload());
+        else
         {
-            // Slows fire rate to 1/Firerate, so if FireRate = 10 then you can only fire every 0.1s
-            NextTimetoFire = Time.time + 1f / FireRate;
-            Shoot();
+            if (Input.GetButton("Fire1") && Time.time >= NextTimetoFire)
+            {
+                // Slows fire rate to 1/Firerate, so if FireRate = 10 then you can only fire every 0.1s
+                NextTimetoFire = Time.time + 1f / FireRate;
+                Shoot();
+            }
         }
+    }
+
+    private IEnumerator Reload()
+    {
+        Ammo = 0;
+        AmmoText.text = "Reloading!";
+        yield return new WaitForSeconds(ReloadTime);
+        AmmoText.text = "Ammo: " + Ammo + "/" + AmmoMax;
+        Ammo = AmmoMax;
     }
 
     private IEnumerator MuzzleLight()
@@ -34,6 +59,10 @@ public class GunScript : MonoBehaviour
     void Shoot()
     {
         RaycastHit hit;
+
+        // Updates the ammo and the Ammo Text
+        Ammo--;
+        AmmoText.text = "Ammo: " + Ammo + "/" + AmmoMax;
 
         // Plays partical system and shines light
         MuzzleFlash.Play();
@@ -57,4 +86,5 @@ public class GunScript : MonoBehaviour
 
         }
     }
+
 }

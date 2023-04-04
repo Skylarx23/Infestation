@@ -6,10 +6,6 @@ using UnityEngine.UI;
 using UnityEditor.SceneManagement;
 using System;
 using UnityEngine.SceneManagement;
-<<<<<<< HEAD
-=======
-using System.Xml;
->>>>>>> 99c338c1d0277761e4a3c6fc6071a60e05a18974
 
 public class OptionsMenu : MonoBehaviour
 {
@@ -65,11 +61,7 @@ public class OptionsMenu : MonoBehaviour
     {
         int i = (int)ResSlider.value;
         ResText.text = "Resolution: " + resolutions[i].width + "x" + resolutions[i].height + "@" + resolutions[i].refreshRate + "Hz";
-<<<<<<< HEAD
 
-=======
-        
->>>>>>> 99c338c1d0277761e4a3c6fc6071a60e05a18974
         Width = resolutions[i].width;
         Height = resolutions[i].height;
         Hz = resolutions[i].refreshRate;
@@ -103,11 +95,9 @@ public class OptionsMenu : MonoBehaviour
     {
         BrightSlider.value = PlayerPrefs.GetFloat("Brightness");
         VolumeSlider.value = PlayerPrefs.GetFloat("Volume");
-<<<<<<< HEAD
+
         ShakeSlider.value = PlayerPrefs.GetFloat("Screenshake");
-=======
-        //ShakeSlider.value = PlayerPrefs.GetFloat("Screenshake");
->>>>>>> 99c338c1d0277761e4a3c6fc6071a60e05a18974
+
         isFullscreen = Convert.ToBoolean(PlayerPrefs.GetString("IsFullscreen"));
         ResText.text = PlayerPrefs.GetString("Resolution");
 
@@ -121,11 +111,11 @@ public class OptionsMenu : MonoBehaviour
     {
         PlayerPrefs.SetFloat("Brightness", BrightSlider.value);
         PlayerPrefs.SetFloat("Volume", VolumeSlider.value);
-<<<<<<< HEAD
+
         PlayerPrefs.SetFloat("Screenshake", ShakeSlider.value);
-=======
+
         //PlayerPrefs.SetFloat("Screenshake", ShakeSlider.value);
->>>>>>> 99c338c1d0277761e4a3c6fc6071a60e05a18974
+
         PlayerPrefs.SetString("IsFullscreen", Convert.ToString(Screen.fullScreen));
 
         // Resolution
@@ -145,10 +135,8 @@ public class OptionsMenu : MonoBehaviour
     public void ExitOptions()
     {
         SceneManager.LoadScene("Menu");
-<<<<<<< HEAD
+
         Time.timeScale = 0;
-=======
->>>>>>> 99c338c1d0277761e4a3c6fc6071a60e05a18974
     }
 }
 
