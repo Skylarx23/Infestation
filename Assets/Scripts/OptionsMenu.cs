@@ -135,7 +135,6 @@ public class OptionsMenu : MonoBehaviour
     public void ExitOptions()
     {
         SceneManager.LoadScene("Menu");
-
         Time.timeScale = 0;
     }
 }

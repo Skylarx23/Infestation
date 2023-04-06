@@ -11,6 +11,11 @@ public class StartScript : MonoBehaviour
         SceneManager.LoadScene("SampleScene");
     }
 
+    public void OpenOptions()
+    {
+        SceneManager.LoadScene("Options");
+    }
+
     public void QuitGame()
     {
         Application.Quit();
