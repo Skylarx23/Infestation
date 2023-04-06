@@ -40,16 +40,27 @@ public class PlayerMovement : MonoBehaviour
 
         // Moves the player (Relative to Itself) using the previous varibles 
         Vector3 move = transform.right * x + transform.forward * z;
-        controller.Move(move * speed * Time.deltaTime);
+
+        if(Input.GetKey(KeyCode.LeftShift))
+        {
+            speed = 24f;
+            controller.Move(move * speed * Time.deltaTime);
+        }
+        else
+        {
+            speed = 12f;
+            controller.Move(move * speed * Time.deltaTime);
+        }
 
         // Applys Gravity To The Player
         velocity.y += gravity * Time.deltaTime;
         controller.Move(velocity * Time.deltaTime);
 
-        if(Input.GetKeyDown(KeyCode.Space) && isGrounded)
-            {
-                velocity.y = Mathf.Sqrt(jumpHeight * -2f * gravity);
-            }
+        // removed for the moment, might come back
+        //if(Input.GetKeyDown(KeyCode.Space) && isGrounded)
+            //{
+                //velocity.y = Mathf.Sqrt(jumpHeight * -2f * gravity);
+            //}
         
         // if the player goes below y -5 they are jumped back to the start, incase they fall off of the map
         if(groundCheck.position.y  < -5)
