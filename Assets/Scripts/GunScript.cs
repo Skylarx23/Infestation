@@ -5,6 +5,8 @@ using UnityEngine.UI;
 
 public class GunScript : MonoBehaviour
 {
+    public bool SpamClick = false;
+
     public float Range = 100;
     public float Damage = 10;
     public float FireRate = 10;
@@ -31,11 +33,23 @@ public class GunScript : MonoBehaviour
         if (Input.GetKeyUp(KeyCode.R) || Ammo <= 0) StartCoroutine(Reload());
         else
         {
-            if (Input.GetButton("Fire1") && Time.time >= NextTimetoFire)
+            if (SpamClick)
             {
-                // Slows fire rate to 1/Firerate, so if FireRate = 10 then you can only fire every 0.1s
-                NextTimetoFire = Time.time + 1f / FireRate;
-                Shoot();
+                if (Input.GetButtonDown("Fire1"))
+                {
+                    // Slows fire rate to 1/Firerate, so if FireRate = 10 then you can only fire every 0.1s
+                    NextTimetoFire = Time.time + 1f / FireRate;
+                    Shoot();
+                }
+            }
+            else
+            {
+                if (Input.GetButton("Fire1") && Time.time >= NextTimetoFire)
+                {
+                    // Slows fire rate to 1/Firerate, so if FireRate = 10 then you can only fire every 0.1s
+                    NextTimetoFire = Time.time + 1f / FireRate;
+                    Shoot();
+                }
             }
         }
     }

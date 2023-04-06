@@ -11124,6 +11124,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 345c4171f9bf0f0429d06c03ef7fdf5f, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  SpamClick: 0
   Range: 100
   Damage: 10
   FireRate: 10
@@ -11992,6 +11993,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 345c4171f9bf0f0429d06c03ef7fdf5f, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  SpamClick: 1
   Range: 150
   Damage: 20
   FireRate: 1
@@ -12149,6 +12151,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 345c4171f9bf0f0429d06c03ef7fdf5f, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  SpamClick: 0
   Range: 200
   Damage: 40
   FireRate: 2
