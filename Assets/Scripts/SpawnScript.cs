@@ -8,7 +8,14 @@ public class SpawnScript : MonoBehaviour
     public float Range;
     public List<GameObject> Enemies;
 
-    void SpawnEnemies(int Amount, GameObject Enemy)
+    public GameObject Model;
+
+    private void Update()
+    {
+        if (Input.GetKey(KeyCode.G)) SpawnEnemies(1, Model);
+    }
+
+    public void SpawnEnemies(int Amount, GameObject Enemy)
     {
         // Sets SpawnPoint to position of the object
         Vector3 SpawnPoint = transform.position;

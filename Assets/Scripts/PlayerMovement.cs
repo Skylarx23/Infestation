@@ -1,3 +1,4 @@
+using JetBrains.Annotations;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
@@ -8,6 +9,7 @@ public class PlayerMovement : MonoBehaviour
     public float speed = 12f;
     public Vector3 velocity;
     public float gravity = -9.81f;
+    private bool CanDash = true;
 
     [SerializeField] Transform groundCheck;
     public float groundRadius = 0.4f;
@@ -16,6 +18,8 @@ public class PlayerMovement : MonoBehaviour
     bool isGrounded;
     public float jumpHeight = 20f;
     public Vector3 startPosition;
+    Vector3 move;
+
     // Start is called before the first frame update
     void Start()
     {   
@@ -34,9 +38,14 @@ public class PlayerMovement : MonoBehaviour
             velocity.y = -2f;
         }
 
-        // Sets the varibles to the Key's direction 
-        float x = Input.GetAxis("Horizontal");
-        float z = Input.GetAxis("Vertical");
+        if (Input.GetKeyDown(KeyCode.Space) && CanDash)
+        {
+            StartCoroutine(Dash());
+        }
+
+            // Sets the varibles to the Key's direction 
+            float x = Input.GetAxis("Horizontal");
+            float z = Input.GetAxis("Vertical");
 
         // Moves the player (Relative to Itself) using the previous varibles 
         Vector3 move = transform.right * x + transform.forward * z;
@@ -58,14 +67,26 @@ public class PlayerMovement : MonoBehaviour
 
         // removed for the moment, might come back
         //if(Input.GetKeyDown(KeyCode.Space) && isGrounded)
-            //{
-                //velocity.y = Mathf.Sqrt(jumpHeight * -2f * gravity);
-            //}
-        
+        //{
+        //velocity.y = Mathf.Sqrt(jumpHeight * -2f * gravity);
+        //}
+
         // if the player goes below y -5 they are jumped back to the start, incase they fall off of the map
-        if(groundCheck.position.y  < -5)
+
+
+        if (groundCheck.position.y  < -5)
             {
                 transform.position = startPosition;
             }
+    }
+
+    private IEnumerator Dash()
+    {
+        Debug.Log("Dashed");
+        float dashCooldown = 2f;
+        // CanDash = false;
+        controller.Move(move * 3000f * Time.deltaTime);
+        yield return new WaitForSeconds(dashCooldown);
+        CanDash = true;
     }
 }
