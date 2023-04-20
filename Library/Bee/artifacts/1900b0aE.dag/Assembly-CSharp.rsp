@@ -359,6 +359,7 @@
 -r:"Library/Bee/artifacts/1900b0aE.dag/UnityEditor.UI.ref.dll"
 -r:"Library/Bee/artifacts/1900b0aE.dag/UnityEngine.UI.ref.dll"
 "Assets/Scripts/AmmoScript.cs"
+"Assets/Scripts/EnemyScript.cs"
 "Assets/Scripts/GameManager.cs"
 "Assets/Scripts/GunScript.cs"
 "Assets/Scripts/GunSwitcher.cs"
@@ -369,6 +370,7 @@
 "Assets/Scripts/ShotScript.cs"
 "Assets/Scripts/SpawnScript.cs"
 "Assets/Scripts/StartScript.cs"
+"Assets/Scripts/UILook.cs"
 -langversion:9.0
 
 /deterministic

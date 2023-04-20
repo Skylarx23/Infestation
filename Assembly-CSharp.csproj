@@ -47,6 +47,11 @@
      <Compile Include="Assets\Scripts\PlayerMovement.cs" />
      <Compile Include="Assets\Scripts\GunSwitcher.cs" />
      <Compile Include="Assets\Scripts\MouseLook.cs" />
+<<<<<<< Updated upstream
+=======
+     <Compile Include="Assets\Scripts\EnemyScript.cs" />
+     <Compile Include="Assets\Scripts\UILook.cs" />
+>>>>>>> Stashed changes
      <None Include="Assets\TextMesh Pro\Shaders\TMPro.cginc" />
      <None Include="Assets\TextMesh Pro\Shaders\TMP_SDF-Mobile Overlay.shader" />
      <None Include="Assets\TextMesh Pro\Shaders\TMP_Bitmap.shader" />
