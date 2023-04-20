@@ -101,4 +101,8 @@ public class GunScript : MonoBehaviour
         }
     }
 
+    public void UpdateText()
+    {
+        AmmoText.text = "Ammo: " + Ammo + "/" + AmmoMax;
+    }
 }

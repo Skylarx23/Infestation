@@ -15,6 +15,7 @@ public class EnemyScript : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
+        HealthBar.value -= 0.01f;
         
     }
 }

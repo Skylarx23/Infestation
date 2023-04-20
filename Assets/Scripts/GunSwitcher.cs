@@ -1,6 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using System.Net;
+using Unity.VisualScripting;
 using UnityEngine;
 using UnityEngine.UI;
 
@@ -8,8 +9,9 @@ public class GunSwitcher : MonoBehaviour
 {
     public int SelectedWeapon = 0;
     public Text WeaponText;
+    public GunScript GunScript;
 
-    private void Start()
+    public void Start()
     {
         SelectWeapon();
     }
@@ -45,7 +47,7 @@ public class GunSwitcher : MonoBehaviour
             if (i == SelectedWeapon) Weapons.gameObject.SetActive(true);
             else Weapons.gameObject.SetActive(false);
             i++;
+            GunScript.UpdateText();
         }         
     }
-
 }

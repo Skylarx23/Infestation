@@ -5,9 +5,8 @@ using UnityEngine;
 
 public class SpawnScript : MonoBehaviour
 {
-    public float Range;
+    [SerializeField] float Range;
     public List<GameObject> Enemies;
-
     public GameObject Model;
 
     private void Update()
