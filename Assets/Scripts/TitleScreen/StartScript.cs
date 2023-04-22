@@ -5,6 +5,8 @@ using UnityEngine;
 
 public class StartScript : MonoBehaviour
 {
+    public GameObject titleScreen;
+    public GameObject optionsScreen;
     // Start is called before the first frame update
     public void PressStart()
     {
@@ -18,7 +20,8 @@ public class StartScript : MonoBehaviour
 
     public void Options()
     {
-        SceneManager.LoadScene("Options");
+        // SceneManager.LoadScene("Options");
+        optionsScreen.gameObject.SetActive(true);
+        titleScreen.gameObject.SetActive(false);
     }
-
 }
