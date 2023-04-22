@@ -26,7 +26,7 @@ public class GunScript : MonoBehaviour
     {
         Ammo = AmmoMax;
         Ammo--;
-        AmmoText.text = "Ammo: " + Ammo + "/" + AmmoMax;
+        UpdateText();
     }
 
     private void Update()
@@ -61,7 +61,7 @@ public class GunScript : MonoBehaviour
         Ammo = 0;
         AmmoText.text = "Reloading!";
         yield return new WaitForSeconds(ReloadTime);
-        AmmoText.text = "Ammo: " + Ammo + "/" + AmmoMax;
+        UpdateText();
         Ammo = AmmoMax;
     }
 
@@ -78,7 +78,7 @@ public class GunScript : MonoBehaviour
 
         // Updates the ammo and the Ammo Text
         Ammo--;
-        AmmoText.text = "Ammo: " + Ammo + "/" + AmmoMax;
+        UpdateText();
 
         // Plays partical system and shines light
         MuzzleFlash.Play();
@@ -105,7 +105,6 @@ public class GunScript : MonoBehaviour
 
     public void UpdateText()
     {
-        Debug.Log("yeah");
         AmmoText.text = "Ammo: " + Ammo + "/" + AmmoMax;
     }
 }

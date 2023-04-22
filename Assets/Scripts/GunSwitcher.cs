@@ -45,10 +45,13 @@ public class GunSwitcher : MonoBehaviour
         int i = 0;
         foreach (Transform Weapons in transform)
         {
-            if (i == SelectedWeapon) Weapons.gameObject.SetActive(true);
+            if (i == SelectedWeapon)
+            {
+                Weapons.GetComponent<GunScript>().UpdateText();
+                Weapons.gameObject.SetActive(true);
+            }
             else Weapons.gameObject.SetActive(false);
             i++;
-            gunScript.UpdateText();
         }         
     }
 }
