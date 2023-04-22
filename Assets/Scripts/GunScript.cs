@@ -25,6 +25,8 @@ public class GunScript : MonoBehaviour
     private void Start()
     {
         Ammo = AmmoMax;
+        Ammo--;
+        AmmoText.text = "Ammo: " + Ammo + "/" + AmmoMax;
     }
 
     private void Update()
@@ -103,6 +105,7 @@ public class GunScript : MonoBehaviour
 
     public void UpdateText()
     {
+        Debug.Log("yeah");
         AmmoText.text = "Ammo: " + Ammo + "/" + AmmoMax;
     }
 }

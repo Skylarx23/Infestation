@@ -9,11 +9,12 @@ public class GunSwitcher : MonoBehaviour
 {
     public int SelectedWeapon = 0;
     public Text WeaponText;
-    public GunScript GunScript;
+    private GunScript gunScript;
 
     public void Start()
     {
         SelectWeapon();
+        gunScript = FindObjectOfType<GunScript>();
     }
 
     void Update()
@@ -47,7 +48,7 @@ public class GunSwitcher : MonoBehaviour
             if (i == SelectedWeapon) Weapons.gameObject.SetActive(true);
             else Weapons.gameObject.SetActive(false);
             i++;
-            GunScript.UpdateText();
+            gunScript.UpdateText();
         }         
     }
 }
