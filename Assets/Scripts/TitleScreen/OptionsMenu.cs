@@ -139,7 +139,6 @@ public class OptionsMenu : MonoBehaviour
     {
         optionsScreen.gameObject.SetActive(false);
         titleScreen.gameObject.SetActive(true);
-        Time.timeScale = 0;
     }
 }
 
