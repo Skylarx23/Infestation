@@ -1,49 +1,38 @@
-using UnityEditor.SceneManagement;
 using UnityEngine;
 using UnityEngine.AI;
 
 public class AiScript : MonoBehaviour
 {
-    public NavMeshAgent agent;
-    Transform Player;
-    Vector3 Destination;
-    bool atPos;
-
-    [SerializeField] float SightRange;
-    public LayerMask isPlayer, isGround;
+    public float FOVangle;
+    [SerializeField] float SightRange; [Range(0, 360)]
+    public LayerMask isPlayer, isWall;
+    bool seeable;
+    GameObject Player;
 
     // Start is called before the first frame update
     void Awake()
     {
-        Player = GameObject.Find("First Person Player").transform;
+        Player = GameObject.Find("First Person Player");
     }
 
     private void Update()
     {
-        if (Physics.CheckSphere(transform.position, SightRange, isPlayer))
+        Collider[] rangeChecks = Physics.OverlapSphere(transform.position, SightRange, isPlayer);
+
+        if (rangeChecks.Length != 0)
         {
-            // When near the play it'll move and look towards them
-            transform.LookAt(transform.position + Player.transform.rotation * Vector3.forward, Player.transform.rotation * Vector3.up);
-            agent.SetDestination(Player.position);
-            atPos = true;
-        }
-        else
-        {
-            if (atPos)
+            Transform Target = rangeChecks[0].transform;
+            Vector3 DirToTarget = (Target.position - transform.position).normalized;
+
+            if (Vector3.Angle(transform.forward, DirToTarget) < FOVangle / 2)
             {
-                // Picks around destination to go to
-                Vector3 Offset = new Vector3(Random.Range(-5, 5), transform.position.y, Random.Range(-5, 5));
-                Destination = transform.position + Offset;
-                agent.SetDestination(Destination);
+                float DisToTarget = Vector3.Distance(transform.position, Target.position);
 
-                // If destination isnt valid it makes another
-                if (Physics.Raycast(Destination, -transform.up, 2f, isGround)) atPos = false;
+                if (!Physics.Raycast(transform.position, DirToTarget, DisToTarget, isWall)) seeable = true;
+                else seeable = false;
             }
-
-            Vector3 DisToDest = transform.position - Destination;
-            if (DisToDest.magnitude < 1) atPos = true;
+            else seeable = false;
         }
-
-
+        else if (seeable) seeable = false;
     }
 }
