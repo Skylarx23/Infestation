@@ -61,6 +61,7 @@
     <Compile Include="Assets\Scripts\Player\AmmoScript.cs" />
     <Compile Include="Assets\Scripts\Deprecated\UILook.cs" />
     <Compile Include="Assets\Scripts\TitleScreen\PauseMenu.cs" />
+    <Compile Include="Assets\Scripts\Enemies\AiScript.cs" />
     <Compile Include="Assets\Scripts\TitleScreen\StartScript.cs" />
     <Compile Include="Assets\Scripts\GameManager.cs" />
     <Compile Include="Assets\Scripts\TitleScreen\OptionsMenu.cs" />
@@ -71,7 +72,6 @@
     <Compile Include="Assets\Scripts\Player\PlayerMovement.cs" />
     <Compile Include="Assets\Scripts\Player\GunSwitcher.cs" />
     <Compile Include="Assets\Scripts\Player\MouseLook.cs" />
-    <Compile Include="Assets\Scripts\Enemies\AiScript.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="Assets\TextMesh Pro\Shaders\TMPro.cginc" />
