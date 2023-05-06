@@ -6563,14 +6563,18 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 907863b0b3171a0489a517d0cf7dd737, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  SightRange: 30
+  SightMuliplier: 3
   FOVangle: 90
-  SightRange: 5
+  WalkRange: 20
   isPlayer:
     serializedVersion: 2
-    m_Bits: 0
+    m_Bits: 4
   isWall:
     serializedVersion: 2
-    m_Bits: 0
+    m_Bits: 64
+  Player: {fileID: 847329617}
+  agent: {fileID: 0}
 --- !u!1 &1254036917
 GameObject:
   m_ObjectHideFlags: 0
