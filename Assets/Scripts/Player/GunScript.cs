@@ -1,5 +1,6 @@
 using System.Collections;
 using System.Collections.Generic;
+using System.Security.Cryptography;
 using UnityEngine;
 using UnityEngine.UI;
 
@@ -11,11 +12,15 @@ public class GunScript : MonoBehaviour
     public float Damage = 10;
     public float FireRate = 10;
     private float NextTimetoFire = 0;
+    bool Reloading;
 
     public int AmmoMax = 20;
     private int Ammo;
     public float ReloadTime = 2;
     public Text AmmoText;
+
+    public AudioClip shootClip, reloadClip;
+    public AudioSource soundSource;
 
     public Camera PlayerCam;
     public ParticleSystem MuzzleFlash;
@@ -32,13 +37,13 @@ public class GunScript : MonoBehaviour
 
     private void Update()
     {
-        // Checks to see if R key has been pressed or if you're out of Ammo and then reloads
-        if (Input.GetKeyUp(KeyCode.R) || Ammo <= 0) StartCoroutine(Reload());
+        // Checks to see if R key has been pressed or if you're out of Ammo and then reloads if you're no already trying to
+        if (Input.GetKeyUp(KeyCode.R) || Ammo <= 0 && !Reloading) StartCoroutine(Reload());
         else
         {
             if (SpamClick)
             {
-                if (Input.GetButtonDown("Fire1"))
+                if (Input.GetButtonDown("Fire1") && Time.time >= NextTimetoFire)
                 {
                     // Slows fire rate to 1/Firerate, so if FireRate = 10 then you can only fire every 0.1s
                     NextTimetoFire = Time.time + 1f / FireRate;
@@ -59,11 +64,14 @@ public class GunScript : MonoBehaviour
 
     private IEnumerator Reload()
     {
+        Reloading = true;
         Ammo = 0;
         AmmoText.text = "Reloading!";
+        soundSource.PlayOneShot(reloadClip, 0.5f);
         yield return new WaitForSeconds(ReloadTime);
-        UpdateText();
         Ammo = AmmoMax;
+        UpdateText();
+        Reloading = false;
     }
 
     private IEnumerator MuzzleLight()
@@ -97,6 +105,8 @@ public class GunScript : MonoBehaviour
             // Checks to see if the object has the script then makes it take damage
             ShotScript target = hit.transform.GetComponent<ShotScript>();
             if (target != null) target.TakeDamage(Damage);
+
+            soundSource.PlayOneShot(shootClip, 0.5f);
 
             // Applys a force in the dircetion the bullet came from 
             if (hit.rigidbody != null) hit.rigidbody.AddForce(-hit.normal * (Damage * 10));
