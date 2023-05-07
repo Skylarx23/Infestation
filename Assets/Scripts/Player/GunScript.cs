@@ -98,6 +98,7 @@ public class GunScript : MonoBehaviour
         MuzzleFlash.Play();
         StartCoroutine(MuzzleLight());
 
+        soundSource.PlayOneShot(shootClip, 0.5f);
 
         // Shoots a ray at the camera facing the same way as the camera and
         // travels as far as the range adnt he assigns the results to "hit"
@@ -109,10 +110,12 @@ public class GunScript : MonoBehaviour
             Destroy(hole, 2f);
 
             // Checks to see if the object has the script then makes it take damage
-            ShotScript target = hit.transform.GetComponent<ShotScript>();
-            if (target != null) target.TakeDamage(Damage);
+            ShotScript targetShot = hit.transform.GetComponent<ShotScript>();
+            if (targetShot != null) targetShot.TakeDamage(Damage);
 
-            soundSource.PlayOneShot(shootClip, 0.5f);
+            // Checks to see if the object has the script then makes it "Alerted"
+            AiScript targetAi = hit.transform.GetComponent<AiScript>();
+            if (targetAi != null) StartCoroutine(targetAi.AlertEnemy());
 
             // Applys a force in the dircetion the bullet came from 
             if (hit.rigidbody != null) hit.rigidbody.AddForce(-hit.normal * (Damage * 10));
