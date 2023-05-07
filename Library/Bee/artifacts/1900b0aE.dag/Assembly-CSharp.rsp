@@ -364,7 +364,6 @@
 "Assets/Scripts/Enemies/EnemyScript.cs"
 "Assets/Scripts/Enemies/SpawnScript.cs"
 "Assets/Scripts/GameManager.cs"
-"Assets/Scripts/MusicManager.cs"
 "Assets/Scripts/Player/AmmoScript.cs"
 "Assets/Scripts/Player/GunScript.cs"
 "Assets/Scripts/Player/GunSwitcher.cs"
