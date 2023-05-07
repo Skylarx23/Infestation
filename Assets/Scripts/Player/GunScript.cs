@@ -27,6 +27,8 @@ public class GunScript : MonoBehaviour
     public Light Flash;
     public GameObject BulletHole;
 
+    public Animator animationSource;
+
     private void Start()
     {
         Ammo = AmmoMax;
@@ -67,6 +69,7 @@ public class GunScript : MonoBehaviour
         Reloading = true;
         Ammo = 0;
         AmmoText.text = "Reloading!";
+        animationSource.SetTrigger("trReload");
         soundSource.PlayOneShot(reloadClip, 0.5f);
         yield return new WaitForSeconds(ReloadTime);
         Ammo = AmmoMax;
@@ -83,6 +86,8 @@ public class GunScript : MonoBehaviour
 
     void Shoot()
     {
+        animationSource.SetTrigger("trShoot");
+        
         RaycastHit hit;
 
         // Updates the ammo and the Ammo Text
@@ -92,6 +97,7 @@ public class GunScript : MonoBehaviour
         // Plays partical system and shines light
         MuzzleFlash.Play();
         StartCoroutine(MuzzleLight());
+
 
         // Shoots a ray at the camera facing the same way as the camera and
         // travels as far as the range adnt he assigns the results to "hit"

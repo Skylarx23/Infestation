@@ -5925,6 +5925,11 @@ MeshFilter:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 802062921}
   m_Mesh: {fileID: 10202, guid: 0000000000000000e000000000000000, type: 0}
+--- !u!1 &817707713 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 919132149155446097, guid: 85ccc12b4d15e7748aacec1701e5b679, type: 3}
+  m_PrefabInstance: {fileID: 1061446332}
+  m_PrefabAsset: {fileID: 0}
 --- !u!1 &828478272
 GameObject:
   m_ObjectHideFlags: 0
@@ -6404,11 +6409,6 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 936617264}
   m_CullTransparentMesh: 1
---- !u!1 &971770555 stripped
-GameObject:
-  m_CorrespondingSourceObject: {fileID: 919132149155446097, guid: 85ccc12b4d15e7748aacec1701e5b679, type: 3}
-  m_PrefabInstance: {fileID: 1061446332}
-  m_PrefabAsset: {fileID: 0}
 --- !u!4 &971770556 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: -8679921383154817045, guid: 85ccc12b4d15e7748aacec1701e5b679, type: 3}
@@ -6421,10 +6421,10 @@ Animator:
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 971770555}
+  m_GameObject: {fileID: 817707713}
   m_Enabled: 1
   m_Avatar: {fileID: 0}
-  m_Controller: {fileID: 9100000, guid: fda1fb881c32b2a4ba7bb8b1095e8989, type: 2}
+  m_Controller: {fileID: 9100000, guid: fd01084c5f245ad4c9ea3d01084e1033, type: 2}
   m_CullingMode: 0
   m_UpdateMode: 0
   m_ApplyRootMotion: 1
@@ -7988,12 +7988,13 @@ MonoBehaviour:
   ReloadTime: 2
   AmmoText: {fileID: 1335064196}
   shootClip: {fileID: 8300000, guid: 04873f3530e11a64f90caf60d679895a, type: 3}
-  reloadClip: {fileID: 8300000, guid: 85b279b237676564789eddcb197de44b, type: 3}
+  reloadClip: {fileID: 8300000, guid: 8c352d657ea3a8c41917a5b4002f0514, type: 3}
   soundSource: {fileID: 1376723422}
   PlayerCam: {fileID: 123902886}
   MuzzleFlash: {fileID: 1987149479}
   Flash: {fileID: 1921435710}
   BulletHole: {fileID: 8648159210034389626, guid: 4a8ad13125d7f1c408c195c96b15553d, type: 3}
+  animationSource: {fileID: 1769103951}
 --- !u!82 &1376723422
 AudioSource:
   m_ObjectHideFlags: 0
@@ -8938,7 +8939,7 @@ Transform:
   m_CorrespondingSourceObject: {fileID: -8679921383154817045, guid: 446f3a6a672615540bb867131ec9b0bd, type: 3}
   m_PrefabInstance: {fileID: 2102768111}
   m_PrefabAsset: {fileID: 0}
---- !u!95 &1769103949
+--- !u!95 &1769103951
 Animator:
   serializedVersion: 4
   m_ObjectHideFlags: 0
@@ -9181,17 +9182,18 @@ MonoBehaviour:
   SpamClick: 1
   Range: 150
   Damage: 20
-  FireRate: 5
-  AmmoMax: 15
+  FireRate: 3
+  AmmoMax: 25
   ReloadTime: 2
   AmmoText: {fileID: 1335064196}
   shootClip: {fileID: 8300000, guid: 9a53cd723932bd44692a2eaade90b3a1, type: 3}
-  reloadClip: {fileID: 8300000, guid: 8c352d657ea3a8c41917a5b4002f0514, type: 3}
+  reloadClip: {fileID: 8300000, guid: 85b279b237676564789eddcb197de44b, type: 3}
   soundSource: {fileID: 1784803303}
   PlayerCam: {fileID: 123902886}
   MuzzleFlash: {fileID: 482976823}
   Flash: {fileID: 455792623}
   BulletHole: {fileID: 8648159210034389626, guid: 4a8ad13125d7f1c408c195c96b15553d, type: 3}
+  animationSource: {fileID: 971770557}
 --- !u!82 &1784803303
 AudioSource:
   m_ObjectHideFlags: 0
@@ -9576,7 +9578,7 @@ Light:
   m_BounceIntensity: 1
   m_ColorTemperature: 6570
   m_UseColorTemperature: 0
-  m_BoundingSphereOverride: {x: 4.1003012e-19, y: 2.2e-44, z: -2.4405384e-30, w: 9.188e-41}
+  m_BoundingSphereOverride: {x: 6.4e-44, y: 1.0166e-41, z: 6e-44, w: 2.524355e-29}
   m_UseBoundingSphereOverride: 0
   m_UseViewFrustumForShadowCasterCull: 1
   m_ShadowRadius: 0

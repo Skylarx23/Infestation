@@ -42,6 +42,7 @@
      <Compile Include="Assets\Scripts\Deprecated\UILook.cs" />
      <Compile Include="Assets\Scripts\TitleScreen\PauseMenu.cs" />
      <Compile Include="Assets\Scripts\Enemies\AiScript.cs" />
+     <Compile Include="Assets\Scripts\AnimationScript.cs" />
      <Compile Include="Assets\Scripts\TitleScreen\StartScript.cs" />
      <Compile Include="Assets\Scripts\GameManager.cs" />
      <Compile Include="Assets\Scripts\TitleScreen\OptionsMenu.cs" />
