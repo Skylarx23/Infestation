@@ -12,7 +12,7 @@ public class GunScript : MonoBehaviour
     public float Damage = 10;
     public float FireRate = 10;
     private float NextTimetoFire = 0;
-    bool Reloading;
+    public bool Reloading;
 
     public int AmmoMax = 20;
     private int Ammo;

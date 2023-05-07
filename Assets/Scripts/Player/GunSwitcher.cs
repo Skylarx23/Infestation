@@ -1,7 +1,3 @@
-using System.Collections;
-using System.Collections.Generic;
-using System.Net;
-using Unity.VisualScripting;
 using UnityEngine;
 using UnityEngine.UI;
 
@@ -21,14 +17,14 @@ public class GunSwitcher : MonoBehaviour
     {
         int previousallySelectedWeapon = SelectedWeapon;
         
-        // Allows you to scroll through weapons
-        if (Input.GetAxis("Mouse ScrollWheel") > 0f)
+        // Allows you to scroll through weapons if you're not reloading
+        if (Input.GetAxis("Mouse ScrollWheel") > 0f && !transform.GetChild(SelectedWeapon).GetComponent<GunScript>().Reloading)
         {
             if (SelectedWeapon >= transform.childCount - 1) SelectedWeapon = 0;
             else SelectedWeapon++;
         }
 
-        if (Input.GetAxis("Mouse ScrollWheel") < 0f)
+        if (Input.GetAxis("Mouse ScrollWheel") < 0f && !transform.GetChild(SelectedWeapon).GetComponent<GunScript>().Reloading)
         {
             if (SelectedWeapon <= 0) SelectedWeapon = transform.childCount - 1;
             else SelectedWeapon--;
