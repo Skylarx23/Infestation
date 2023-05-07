@@ -4,18 +4,18 @@ using UnityEngine.UI;
 public class ShotScript : MonoBehaviour
 {
     public Slider HealthBar;
-    public Slider HealthBarGlobal;
+    //public Slider HealthBarGlobal;
     public float Health = 50;
 
     private void Start()
     {
         HealthBar.maxValue = Health;
-        HealthBarGlobal.maxValue = Health;
+        //HealthBarGlobal.maxValue = Health;
     }
     private void Update()
     {
         HealthBar.value = Health;
-        HealthBarGlobal.value = Health;
+       // HealthBarGlobal.value = Health;
     }
     public void TakeDamage(float Amount)
     {
