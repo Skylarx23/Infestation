@@ -6113,7 +6113,7 @@ GameObject:
   - component: {fileID: 847329620}
   m_Layer: 2
   m_Name: First Person Player
-  m_TagString: Untagged
+  m_TagString: Player
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -6626,6 +6626,8 @@ MonoBehaviour:
   SightRange: 50
   SightMuliplier: 3
   FOVangle: 160
+  AttackRange: 0
+  AttackDamage: 15
   WalkRange: 20
   isPlayer:
     serializedVersion: 2
@@ -7308,6 +7310,8 @@ MonoBehaviour:
   SightRange: 50
   SightMuliplier: 3
   FOVangle: 160
+  AttackRange: 0
+  AttackDamage: 0
   WalkRange: 20
   isPlayer:
     serializedVersion: 2

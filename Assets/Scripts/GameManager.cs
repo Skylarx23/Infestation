@@ -21,10 +21,8 @@ public class GameManager : MonoBehaviour
         soundSource.PlayOneShot(idleMusic1, 0.3f);
     }
 
-    // Update is called once per frame
-    void Update()
+    public void DamagePlayer(float damage)
     {
-        // Why is this here?
-        // HealthBar.value--;
+        HealthBar.value -= damage;
     }
 }

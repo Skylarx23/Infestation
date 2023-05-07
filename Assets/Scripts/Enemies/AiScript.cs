@@ -1,4 +1,5 @@
 using System.Collections;
+using Unity.VisualScripting;
 using UnityEngine;
 using UnityEngine.AI;
 
@@ -10,6 +11,9 @@ public class AiScript : MonoBehaviour
     [Range(0, 360)]
     public float FOVangle;
 
+    public float AttackRange;
+    public float AttackDamage;
+
     public float WalkRange;
     public LayerMask isPlayer, isWall;
     bool seeable, atDes;
@@ -17,9 +21,12 @@ public class AiScript : MonoBehaviour
     public GameObject Player;
     public NavMeshAgent agent;
 
+    GameManager GM;
+
     public void Awake()
     {
         agent = GetComponent<NavMeshAgent>();
+        GM = GameObject.Find("GameManager").GetComponent<GameManager>();
     }
 
     private void Update()
@@ -70,5 +77,10 @@ public class AiScript : MonoBehaviour
 
         FOVangle = oldFOV;
         SightRange = oldSight;
+    }
+
+    private void OnTriggerEnter(Collider collision)
+    {
+        if (collision.CompareTag("Player")) GM.DamagePlayer(AttackDamage);
     }
 }
