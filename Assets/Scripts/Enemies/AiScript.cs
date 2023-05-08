@@ -29,6 +29,7 @@ public class AiScript : MonoBehaviour
     {
         agent = GetComponent<NavMeshAgent>();
         GM = GameObject.Find("GameManager").GetComponent<GameManager>();
+        Player = GameObject.Find("First Person Player");
     }
 
     private void Update()
