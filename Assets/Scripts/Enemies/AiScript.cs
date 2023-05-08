@@ -27,6 +27,7 @@ public class AiScript : MonoBehaviour
 
     public void Awake()
     {
+        animationSource = GetComponent<Animator>();
         agent = GetComponent<NavMeshAgent>();
         GM = GameObject.Find("GameManager").GetComponent<GameManager>();
         Player = GameObject.Find("First Person Player");
@@ -75,6 +76,7 @@ public class AiScript : MonoBehaviour
     {
         GM.DamagePlayer(AttackDamage);
         agent.SetDestination(transform.position);
+        animationSource.SetTrigger("trAttack");
     }
 
     private void Chasing()
