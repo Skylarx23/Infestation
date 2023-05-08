@@ -6626,7 +6626,6 @@ MonoBehaviour:
   SightRange: 50
   SightMuliplier: 3
   FOVangle: 160
-  AttackRange: 0
   AttackDamage: 15
   WalkRange: 20
   isPlayer:
@@ -7310,7 +7309,6 @@ MonoBehaviour:
   SightRange: 50
   SightMuliplier: 3
   FOVangle: 160
-  AttackRange: 0
   AttackDamage: 0
   WalkRange: 20
   isPlayer:
@@ -8005,7 +8003,7 @@ MonoBehaviour:
   FireRate: 1
   Reloading: 0
   AmmoMax: 10
-  ReloadTime: 2
+  ReloadTime: 3
   AmmoText: {fileID: 1335064196}
   shootClip: {fileID: 8300000, guid: 04873f3530e11a64f90caf60d679895a, type: 3}
   reloadClip: {fileID: 8300000, guid: 8c352d657ea3a8c41917a5b4002f0514, type: 3}
@@ -9176,7 +9174,7 @@ MonoBehaviour:
   FireRate: 3
   Reloading: 0
   AmmoMax: 25
-  ReloadTime: 2
+  ReloadTime: 4
   AmmoText: {fileID: 1335064196}
   shootClip: {fileID: 8300000, guid: 9a53cd723932bd44692a2eaade90b3a1, type: 3}
   reloadClip: {fileID: 8300000, guid: 85b279b237676564789eddcb197de44b, type: 3}

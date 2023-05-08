@@ -39,8 +39,12 @@ public class GunScript : MonoBehaviour
 
     private void Update()
     {
-        // Checks to see if R key has been pressed or if you're out of Ammo and then reloads if you're no already trying to
-        if (Input.GetKeyUp(KeyCode.R) || Ammo <= 0 && !Reloading) StartCoroutine(Reload());
+
+        // if you're already trying to reload it stops everything untill you're done
+        if (Reloading) return;
+
+        // Checks to see if R key has been pressed or if you're out of Ammo and then reloads
+        if (Input.GetKeyUp(KeyCode.R) || Ammo <= 0) StartCoroutine(Reload());
         else
         {
             if (SpamClick)
@@ -84,6 +88,11 @@ public class GunScript : MonoBehaviour
         Flash.enabled = false;
     }
 
+    public void UpdateText()
+    {
+        AmmoText.text = "Ammo: " + Ammo + "/" + AmmoMax;
+    }
+
     void Shoot()
     {
         animationSource.SetTrigger("trShoot");
@@ -121,10 +130,5 @@ public class GunScript : MonoBehaviour
             if (hit.rigidbody != null) hit.rigidbody.AddForce(-hit.normal * (Damage * 10));
 
         }
-    }
-
-    public void UpdateText()
-    {
-        AmmoText.text = "Ammo: " + Ammo + "/" + AmmoMax;
     }
 }

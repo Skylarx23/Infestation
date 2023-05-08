@@ -42,28 +42,17 @@ public class AiScript : MonoBehaviour
             {
                 float DisToTarget = Vector3.Distance(transform.position, Target.position);
 
-                if (!Physics.Raycast(transform.position, DirToTarget, DisToTarget, isWall))
-                {
-                    agent.SetDestination(Player.transform.position);
-                    seeable = true;
-                }
+                if (!Physics.Raycast(transform.position, DirToTarget, DisToTarget, isWall)) Chasing();
                 else seeable = false;
             }
             else seeable = false;
         }
         else if (seeable) seeable = false;
 
-        if (!seeable)
-        {
-            if (atDes)
-            {
-                // Gives the enemy a random destination to go to whenever they cant see the player
-                Vector3 offset = new Vector3(Random.Range(-WalkRange, WalkRange), 0, Random.Range(-WalkRange, WalkRange));
-                agent.SetDestination(agent.transform.position + offset);
-            }
-            else if (agent.remainingDistance <= 1) atDes = true;
-            else atDes = false;
-        }
+        if (!seeable) Idle();
+
+
+        if (Physics.CheckSphere(transform.position, AttackRange, isPlayer)) Attacking();
     }
 
     public IEnumerator AlertEnemy()
@@ -79,8 +68,27 @@ public class AiScript : MonoBehaviour
         SightRange = oldSight;
     }
 
-    private void OnTriggerEnter(Collider collision)
+    private void Attacking()
     {
-        if (collision.CompareTag("Player")) GM.DamagePlayer(AttackDamage);
+        GM.DamagePlayer(AttackDamage);
+        agent.SetDestination(transform.position);
+    }
+
+    private void Chasing()
+    {
+        agent.SetDestination(Player.transform.position);
+        seeable = true;
+    }
+
+    private void Idle()
+    {
+        if (atDes)
+        {
+            // Gives the enemy a random destination to go to whenever they cant see the player
+            Vector3 offset = new Vector3(Random.Range(-WalkRange, WalkRange), 0, Random.Range(-WalkRange, WalkRange));
+            agent.SetDestination(agent.transform.position + offset);
+        }
+        else if (agent.remainingDistance <= 1) atDes = true;
+        else atDes = false;
     }
 }
