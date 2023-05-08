@@ -23,6 +23,8 @@ public class AiScript : MonoBehaviour
 
     GameManager GM;
 
+    public Animator animationSource;
+
     public void Awake()
     {
         agent = GetComponent<NavMeshAgent>();
@@ -78,6 +80,7 @@ public class AiScript : MonoBehaviour
     {
         agent.SetDestination(Player.transform.position);
         seeable = true;
+        animationSource.SetTrigger("trChase");
     }
 
     private void Idle()
@@ -90,5 +93,6 @@ public class AiScript : MonoBehaviour
         }
         else if (agent.remainingDistance <= 1) atDes = true;
         else atDes = false;
+        animationSource.SetTrigger("trWalk");
     }
 }
