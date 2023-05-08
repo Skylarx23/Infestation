@@ -6,7 +6,6 @@ using UnityEngine.UI;
 public class GameManager : MonoBehaviour
 {
     public Slider HealthBar;
-    public GameObject enemy;
 
     public AudioSource soundSource;
     public AudioClip queenFightMusic;
@@ -24,5 +23,12 @@ public class GameManager : MonoBehaviour
     public void DamagePlayer(float damage)
     {
         HealthBar.value -= damage;
+    }
+
+    public void StartTest()
+    {
+        Debug.Log("Test Started!");
+        // You can put whatever you want in here; spawing enemies, playing music, etc.
+        // Each Trigger point should have its own function to tell it what to do
     }
 }
