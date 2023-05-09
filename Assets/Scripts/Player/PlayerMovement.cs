@@ -15,7 +15,7 @@ public class PlayerMovement : MonoBehaviour
     public float groundRadius = 0.4f;
     public LayerMask groundLayer;
 
-    bool isGrounded;
+    public bool isGrounded, isRunning;
     public float jumpHeight = 20f;
     public Vector3 startPosition;
     Vector3 move;
@@ -63,11 +63,13 @@ public class PlayerMovement : MonoBehaviour
         }
         else if((Input.GetKey(KeyCode.LeftShift)))
         {
+            isRunning = true;
             speed = 20f;
             controller.Move(move * speed * Time.deltaTime);
         }
         else
         {
+            isRunning = false;
             speed = 10f;
             controller.Move(move * speed * Time.deltaTime);
         }

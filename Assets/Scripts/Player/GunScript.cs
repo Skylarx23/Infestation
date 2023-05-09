@@ -1,3 +1,4 @@
+using JetBrains.Annotations;
 using System.Collections;
 using System.Collections.Generic;
 using System.Security.Cryptography;
@@ -12,7 +13,7 @@ public class GunScript : MonoBehaviour
     public float Damage = 10;
     public float FireRate = 10;
     private float NextTimetoFire = 0;
-    public bool Reloading;
+    public bool Reloading, isRunning;
 
     public int AmmoMax = 20;
     private int Ammo;
@@ -28,9 +29,12 @@ public class GunScript : MonoBehaviour
     public GameObject BulletHole;
 
     public Animator animationSource;
+    public PlayerMovement PM;
 
     private void Start()
     {
+        PM = GameObject.Find("First Person Player").GetComponent<PlayerMovement>();
+
         Ammo = AmmoMax;
         Ammo--;
         Ammo++;
@@ -40,8 +44,8 @@ public class GunScript : MonoBehaviour
     private void Update()
     {
 
-        // if you're already trying to reload it stops everything untill you're done
-        if (Reloading) return;
+        // if you're already trying to reload & or running it stops everything untill you're done
+        if (Reloading || PM.isRunning) return;
 
         // Checks to see if R key has been pressed or if you're out of Ammo and then reloads
         if (Input.GetKeyUp(KeyCode.R) || Ammo <= 0) StartCoroutine(Reload());
