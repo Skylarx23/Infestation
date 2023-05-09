@@ -6,7 +6,7 @@ using UnityEngine;
 public class PlayerMovement : MonoBehaviour
 {
     [SerializeField] CharacterController controller;
-    public float speed = 12f;
+    public float speed = 10f;
     public Vector3 velocity;
     public float gravity = -9.81f;
     private bool CanDash = true;
@@ -19,6 +19,7 @@ public class PlayerMovement : MonoBehaviour
     public float jumpHeight = 20f;
     public Vector3 startPosition;
     Vector3 move;
+    Vector3 dash;
 
     // Start is called before the first frame update
     void Start()
@@ -38,10 +39,10 @@ public class PlayerMovement : MonoBehaviour
             velocity.y = -2f;
         }
 
-        if (Input.GetKeyDown(KeyCode.Space) && CanDash)
-        {
-            StartCoroutine(Dash());
-        }
+        //if (Input.GetKeyDown(KeyCode.Space) && CanDash)
+        //{
+            //StartCoroutine(Dash());
+        //}
 
             // Sets the varibles to the Key's direction 
             float x = Input.GetAxis("Horizontal");
@@ -49,18 +50,27 @@ public class PlayerMovement : MonoBehaviour
 
         // Moves the player (Relative to Itself) using the previous varibles 
         Vector3 move = transform.right * x + transform.forward * z;
+        Vector3 dash = transform.forward * z;
 
-        if(Input.GetKey(KeyCode.LeftShift))
+        // checks to see if the player has shot 
+        if (Input.GetKeyDown(KeyCode.Space) && CanDash)
         {
-            speed = 24f;
+            CanDash = false;
+            speed = 500f;
+            controller.Move(dash * speed * Time.deltaTime);
+            CanDash = true;
+
+        }
+        else if((Input.GetKey(KeyCode.LeftShift)))
+        {
+            speed = 20f;
             controller.Move(move * speed * Time.deltaTime);
         }
         else
         {
-            speed = 12f;
+            speed = 10f;
             controller.Move(move * speed * Time.deltaTime);
         }
-
         // Applys Gravity To The Player
         velocity.y += gravity * Time.deltaTime;
         controller.Move(velocity * Time.deltaTime);
@@ -82,11 +92,11 @@ public class PlayerMovement : MonoBehaviour
 
     private IEnumerator Dash()
     {
-        Debug.Log("Dashed");
         float dashCooldown = 2f;
-        // CanDash = false;
-        controller.Move(move * 3000f * Time.deltaTime);
+        speed = 500f;
+        CanDash = false;
+        controller.Move(dash * speed * Time.deltaTime);
         yield return new WaitForSeconds(dashCooldown);
         CanDash = true;
-    }
+   }
 }

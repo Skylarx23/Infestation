@@ -13,21 +13,45 @@ public class GameManager : MonoBehaviour
     public AudioClip fightTheme;
     public AudioClip ambience1, ambience2;
 
+    private AiScript aiScript;
+    private float damageAmount;
+
     // Start is called before the first frame update
     void Start()
     {
+        aiScript = FindObjectOfType<AiScript>();
         //SpawnScript.SpawnEnemies(4, Enemy);
-        soundSource.PlayOneShot(idleMusic1, 0.3f);
+        soundSource.clip = ambience1;
+        soundSource.Play();
     }
 
-    public void DamagePlayer(float damage)
+    public IEnumerator DamagePlayer(float damage)
     {
-        HealthBar.value -= damage;
+
+        yield return new WaitForSeconds(1.5f);
+        damageAmount = damage;
+        AttackPlayer();
+    }
+
+    public void AttackPlayer()
+    {
+        Debug.Log(aiScript.isInRange);
+        if (aiScript.isInRange = true)
+        {
+            HealthBar.value -= damageAmount;
+        }
+        else
+        {
+            return;
+        }
     }
 
     public void StartTest()
     {
         Debug.Log("Test Started!");
+        soundSource.clip = fightTheme;
+        soundSource.volume = 0.01f;
+        soundSource.Play();
         // You can put whatever you want in here; spawing enemies, playing music, etc.
         // Each Trigger point should have its own function to tell it what to do
     }

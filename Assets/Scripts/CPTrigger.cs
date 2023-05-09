@@ -14,5 +14,6 @@ public class CPTrigger : MonoBehaviour
     private void OnTriggerEnter(Collider Collision)
     {
         if (Collision.gameObject.tag == "Player") GM.StartTest();
+        Destroy(gameObject);
     }
 }
