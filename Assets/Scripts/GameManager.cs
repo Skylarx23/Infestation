@@ -36,7 +36,7 @@ public class GameManager : MonoBehaviour
     public void AttackPlayer()
     {
         Debug.Log(aiScript.isInRange);
-        if (aiScript.isInRange = true)
+        if (aiScript.isInRange == true)
         {
             HealthBar.value -= damageAmount;
         }

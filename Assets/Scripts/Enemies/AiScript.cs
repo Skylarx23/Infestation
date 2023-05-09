@@ -106,7 +106,7 @@ public class AiScript : MonoBehaviour
         agent.SetDestination(transform.position);
         if (attackCooldown < 0)
         {
-        agent.SetDestination(transform.position);
+
         StartCoroutine(GM.DamagePlayer(AttackDamage));
         animationSource.SetTrigger("trAttack");
         attackCooldown = 3;
@@ -141,7 +141,17 @@ public class AiScript : MonoBehaviour
         else if (agent.remainingDistance <= 1) atDes = true;
         else atDes = false;
         animationSource.SetTrigger("trWalk");
+
+        // Plays a Random animation every 2 to 10 seconds
+        InvokeRepeating("IdleSFX", Random.Range(2, 10), 1);
     }
+
+    public void IdleSFX()
+    {
+        mainSource.clip = chaseClips[Random.Range(0, chaseClips.Length)];
+        mainSource.PlayDelayed(1);
+    }
+
 
     public void AlienDie()
     {
