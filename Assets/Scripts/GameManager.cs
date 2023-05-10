@@ -6,12 +6,17 @@ using UnityEngine.UI;
 public class GameManager : MonoBehaviour
 {
     public Slider HealthBar;
+    public Text healthText;
 
     public AudioSource soundSource;
+    public AudioSource alertSource;
+    public AudioSource playerSource;
+    public AudioClip healingSound;
     public AudioClip queenFightMusic;
     public AudioClip idleMusic1;
     public AudioClip fightTheme;
     public AudioClip ambience1, ambience2;
+    public AudioClip alertSound;
 
     private AiScript aiScript;
 
@@ -21,6 +26,8 @@ public class GameManager : MonoBehaviour
     public GameObject MedIcon;
     public GameObject RifleUI;
     public GameObject PistolUI;
+    public GameObject droneSpawner;
+    public GameObject alertUI;
 
 
     // Start is called before the first frame update
@@ -31,13 +38,18 @@ public class GameManager : MonoBehaviour
         soundSource.clip = ambience1;
         soundSource.volume = 0.15f;
         soundSource.Play();
+        //MedIcon.SetActive(true);
+        alertUI.SetActive(false);
+    }
 
-        MedIcon.SetActive(true);
+    private void Update()
+    {
+        healthText.text = HealthBar.value.ToString();
     }
 
     public IEnumerator DamagePlayer(float damage, GameObject Enemy)
     {
-        yield return new WaitForSeconds(1.5f);
+        yield return new WaitForSeconds(0.5f);
         if (Enemy.GetComponent<AiScript>().isInRange == true) HealthBar.value -= damage;
     }
 
@@ -45,9 +57,11 @@ public class GameManager : MonoBehaviour
     {
         if (hasMedKit)
         {
-            HealthBar.value += 750;
+            HealthBar.value += 1000;
             hasMedKit = false;
-            MedIcon.SetActive(false);
+            playerSource.PlayOneShot(healingSound);
+            //MedIcon.SetActive(false);
+            MedIcon.transform.GetComponent<Image>().color = new Vector4(1, 1, 1, 0.2f);
         }
     }
 
@@ -57,7 +71,8 @@ public class GameManager : MonoBehaviour
         {
             hasMedKit = true;
             Destroy(MedKit);
-            MedIcon.SetActive(true);
+            //MedIcon.SetActive(true);
+            MedIcon.transform.GetComponent<Image>().color = new Vector4(0, 0, 0, 1f);
         }
     }
 
@@ -83,8 +98,20 @@ public class GameManager : MonoBehaviour
         Debug.Log("Test Started!");
         soundSource.clip = fightTheme;
         soundSource.volume = 0.06f;
-        soundSource.Play();
+        soundSource.PlayDelayed(2.5f);
+        alertSource.clip = alertSound;
+        alertSource.Play();
+        GameObject Model = droneSpawner.GetComponent<SpawnScript>().Model;
+        droneSpawner.GetComponent<SpawnScript>().SpawnEnemies(1, Model);
+        alertUI.SetActive(true);
+        StartCoroutine(DisableAlert());
         // You can put whatever you want in here; spawing enemies, playing music, etc.
         // Each Trigger point should have its own function to tell it what to do
+    }
+
+    private IEnumerator DisableAlert()
+    {
+        yield return new WaitForSeconds(3f);
+        alertUI.SetActive(false);
     }
 }
