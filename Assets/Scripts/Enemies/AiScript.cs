@@ -106,8 +106,7 @@ public class AiScript : MonoBehaviour
         agent.SetDestination(transform.position);
         if (attackCooldown < 0)
         {
-
-        StartCoroutine(GM.DamagePlayer(AttackDamage));
+        StartCoroutine(GM.DamagePlayer(AttackDamage, this.gameObject));
         animationSource.SetTrigger("trAttack");
         attackCooldown = 3;
         mainSource.clip = attackClips[Random.Range(0, attackClips.Length)];

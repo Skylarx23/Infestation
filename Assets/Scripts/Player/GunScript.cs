@@ -31,7 +31,7 @@ public class GunScript : MonoBehaviour
     public Animator animationSource;
     public PlayerMovement PM;
 
-    private void Start()
+    private void Awake()
     {
         PM = GameObject.Find("First Person Player").GetComponent<PlayerMovement>();
 
@@ -97,7 +97,7 @@ public class GunScript : MonoBehaviour
 
     public void UpdateText()
     {
-        AmmoText.text = "Ammo: " + Ammo + "/" + AmmoMax;
+        AmmoText.text = this.gameObject.name + ": " + Ammo + "/" + AmmoMax;
     }
 
     void Shoot()

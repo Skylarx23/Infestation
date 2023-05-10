@@ -1,16 +1,19 @@
+using Unity.VisualScripting;
 using UnityEngine;
 using UnityEngine.UI;
 
 public class GunSwitcher : MonoBehaviour
 {
     public int SelectedWeapon = 0;
-    public Text WeaponText;
     private GunScript gunScript;
+    private GameManager GM;
 
     public void Start()
     {
         SelectWeapon();
         gunScript = FindObjectOfType<GunScript>();
+        GM = FindObjectOfType<GameManager>();
+
     }
 
     void Update()
@@ -30,9 +33,10 @@ public class GunSwitcher : MonoBehaviour
             else SelectedWeapon--;
         }
 
+        GM.GunUI(this.gameObject);
+
         // Will only try to switch weapons if something changes
         if (previousallySelectedWeapon != SelectedWeapon) SelectWeapon();
-        WeaponText.text = "Weapon: " + transform.GetChild(SelectedWeapon).name;
     }
 
     // Switches out weapons depending on which ones are selected
@@ -43,7 +47,6 @@ public class GunSwitcher : MonoBehaviour
         {
             if (i == SelectedWeapon)
             {
-                Weapons.GetComponent<GunScript>().UpdateText();
                 Weapons.gameObject.SetActive(true);
             }
             else Weapons.gameObject.SetActive(false);

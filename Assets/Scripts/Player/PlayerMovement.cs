@@ -21,11 +21,14 @@ public class PlayerMovement : MonoBehaviour
     Vector3 move;
     Vector3 dash;
 
+    GameManager GM;
+
     // Start is called before the first frame update
     void Start()
     {   
         // initializing start position
         startPosition = new Vector3(0,2,0);
+        GM = GameObject.Find("GameManager").GetComponent<GameManager>();
     }
 
     // Update is called once per frame
@@ -85,6 +88,8 @@ public class PlayerMovement : MonoBehaviour
 
         // if the player goes below y -5 they are jumped back to the start, incase they fall off of the map
 
+        // If Player Press E they'll get healed if they have a medkit
+        if (Input.GetKey(KeyCode.E)) GM.HealPlayer();
 
         if (groundCheck.position.y  < -5)
             {
