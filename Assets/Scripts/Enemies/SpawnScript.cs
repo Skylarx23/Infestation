@@ -23,9 +23,14 @@ public class SpawnScript : MonoBehaviour
             Vector3 offset = new Vector3(Random.value * Range - Range, 0, Random.value * Range - Range);
 
             Quaternion SpawnRotation = Enemy.transform.rotation;
-            GameObject GOEnemy = Instantiate(Enemy, SpawnPoint + offset, SpawnRotation);
-            GOEnemy.GetComponent<AiScript>().Spawner = this.gameObject;
-            Enemies.Add(GOEnemy);
+            GameObject GOHazard = Instantiate(Enemy, SpawnPoint + offset, SpawnRotation);
+
+            if (GOHazard.gameObject.CompareTag("Hazard")) Destroy(GOHazard, 5f);
+            else
+            {
+                GOHazard.GetComponent<AiScript>().Spawner = this.gameObject;
+                Enemies.Add(GOHazard);
+            }
         }
     }
 }

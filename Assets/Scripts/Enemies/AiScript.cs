@@ -6,24 +6,25 @@ using UnityEngine.Animations;
 
 public class AiScript : MonoBehaviour
 {
-    public float SightRange;
-    public float SightMuliplier;
 
     [Range(1, 360)]
     public float FOVangle;
 
+    public float SightRange;
+    public float SightMuliplier;
     public float AttackRange;
     public float AttackDamage;
-
     public float SpeedMuliplier;
     public float WalkRange;
-    public LayerMask isPlayer, isWall;
-    bool seeable, atDes;
 
     public GameObject Player;
     public GameObject Spawner;
+    public GameObject Acid;
     public Transform UILook;
     public NavMeshAgent agent;
+    public LayerMask isPlayer, isWall;
+    bool seeable, atDes;
+    public bool isQueen;
 
     GameManager GM;
 
@@ -148,21 +149,15 @@ public class AiScript : MonoBehaviour
         else atDes = false;
         animationSource.SetTrigger("trWalk");
 
+        // If the AI is a Queen theres a 1% chance they'll spawn a Acid Pool 
+        if (Random.Range(0, 100) == 0 && isQueen) AcidPool();
+
         // Plays a Random animation every 2 to 10 seconds
         //InvokeRepeating("IdleSFX", Random.Range(10,20), 1);
     }
 
-    public void IdleSFX()
+    private void AcidPool()
     {
-        //Debug.Log("Sfx");
-        //mainSource.clip = idleClips[Random.Range(0, idleClips.Length)];
-        //mainSource.PlayDelayed(1);
-    }
-
-
-    public void AlienDie()
-    {
-        Debug.Log("dead");
-
+        this.gameObject.GetComponent<SpawnScript>().SpawnEnemies(Random.Range(1, 3), Acid);
     }
 }
