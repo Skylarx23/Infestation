@@ -2,6 +2,7 @@ using System.Collections;
 using Unity.VisualScripting;
 using UnityEngine;
 using UnityEngine.AI;
+using UnityEngine.Animations;
 
 public class AiScript : MonoBehaviour
 {
@@ -14,11 +15,13 @@ public class AiScript : MonoBehaviour
     public float AttackRange;
     public float AttackDamage;
 
+    public float SpeedMuliplier;
     public float WalkRange;
     public LayerMask isPlayer, isWall;
     bool seeable, atDes;
 
     public GameObject Player;
+    public Transform UILook;
     public NavMeshAgent agent;
 
     GameManager GM;
@@ -92,6 +95,11 @@ public class AiScript : MonoBehaviour
     {
         float oldFOV = FOVangle;
         float oldSight = SightRange;
+        float oldSpeed = agent.speed;
+
+        agent.speed *= SpeedMuliplier;
+        yield return new WaitForSeconds(0.5f);
+        agent.speed = oldSpeed;
 
         FOVangle = 360;
         SightRange *= SightMuliplier;
@@ -125,7 +133,6 @@ public class AiScript : MonoBehaviour
         backgroundSource.clip = backgroundClips[0];
         backgroundSource.Play();
         footstepCooldown = 2;
-        Debug.Log("footstep");
         }
     }
 

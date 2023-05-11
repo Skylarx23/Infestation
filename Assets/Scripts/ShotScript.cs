@@ -7,6 +7,8 @@ public class ShotScript : MonoBehaviour
     //public Slider HealthBarGlobal;
     public float Health = 50;
 
+    public GameObject AcidBlood;
+
     private void Start()
     {
         HealthBar.maxValue = Health;
@@ -25,6 +27,8 @@ public class ShotScript : MonoBehaviour
 
     private void Die()
     {
-       Destroy(gameObject);
+        Destroy(gameObject);
+        GameObject Acid = Instantiate(AcidBlood, transform.position, Quaternion.LookRotation(transform.position));
+        Destroy(Acid, 3f);
     }
 }

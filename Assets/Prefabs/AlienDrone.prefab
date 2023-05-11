@@ -61,7 +61,7 @@ MeshRenderer:
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
-  - {fileID: 10303, guid: 0000000000000000f000000000000000, type: 0}
+  - {fileID: 2100000, guid: 05c51ad21b08ab24ba178f0df37eee28, type: 2}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0
@@ -857,7 +857,7 @@ MeshRenderer:
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
-  - {fileID: 10303, guid: 0000000000000000f000000000000000, type: 0}
+  - {fileID: 2100000, guid: 05c51ad21b08ab24ba178f0df37eee28, type: 2}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0
@@ -1253,7 +1253,7 @@ MeshRenderer:
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
-  - {fileID: 10303, guid: 0000000000000000f000000000000000, type: 0}
+  - {fileID: 2100000, guid: 05c51ad21b08ab24ba178f0df37eee28, type: 2}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0
@@ -2567,7 +2567,7 @@ Transform:
   - {fileID: 6446896047702425772}
   - {fileID: 2924312421366814295}
   m_Father: {fileID: 0}
-  m_RootOrder: 2
+  m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!114 &6446896047305569901
 MonoBehaviour:
@@ -2584,8 +2584,9 @@ MonoBehaviour:
   SightRange: 100
   SightMuliplier: 3
   FOVangle: 270
-  AttackRange: 8
+  AttackRange: 4
   AttackDamage: 300
+  SpeedMuliplier: 0.5
   WalkRange: 15
   isPlayer:
     serializedVersion: 2
@@ -2594,6 +2595,7 @@ MonoBehaviour:
     serializedVersion: 2
     m_Bits: 64
   Player: {fileID: 0}
+  UILook: {fileID: 0}
   agent: {fileID: 0}
   animationSource: {fileID: 7772433203018003339}
   attackCooldown: 5
@@ -2653,6 +2655,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   HealthBar: {fileID: 6446896048125644924}
   Health: 1500
+  AcidBlood: {fileID: 5987958044760234494, guid: c3f519d6b1220e94fa348998fb52b689, type: 3}
 --- !u!82 &6446896047305569891
 AudioSource:
   m_ObjectHideFlags: 0
@@ -2761,7 +2764,7 @@ AudioSource:
   OutputAudioMixerGroup: {fileID: 0}
   m_audioClip: {fileID: 8300000, guid: 942aa66069df6f247a3e371627d39286, type: 3}
   m_PlayOnAwake: 0
-  m_Volume: 0.133
+  m_Volume: 0.473
   m_Pitch: 1
   Loop: 1
   Mute: 0
@@ -3081,7 +3084,7 @@ GameObject:
   - component: {fileID: 6446896047702425760}
   - component: {fileID: 6446896047702425763}
   - component: {fileID: 6446896047702425762}
-  - component: {fileID: 6446896047702425773}
+  - component: {fileID: 4013186028516099433}
   m_Layer: 5
   m_Name: Canvas
   m_TagString: Untagged
@@ -3108,7 +3111,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0}
   m_AnchorMax: {x: 0, y: 0}
-  m_AnchoredPosition: {x: 0, y: 6}
+  m_AnchoredPosition: {x: 0, y: 3.06}
   m_SizeDelta: {x: 881.19995, y: 396.4}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!223 &6446896047702425760
@@ -3173,26 +3176,18 @@ MonoBehaviour:
   m_BlockingMask:
     serializedVersion: 2
     m_Bits: 4294967295
---- !u!1818360609 &6446896047702425773
-RotationConstraint:
+--- !u!114 &4013186028516099433
+MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 6446896047702425775}
   m_Enabled: 1
-  serializedVersion: 2
-  m_Weight: 1
-  m_RotationAtRest: {x: 0, y: 0, z: 0}
-  m_RotationOffset: {x: 0, y: 0, z: 0}
-  m_AffectRotationX: 1
-  m_AffectRotationY: 1
-  m_AffectRotationZ: 1
-  m_Active: 1
-  m_IsLocked: 0
-  m_Sources:
-  - sourceTransform: {fileID: 0}
-    weight: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 9e72d06eb7d297147b056355b52e5119, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &6446896048125644927
 GameObject:
   m_ObjectHideFlags: 0

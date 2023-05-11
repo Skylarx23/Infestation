@@ -47,10 +47,14 @@ public class GameManager : MonoBehaviour
         healthText.text = HealthBar.value.ToString();
     }
 
-    public IEnumerator DamagePlayer(float damage, GameObject Enemy)
+    public IEnumerator DamagePlayer(float damage, GameObject Hazard)
     {
         yield return new WaitForSeconds(0.5f);
-        if (Enemy.GetComponent<AiScript>().isInRange == true) HealthBar.value -= damage;
+        if (Hazard != null)
+        {
+            if (!Hazard.GetComponent<AiScript>().isInRange == true) yield return "";
+        }
+        HealthBar.value -= damage;
     }
 
     public void HealPlayer()

@@ -27,6 +27,7 @@ public class GunScript : MonoBehaviour
     public ParticleSystem MuzzleFlash;
     public Light Flash;
     public GameObject BulletHole;
+    public GameObject AcidBlood;
 
     public Animator animationSource;
     public PlayerMovement PM;
@@ -120,14 +121,23 @@ public class GunScript : MonoBehaviour
         // travels as far as the range adnt he assigns the results to "hit"
         if (Physics.Raycast(PlayerCam.transform.position, PlayerCam.transform.forward, out hit, Range))
         {
-            // Creates a Bullet Hole at the point the object got shot and moves it forward to stop clipping adn destorys it 2 seconds later
-            GameObject hole = Instantiate(BulletHole, hit.point, Quaternion.LookRotation(hit.normal));
-            BulletHole.transform.position += BulletHole.transform.forward / 100;
-            Destroy(hole, 2f);
 
             // Checks to see if the object has the script then makes it take damage
             ShotScript targetShot = hit.transform.GetComponent<ShotScript>();
-            if (targetShot != null) targetShot.TakeDamage(Damage);
+            if (targetShot != null)
+            {
+                targetShot.TakeDamage(Damage);
+                GameObject Acid = Instantiate(AcidBlood, hit.point, Quaternion.LookRotation(hit.normal));
+                Acid.transform.position += Acid.transform.forward / 100;
+                Destroy(Acid, 0.5f);
+            }
+           else
+            {
+                // Creates a Bullet Hole at the point the object got shot and moves it forward to stop clipping and destorys it 2 seconds later
+                GameObject hole = Instantiate(BulletHole, hit.point, Quaternion.LookRotation(hit.normal));
+                BulletHole.transform.position += BulletHole.transform.forward / 100;
+                Destroy(hole, 2f);
+            }
 
             // Checks to see if the object has the script then makes it "Alerted"
             AiScript targetAi = hit.transform.GetComponent<AiScript>();

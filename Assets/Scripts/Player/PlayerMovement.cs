@@ -106,4 +106,9 @@ public class PlayerMovement : MonoBehaviour
         yield return new WaitForSeconds(dashCooldown);
         CanDash = true;
    }
+
+    public void OnTriggerStay(Collider Collison)
+    {
+        if (Collison.gameObject.CompareTag("Hazard")) GM.DamagePlayer(1, gameObject);
+    }
 }
