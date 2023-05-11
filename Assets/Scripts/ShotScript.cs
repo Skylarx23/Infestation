@@ -1,3 +1,4 @@
+using Unity.VisualScripting;
 using UnityEngine;
 using UnityEngine.UI;
 
@@ -27,7 +28,14 @@ public class ShotScript : MonoBehaviour
 
     private void Die()
     {
-        Destroy(gameObject);
+        // Decreases Enemies Count from a spawner if they came from a spawner
+        if (this.gameObject.GetComponent<AiScript>().Spawner != null)
+        { 
+        this.gameObject.GetComponent<AiScript>().Spawner.GetComponent<SpawnScript>().Enemies.Remove(this.gameObject);
+        }
+
+        // Creates a "AcidBlood" the destroy's itself and then the acid after 3 seconds
+        Destroy(this.gameObject);
         GameObject Acid = Instantiate(AcidBlood, transform.position, Quaternion.LookRotation(transform.position));
         Destroy(Acid, 3f);
     }

@@ -1,3 +1,4 @@
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
@@ -27,6 +28,7 @@ public class GameManager : MonoBehaviour
     public GameObject RifleUI;
     public GameObject PistolUI;
     public GameObject droneSpawner;
+    public GameObject WaveSpawner;
     public GameObject alertUI;
 
 
@@ -45,6 +47,8 @@ public class GameManager : MonoBehaviour
     private void Update()
     {
         healthText.text = HealthBar.value.ToString();
+
+        if (Input.GetKeyUp(KeyCode.K)) StartCoroutine(WaveTest());
     }
 
     public IEnumerator DamagePlayer(float damage, GameObject Hazard)
@@ -111,6 +115,21 @@ public class GameManager : MonoBehaviour
         StartCoroutine(DisableAlert());
         // You can put whatever you want in here; spawing enemies, playing music, etc.
         // Each Trigger point should have its own function to tell it what to do
+    }
+
+    public IEnumerator WaveTest()
+    {
+        for (int i = 0; i < 5; i++)
+        {
+            Debug.Log("Wave" + i);
+            // Grabs the Enemy prefab from the spawner and tries to spawn it X amount of times
+            GameObject Model = droneSpawner.GetComponent<SpawnScript>().Model;
+            WaveSpawner.GetComponent<SpawnScript>().SpawnEnemies(i, Model);
+
+            // Waits until all Enemies are dead 
+            yield return new WaitUntil(() => WaveSpawner.GetComponent<SpawnScript>().Enemies.Count == 0);
+            Debug.Log("Wave" + i + " Finished");
+        }
     }
 
     private IEnumerator DisableAlert()

@@ -21,6 +21,7 @@ public class AiScript : MonoBehaviour
     bool seeable, atDes;
 
     public GameObject Player;
+    public GameObject Spawner;
     public Transform UILook;
     public NavMeshAgent agent;
 
@@ -84,7 +85,6 @@ public class AiScript : MonoBehaviour
             Attacking();
             isInRange = true;
         }
-        
         else
         {
             isInRange = false;

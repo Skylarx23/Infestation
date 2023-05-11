@@ -1,6 +1,4 @@
-using System.Collections;
 using System.Collections.Generic;
-using System.Drawing;
 using UnityEngine;
 
 public class SpawnScript : MonoBehaviour
@@ -25,7 +23,9 @@ public class SpawnScript : MonoBehaviour
             Vector3 offset = new Vector3(Random.value * Range - Range, 0, Random.value * Range - Range);
 
             Quaternion SpawnRotation = Enemy.transform.rotation;
-            Enemies.Add(Instantiate(Enemy, SpawnPoint + offset, SpawnRotation));
+            GameObject GOEnemy = Instantiate(Enemy, SpawnPoint + offset, SpawnRotation);
+            GOEnemy.GetComponent<AiScript>().Spawner = this.gameObject;
+            Enemies.Add(GOEnemy);
         }
     }
 }
