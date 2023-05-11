@@ -149,7 +149,7 @@ public class AiScript : MonoBehaviour
         animationSource.SetTrigger("trWalk");
 
         // Plays a Random animation every 2 to 10 seconds
-        InvokeRepeating("IdleSFX", Random.Range(10,20), 1);
+        //InvokeRepeating("IdleSFX", Random.Range(10,20), 1);
     }
 
     public void IdleSFX()

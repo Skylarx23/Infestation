@@ -21,6 +21,9 @@ public class PlayerMovement : MonoBehaviour
     Vector3 move;
     Vector3 dash;
 
+    public AudioSource playerSource;
+    public AudioClip acidClip;
+
     GameManager GM;
 
     // Start is called before the first frame update
@@ -109,6 +112,9 @@ public class PlayerMovement : MonoBehaviour
 
     public void OnTriggerStay(Collider Collison)
     {
-        if (Collison.gameObject.CompareTag("Hazard")) GM.DamagePlayer(1, gameObject);
+        if (Collison.gameObject.CompareTag("Hazard")) 
+        {
+            GM.DamagePlayerHazard(1);
+        }
     }
 }

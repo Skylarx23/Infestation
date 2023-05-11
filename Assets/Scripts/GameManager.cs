@@ -51,13 +51,17 @@ public class GameManager : MonoBehaviour
         if (Input.GetKeyUp(KeyCode.K)) StartCoroutine(WaveTest());
     }
 
-    public IEnumerator DamagePlayer(float damage, GameObject Hazard)
+    public IEnumerator DamagePlayer(float damage, GameObject Enemy)
     {
         yield return new WaitForSeconds(0.5f);
-        if (Hazard != null)
+        if (Enemy.GetComponent<AiScript>().isInRange == true)
         {
-            if (!Hazard.GetComponent<AiScript>().isInRange == true) yield return "";
+            HealthBar.value -= damage;
         }
+    }
+
+    public void DamagePlayerHazard(float damage)
+    {
         HealthBar.value -= damage;
     }
 
