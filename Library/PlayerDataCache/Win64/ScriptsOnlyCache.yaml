@@ -9,6 +9,7 @@ ScriptsOnlyBuild:
     - MedKit
     - MouseLook
     - OptionsMenu
+    - ParticleCollider
     - PlayerMovement
     - ShotScript
     - SpawnScript
@@ -143,39 +144,39 @@ ScriptsOnlyBuild:
     - Class: 104
       Script: {instanceID: 0}
     - Class: 114
-      Script: {instanceID: 1656}
+      Script: {instanceID: 1746}
     - Class: 114
-      Script: {instanceID: 2304}
+      Script: {instanceID: 2394}
     - Class: 114
-      Script: {instanceID: 2434}
+      Script: {instanceID: 2524}
     - Class: 114
-      Script: {instanceID: 2758}
+      Script: {instanceID: 2848}
     - Class: 114
-      Script: {instanceID: 2988}
+      Script: {instanceID: 3078}
     - Class: 114
-      Script: {instanceID: 3306}
+      Script: {instanceID: 3396}
     - Class: 114
-      Script: {instanceID: 4404}
+      Script: {instanceID: 4494}
     - Class: 114
-      Script: {instanceID: 4686}
+      Script: {instanceID: 4776}
     - Class: 114
-      Script: {instanceID: 5392}
+      Script: {instanceID: 5482}
     - Class: 114
-      Script: {instanceID: 5480}
+      Script: {instanceID: 5570}
     - Class: 114
-      Script: {instanceID: 5764}
+      Script: {instanceID: 5854}
     - Class: 114
-      Script: {instanceID: 6036}
+      Script: {instanceID: 6126}
     - Class: 114
-      Script: {instanceID: 6108}
+      Script: {instanceID: 6198}
     - Class: 114
-      Script: {instanceID: 6264}
+      Script: {instanceID: 6354}
     - Class: 114
-      Script: {instanceID: 6364}
+      Script: {instanceID: 6456}
     - Class: 114
-      Script: {instanceID: 6612}
+      Script: {instanceID: 6704}
     - Class: 114
-      Script: {instanceID: 7916}
+      Script: {instanceID: 8008}
     - Class: 115
       Script: {instanceID: 0}
     - Class: 128
@@ -236,49 +237,51 @@ ScriptsOnlyBuild:
     - Class: 108
       Script: {instanceID: 0}
     - Class: 114
-      Script: {instanceID: 1656}
+      Script: {instanceID: 1746}
     - Class: 114
-      Script: {instanceID: 1870}
+      Script: {instanceID: 1960}
     - Class: 114
-      Script: {instanceID: 2068}
+      Script: {instanceID: 2158}
     - Class: 114
-      Script: {instanceID: 2434}
+      Script: {instanceID: 2524}
     - Class: 114
-      Script: {instanceID: 2758}
+      Script: {instanceID: 2848}
     - Class: 114
-      Script: {instanceID: 2988}
+      Script: {instanceID: 3078}
     - Class: 114
-      Script: {instanceID: 3234}
+      Script: {instanceID: 3324}
     - Class: 114
-      Script: {instanceID: 4148}
+      Script: {instanceID: 4238}
     - Class: 114
-      Script: {instanceID: 4980}
+      Script: {instanceID: 5070}
     - Class: 114
-      Script: {instanceID: 5392}
+      Script: {instanceID: 5482}
     - Class: 114
-      Script: {instanceID: 5480}
+      Script: {instanceID: 5570}
     - Class: 114
-      Script: {instanceID: 5764}
+      Script: {instanceID: 5854}
     - Class: 114
-      Script: {instanceID: 6108}
+      Script: {instanceID: 6198}
     - Class: 114
-      Script: {instanceID: 6170}
+      Script: {instanceID: 6260}
     - Class: 114
-      Script: {instanceID: 6264}
+      Script: {instanceID: 6354}
     - Class: 114
-      Script: {instanceID: 6612}
+      Script: {instanceID: 6414}
     - Class: 114
-      Script: {instanceID: 7108}
+      Script: {instanceID: 6704}
     - Class: 114
-      Script: {instanceID: 7386}
+      Script: {instanceID: 7200}
     - Class: 114
-      Script: {instanceID: 7790}
+      Script: {instanceID: 7478}
     - Class: 114
-      Script: {instanceID: 8054}
+      Script: {instanceID: 7882}
     - Class: 114
-      Script: {instanceID: 8466}
+      Script: {instanceID: 8146}
     - Class: 114
-      Script: {instanceID: 8534}
+      Script: {instanceID: 8558}
+    - Class: 114
+      Script: {instanceID: 8626}
     - Class: 115
       Script: {instanceID: 0}
     - Class: 128
@@ -984,6 +987,12 @@ ScriptsOnlyBuild:
     className: TextMeshProUGUI
   - hash:
       serializedVersion: 2
+      Hash: 751e5bae2a317288c2ab58d66687092b
+    assemblyName: Assembly-CSharp.dll
+    namespaceName: 
+    className: ParticleCollider
+  - hash:
+      serializedVersion: 2
       Hash: 81e97b493598cc0245875183bbedfae1
     assemblyName: Assembly-CSharp.dll
     namespaceName: 
@@ -1292,4 +1301,4 @@ ScriptsOnlyBuild:
   scenePathNames:
   - Assets/Scenes/Menu.unity
   - Assets/Scenes/SampleScene.unity
-  playerPath: D:/Infestation.exe
+  playerPath: C:/Users/ewan2/OneDrive/Documents/Unity/Infestation/Builds/Infestation.exe
