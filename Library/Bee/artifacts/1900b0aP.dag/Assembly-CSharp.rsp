@@ -111,6 +111,7 @@
 -define:ENABLE_TILEMAP
 -define:ENABLE_TIMELINE
 -define:ENABLE_LEGACY_INPUT_MANAGER
+-define:UNITY_POST_PROCESSING_STACK_V2
 -define:CSHARP_7_OR_LATER
 -define:CSHARP_7_3_OR_NEWER
 -r:"C:/Program Files/Unity/Hub/Editor/2022.1.23f1/Editor/Data/NetStandard/compat/2.1.0/shims/netfx/mscorlib.dll"
@@ -302,8 +303,9 @@
 -r:"C:/Program Files/Unity/Hub/Editor/2022.1.23f1/Editor/Data/PlaybackEngines/WindowsStandaloneSupport/Variations/mono/Managed/UnityEngine.VRModule.dll"
 -r:"C:/Program Files/Unity/Hub/Editor/2022.1.23f1/Editor/Data/PlaybackEngines/WindowsStandaloneSupport/Variations/mono/Managed/UnityEngine.WindModule.dll"
 -r:"C:/Program Files/Unity/Hub/Editor/2022.1.23f1/Editor/Data/PlaybackEngines/WindowsStandaloneSupport/Variations/mono/Managed/UnityEngine.XRModule.dll"
--r:"D:/Project Folder - Infestation/infestation-project/Infestation/Library/PackageCache/com.unity.nuget.newtonsoft-json@3.0.2/Runtime/AOT/Newtonsoft.Json.dll"
--r:"D:/Project Folder - Infestation/infestation-project/Infestation/Library/PackageCache/com.unity.visualscripting@1.7.8/Runtime/VisualScripting.Flow/Dependencies/NCalc/Unity.VisualScripting.Antlr3.Runtime.dll"
+-r:"D:/Infestation/Library/PackageCache/com.unity.nuget.newtonsoft-json@3.0.2/Runtime/AOT/Newtonsoft.Json.dll"
+-r:"D:/Infestation/Library/PackageCache/com.unity.visualscripting@1.7.8/Runtime/VisualScripting.Flow/Dependencies/NCalc/Unity.VisualScripting.Antlr3.Runtime.dll"
+-r:"Library/Bee/artifacts/1900b0aP.dag/Unity.Postprocessing.Runtime.ref.dll"
 -r:"Library/Bee/artifacts/1900b0aP.dag/Unity.Services.Core.Analytics.ref.dll"
 -r:"Library/Bee/artifacts/1900b0aP.dag/Unity.Services.Core.Environments.ref.dll"
 -r:"Library/Bee/artifacts/1900b0aP.dag/Unity.Services.Core.ref.dll"
@@ -313,8 +315,23 @@
 -r:"Library/Bee/artifacts/1900b0aP.dag/Unity.VisualScripting.Flow.ref.dll"
 -r:"Library/Bee/artifacts/1900b0aP.dag/Unity.VisualScripting.State.ref.dll"
 -r:"Library/Bee/artifacts/1900b0aP.dag/UnityEngine.UI.ref.dll"
-"Assets/MouseLook.cs"
-"Assets/Scripts/PlayerMovement.cs"
+"Assets/Scripts/CPTrigger.cs"
+"Assets/Scripts/Deprecated/UILook.cs"
+"Assets/Scripts/Enemies/AiScript.cs"
+"Assets/Scripts/Enemies/BossScript.cs"
+"Assets/Scripts/Enemies/SpawnScript.cs"
+"Assets/Scripts/GameManager.cs"
+"Assets/Scripts/MedKit.cs"
+"Assets/Scripts/Player/AmmoScript.cs"
+"Assets/Scripts/Player/GunScript.cs"
+"Assets/Scripts/Player/GunSwitcher.cs"
+"Assets/Scripts/Player/MouseLook.cs"
+"Assets/Scripts/Player/PlayerMovement.cs"
+"Assets/Scripts/ShotScript.cs"
+"Assets/Scripts/TitleScreen/OptionsMenu.cs"
+"Assets/Scripts/TitleScreen/PauseMenu.cs"
+"Assets/Scripts/TitleScreen/StartScript.cs"
+"Assets/Scripts/TitleScreen/TitleScript.cs"
 -langversion:9.0
 
 /deterministic

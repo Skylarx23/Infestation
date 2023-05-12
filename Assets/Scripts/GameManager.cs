@@ -31,7 +31,6 @@ public class GameManager : MonoBehaviour
     public GameObject WaveSpawner;
     public GameObject alertUI;
 
-
     // Start is called before the first frame update
     void Start()
     {
@@ -62,6 +61,7 @@ public class GameManager : MonoBehaviour
 
     public void DamagePlayerHazard(float damage)
     {
+        Debug.Log("hazard damage");
         HealthBar.value -= damage;
     }
 
