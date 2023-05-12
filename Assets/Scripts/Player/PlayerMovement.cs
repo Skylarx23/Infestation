@@ -9,7 +9,6 @@ public class PlayerMovement : MonoBehaviour
     public float speed = 10f;
     public Vector3 velocity;
     public float gravity = -9.81f;
-    private bool CanDash = true;
 
     [SerializeField] Transform groundCheck;
     public float groundRadius = 0.4f;
@@ -59,15 +58,8 @@ public class PlayerMovement : MonoBehaviour
         Vector3 dash = transform.forward * z;
 
         // checks to see if the player has shot 
-        if (Input.GetKeyDown(KeyCode.Space) && CanDash)
-        {
-            CanDash = false;
-            speed = 500f;
-            controller.Move(dash * speed * Time.deltaTime);
-            CanDash = true;
 
-        }
-        else if((Input.GetKey(KeyCode.LeftShift)))
+        if((Input.GetKey(KeyCode.LeftShift)))
         {
             isRunning = true;
             speed = 20f;
@@ -99,16 +91,6 @@ public class PlayerMovement : MonoBehaviour
                 transform.position = startPosition;
             }
     }
-
-    private IEnumerator Dash()
-    {
-        float dashCooldown = 2f;
-        speed = 500f;
-        CanDash = false;
-        controller.Move(dash * speed * Time.deltaTime);
-        yield return new WaitForSeconds(dashCooldown);
-        CanDash = true;
-   }
 
     public void OnTriggerStay(Collider Collison)
     {

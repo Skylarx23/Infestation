@@ -38,7 +38,7 @@ public class GameManager : MonoBehaviour
         aiScript = FindObjectOfType<AiScript>();
         //SpawnScript.SpawnEnemies(4, Enemy);
         soundSource.clip = ambience1;
-        soundSource.volume = 0.15f;
+        soundSource.volume = 0.1f;
         soundSource.Play();
         //MedIcon.SetActive(true);
         alertUI.SetActive(false);
