@@ -165,4 +165,9 @@ public class GameManager : MonoBehaviour
         queenSpawner.GetComponent<SpawnScript>().SpawnEnemies(1, Model);
         yield return new WaitForSeconds(0.5f);
     }
+
+    public IEnumerator QueenDeath()
+    {
+        yield return new WaitForSeconds(0.5f);
+    }
 }

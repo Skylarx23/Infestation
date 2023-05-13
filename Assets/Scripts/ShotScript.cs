@@ -7,9 +7,15 @@ public class ShotScript : MonoBehaviour
     public Slider HealthBar;
     //public Slider HealthBarGlobal;
     public float Health = 50;
+    public bool isQueen = false;
 
     public GameObject AcidBlood;
+    GameManager GM;
 
+    private void Awake()
+    {
+        GM = GameObject.Find("GameManager").GetComponent<GameManager>();
+    }
     private void Start()
     {
         HealthBar.maxValue = Health;
@@ -23,7 +29,15 @@ public class ShotScript : MonoBehaviour
     public void TakeDamage(float Amount)
     {
         Health -= Amount;
-        if (Health <= 0) Die();
+        if (Health <= 0 && isQueen == false) 
+        {
+            Die();
+        }
+
+        else if (Health <= 0 && isQueen == true)
+        {
+            QueenDie();
+        }
     }
 
     private void Die()
@@ -38,5 +52,10 @@ public class ShotScript : MonoBehaviour
         Destroy(this.gameObject);
         GameObject Acid = Instantiate(AcidBlood, transform.position, Quaternion.LookRotation(transform.position));
         Destroy(Acid, 3f);
+    }
+
+    private void QueenDie()
+    {
+        GM.GetComponent<GameManager>().QueenDeath();
     }
 }

@@ -215,7 +215,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 5746022062206315123}
-  - component: {fileID: 5746022062206315132}
+  - component: {fileID: 6564559053848497988}
   - component: {fileID: 5746022062206315133}
   - component: {fileID: 5746022062206315134}
   - component: {fileID: 5746022062206315122}
@@ -243,9 +243,9 @@ Transform:
   - {fileID: 5746022062082071741}
   - {fileID: 1022215386068661378}
   m_Father: {fileID: 0}
-  m_RootOrder: 10
+  m_RootOrder: 11
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!114 &5746022062206315132
+--- !u!114 &6564559053848497988
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -254,50 +254,45 @@ MonoBehaviour:
   m_GameObject: {fileID: 5746022062206315128}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 907863b0b3171a0489a517d0cf7dd737, type: 3}
+  m_Script: {fileID: 11500000, guid: 6d0d21aab41676141911dfcae382dcd9, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  FOVangle: 160
-  SightRange: 100
-  SightMuliplier: 3
-  AttackRange: 7
-  AttackDamage: 400
-  SpeedMuliplier: 0.99
-  WalkRange: 15
+  FOVangle: 360
+  SightRange: 50
+  SightMuliplier: 1
+  AttackRange: 8
+  AttackDamage: 300
+  SpeedMuliplier: 1
+  WalkRange: 50
   Player: {fileID: 0}
   Spawner: {fileID: 0}
-  Acid: {fileID: 0}
   UILook: {fileID: 0}
   agent: {fileID: 0}
   isPlayer:
     serializedVersion: 2
-    m_Bits: 4
+    m_Bits: 0
   isWall:
     serializedVersion: 2
-    m_Bits: 64
-  isQueen: 1
+    m_Bits: 0
+  AcidPools: []
+  earthShatter: {fileID: 7150106635380650361, guid: 571d6303baf844344bfd6e34aacb0a49, type: 3}
+  AcidlunchPoint: {fileID: 0}
+  AcidProjectile: {fileID: 0}
+  ProjectileVel: 0
   animationSource: {fileID: 5397041477625096964}
   attackCooldown: 0
   isInRange: 0
   mainSource: {fileID: 5746022062206315122}
   backgroundSource: {fileID: 5746022062206315121}
   idleClips:
-  - {fileID: 8300000, guid: bd6959850ca10a246a4c9630918a4557, type: 3}
-  - {fileID: 8300000, guid: 297f43486701b1141b1fe90d6ddf9e28, type: 3}
-  - {fileID: 8300000, guid: b08e4cad8f47f6742bb4571e96816034, type: 3}
-  - {fileID: 8300000, guid: b08e4cad8f47f6742bb4571e96816034, type: 3}
+  - {fileID: 0}
   chaseClips:
-  - {fileID: 8300000, guid: b61934200e780bb42978d07c2f84e0c2, type: 3}
+  - {fileID: 0}
   backgroundClips:
-  - {fileID: 8300000, guid: 942aa66069df6f247a3e371627d39286, type: 3}
+  - {fileID: 0}
   attackClips:
-  - {fileID: 8300000, guid: 47d3d1cff05888e498fb4cd74e86a6e3, type: 3}
-  - {fileID: 8300000, guid: 39dcb05458e365f41bdb9231014e5f63, type: 3}
-  - {fileID: 8300000, guid: d36eb62a9cc49e147a9969b167bec426, type: 3}
-  - {fileID: 8300000, guid: cb04603f0f2cbab499e29953fd14b4b9, type: 3}
-  - {fileID: 8300000, guid: f8385d8d7afa77b4598a99dafb340132, type: 3}
-  deathClips:
-  - {fileID: 8300000, guid: 9d9420ecfa34c9a4ba3846aeb96563f6, type: 3}
+  - {fileID: 0}
+  deathClip: {fileID: 0}
 --- !u!195 &5746022062206315133
 NavMeshAgent:
   m_ObjectHideFlags: 0
@@ -333,7 +328,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   HealthBar: {fileID: 5746022061491342445}
-  Health: 30000
+  Health: 500
+  isQueen: 1
   AcidBlood: {fileID: 5987958044760234494, guid: c3f519d6b1220e94fa348998fb52b689, type: 3}
 --- !u!82 &5746022062206315122
 AudioSource:
