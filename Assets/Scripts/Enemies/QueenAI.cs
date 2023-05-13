@@ -15,6 +15,7 @@ public class QueenAI : MonoBehaviour
     public Transform UILook;
     public NavMeshAgent agent;
     public LayerMask isPlayer, isWall;
+    public float MeleeRange;
 
     // Attacks
     public GameObject[] AcidPools;
@@ -26,6 +27,7 @@ public class QueenAI : MonoBehaviour
     public float MeleeDamage;
 
     float footstepCooldown = 0;
+    public float meleeCooldown = 0;
 
     public Animator animationSource;
     public AudioSource mainSource;
@@ -60,6 +62,7 @@ public class QueenAI : MonoBehaviour
     private void Update()
     {
         float DistenceToPlayer = Vector3.Distance(transform.position, Player.transform.position);
+        meleeCooldown -= Time.deltaTime;
 
         // If player is closer than 20 Units (?) it stops else it'll keep following the player
         if (DistenceToPlayer <= 20)
@@ -70,18 +73,22 @@ public class QueenAI : MonoBehaviour
         else Chasing();
 
         // If the player gets too close the queen will attack
-        if (DistenceToPlayer <= 8 && !isAttacking)
+        if (Physics.CheckSphere(transform.position, MeleeRange, isPlayer))
         {
-            isAttacking = true;
-            animationSource.SetTrigger("trAttack");
-            GM.DamagePlayerHazard(MeleeDamage);
+            if (meleeCooldown < 0)
+            {
+                GM.DamagePlayerHazard(500);
+                animationSource.SetTrigger("trAttack");
+                meleeCooldown = 3;
+                mainSource.clip = attackClips[Random.Range(0, attackClips.Length)];
+                mainSource.PlayDelayed(1);
+            }
         }
     }
 
     public IEnumerator Resting()
     {
         Debug.Log("Resting");
-
         isAttacking = false;
         agent.speed = 11;
 
@@ -140,25 +147,29 @@ public class QueenAI : MonoBehaviour
         {
             AcidPools[i].SetActive(false);
         }
+        isAttacking = false;
         Resting();
     }
 
     private IEnumerator SpawnProjectile()
     {
         Debug.Log("acid projectile");
-        agent.speed = 0;
+        float oldSpeed = agent.speed;
+        agent.speed = 0.1f;
         for (int i = 0; i < 2; i++)
         {
             Instantiate(AcidProjectile, transform.position, Quaternion.identity);
             yield return new WaitForSeconds(1);
         }
+        agent.speed = oldSpeed;
+        isAttacking = false;
         Resting();
     }
 
     private IEnumerator Leap()
     {
         Debug.Log("Leap");
-
+        float oldSpeed = agent.speed;
         agent.speed = 0;
         yield return new WaitForSeconds(2);
         agent.speed = 40;
@@ -168,7 +179,8 @@ public class QueenAI : MonoBehaviour
         yield return new WaitForSeconds(0.5f);
         animationSource.SetTrigger("trLeap");
         this.gameObject.GetComponent<Rigidbody>().freezeRotation = false;
-
+        agent.speed = oldSpeed;
+        isAttacking = false;
         Resting();
     }
 
@@ -179,7 +191,7 @@ public class QueenAI : MonoBehaviour
         yield return new WaitForSeconds(0.5f);
         animationSource.SetTrigger("trSlam");
         Destroy(Instantiate(SlamPartical, new Vector3(transform.position.x, 0, transform.position.z), Quaternion.identity), 3f);
-
+        isAttacking = false;
         Resting();
     }
 

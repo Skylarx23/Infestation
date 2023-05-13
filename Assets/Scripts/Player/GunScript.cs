@@ -144,7 +144,7 @@ public class GunScript : MonoBehaviour
             if (targetAi != null) StartCoroutine(targetAi.AlertEnemy());
 
             // Applys a force in the dircetion the bullet came from 
-            if (hit.rigidbody != null) hit.rigidbody.AddForce(-hit.normal * (Damage * 10));
+            //if (hit.rigidbody != null) hit.rigidbody.AddForce(-hit.normal * (Damage * 10));
 
         }
     }

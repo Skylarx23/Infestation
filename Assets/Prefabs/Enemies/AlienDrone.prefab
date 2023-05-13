@@ -2567,7 +2567,7 @@ Transform:
   - {fileID: 6446896047702425772}
   - {fileID: 2924312421366814295}
   m_Father: {fileID: 0}
-  m_RootOrder: 1
+  m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!114 &6446896047305569901
 MonoBehaviour:
@@ -2586,7 +2586,7 @@ MonoBehaviour:
   SightMuliplier: 3
   AttackRange: 4
   AttackDamage: 300
-  SpeedMuliplier: 0.5
+  hitSpeed: 15
   WalkRange: 15
   Player: {fileID: 0}
   Spawner: {fileID: 0}
@@ -2602,7 +2602,7 @@ MonoBehaviour:
   isQueen: 0
   animationSource: {fileID: 7772433203018003339}
   attackCooldown: 5
-  isInRange: 0
+  Attackable: 0
   mainSource: {fileID: 6446896047305569891}
   backgroundSource: {fileID: 6446896047305569888}
   idleClips:
@@ -2658,6 +2658,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   HealthBar: {fileID: 6446896048125644924}
   Health: 1500
+  isQueen: 0
   AcidBlood: {fileID: 5987958044760234494, guid: c3f519d6b1220e94fa348998fb52b689, type: 3}
 --- !u!82 &6446896047305569891
 AudioSource:

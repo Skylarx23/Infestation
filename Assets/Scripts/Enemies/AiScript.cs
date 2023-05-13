@@ -14,7 +14,7 @@ public class AiScript : MonoBehaviour
     public float SightMuliplier;
     public float AttackRange;
     public float AttackDamage;
-    public float SpeedMuliplier;
+    public float hitSpeed;
     public float WalkRange;
 
     public GameObject Player;
@@ -98,7 +98,7 @@ public class AiScript : MonoBehaviour
         float oldSight = SightRange;
         float oldSpeed = agent.speed;
 
-        agent.speed *= SpeedMuliplier;
+        agent.speed = hitSpeed;
         yield return new WaitForSeconds(0.5f);
         agent.speed = oldSpeed;
 

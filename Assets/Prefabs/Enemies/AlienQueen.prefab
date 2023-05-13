@@ -269,10 +269,11 @@ MonoBehaviour:
   isWall:
     serializedVersion: 2
     m_Bits: 64
+  MeleeRange: 8
   AcidPools: []
   earthShatter: {fileID: 7150106635380650361, guid: 571d6303baf844344bfd6e34aacb0a49, type: 3}
   SlamPartical: {fileID: 4530689999602429642, guid: 295803b041dbdc54386cb8a58df96a34, type: 3}
-  AcidProjectile: {fileID: 0}
+  AcidProjectile: {fileID: 2483787081286537492, guid: 573ee5159b0adbf418716f75221d8d6b, type: 3}
   MeleeDamage: 0
   animationSource: {fileID: 5397041477625096964}
   mainSource: {fileID: 5746022062206315122}
