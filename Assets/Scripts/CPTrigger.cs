@@ -4,6 +4,8 @@ using UnityEngine;
 public class CPTrigger : MonoBehaviour
 {
     GameManager GM;
+    public bool isQueenSpawner = false;
+    public bool isDroneSpawner = false;
 
     private void Awake()
     {
@@ -13,7 +15,16 @@ public class CPTrigger : MonoBehaviour
     // Whenever the Player enters the trigger it'll send a signal to the GM 
     private void OnTriggerEnter(Collider Collision)
     {
-        if (Collision.gameObject.tag == "Player") GM.StartTest();
-        Destroy(gameObject);
+        if (isDroneSpawner == true && Collision.gameObject.tag == "Player")
+        {
+            GM.StartTest();
+            Destroy(gameObject);
+        }
+        if (isQueenSpawner == true && Collision.gameObject.tag == "Player")
+        {
+            StartCoroutine(GM.SpawnQueen());
+            Destroy(gameObject);
+        }
+
     }
 }

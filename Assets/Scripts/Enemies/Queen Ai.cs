@@ -218,4 +218,14 @@ private void Chasing()
         GameObject Projectile = Instantiate(AcidProjectile, transform.position, Quaternion.identity);
         Projectile.GetComponent<Rigidbody>().velocity = AcidlunchPoint.up * ProjectileVel;
     }
+
+    private void Leap()
+    {
+
+    }
+
+    private void Slam()
+    {
+        
+    }
 }

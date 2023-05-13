@@ -18,6 +18,7 @@ public class GameManager : MonoBehaviour
     public AudioClip fightTheme;
     public AudioClip ambience1, ambience2;
     public AudioClip alertSound;
+    public AudioClip queenSpawn;
 
     private AiScript aiScript;
 
@@ -28,8 +29,11 @@ public class GameManager : MonoBehaviour
     public GameObject RifleUI;
     public GameObject PistolUI;
     public GameObject droneSpawner;
+    public GameObject queenSpawner;
     public GameObject WaveSpawner;
     public GameObject alertUI;
+    public GameObject damageUI;
+    public GameObject damageAcidUI;
 
     // Start is called before the first frame update
     void Start()
@@ -41,6 +45,8 @@ public class GameManager : MonoBehaviour
         soundSource.Play();
         //MedIcon.SetActive(true);
         alertUI.SetActive(false);
+        damageUI.SetActive(false);
+        damageAcidUI.SetActive(false);
     }
 
     private void Update()
@@ -56,6 +62,10 @@ public class GameManager : MonoBehaviour
         if (Enemy.GetComponent<AiScript>().isInRange == true)
         {
             HealthBar.value -= damage;
+            yield return new WaitForSeconds(0.25f);
+            damageUI.SetActive(true);
+            yield return new WaitForSeconds(1f);
+            damageUI.SetActive(false);
         }
     }
 
@@ -140,5 +150,19 @@ public class GameManager : MonoBehaviour
     {
         yield return new WaitForSeconds(3f);
         alertUI.SetActive(false);
+    }
+
+    public IEnumerator SpawnQueen()
+    {
+        soundSource.clip = queenFightMusic;
+        soundSource.volume = 0.07f;
+        alertSource.clip = queenSpawn;
+        alertSource.volume = 0.05f;
+        alertSource.Play();
+        Debug.Log("sc theme");
+        soundSource.Play();
+        GameObject Model = queenSpawner.GetComponent<SpawnScript>().Model;
+        queenSpawner.GetComponent<SpawnScript>().SpawnEnemies(1, Model);
+        yield return new WaitForSeconds(0.5f);
     }
 }
