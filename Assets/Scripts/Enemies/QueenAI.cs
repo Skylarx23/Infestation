@@ -3,130 +3,97 @@ using System.Collections;
 using UnityEngine;
 using UnityEngine.AI;
 using UnityEngine.Animations;
+using static UnityEngine.GraphicsBuffer;
 using Random = UnityEngine.Random;
 
 public class QueenAI : MonoBehaviour
 {
-
-    [Range(1, 360)]
-    public float FOVangle;
-
-    public float SightRange;
-    public float SightMuliplier;
-    public float AttackRange;
-    public float AttackDamage;
     public float SpeedMuliplier;
-    public float WalkRange;
 
     public GameObject Player;
     public GameObject Spawner;
     public Transform UILook;
     public NavMeshAgent agent;
     public LayerMask isPlayer, isWall;
-    bool seeable, atDes;
 
     // Attacks
-    bool isAttacking;
     public GameObject[] AcidPools;
-
     public GameObject earthShatter;
     public GameObject SlamPartical;
-
-    public Transform AcidLaunchPoint;
     public GameObject AcidProjectile;
-    public float ProjectileVel;
 
-    public float LeapMultiplier;
-
-    float cooldown = 0;
-    public float attackCooldown;
-    public bool isInRange = false;
-
+    bool isAttacking;
+    public float MeleeDamage;
 
     float footstepCooldown = 0;
 
     public Animator animationSource;
     public AudioSource mainSource;
     public AudioSource backgroundSource;
-    public AudioClip[] idleClips;
     public AudioClip[] chaseClips;
     public AudioClip[] backgroundClips;
     public AudioClip[] attackClips;
     public AudioClip deathClip;
 
     GameManager GM;
+
     public void Awake()
     {
         //animationSource = GetComponent<Animator>();
         agent = GetComponent<NavMeshAgent>();
         GM = GameObject.Find("GameManager").GetComponent<GameManager>();
         Player = GameObject.Find("First Person Player");
-        Debug.Log("Spawned!");
-        Idle();
-    }
 
-    private void Update()
-    {
-        attackCooldown -= Time.deltaTime;
-        cooldown -= Time.deltaTime;
-        Collider[] rangeChecks = Physics.OverlapSphere(transform.position, SightRange, isPlayer);
-
-        if (rangeChecks.Length != 0)
-        {
-            Transform Target = rangeChecks[0].transform;
-            Vector3 DirToTarget = (Target.position - transform.position).normalized;
-
-            if (Vector3.Angle(transform.forward, DirToTarget) < FOVangle / 2)
-            {
-                float DisToTarget = Vector3.Distance(transform.position, Target.position);
-
-                if (!Physics.Raycast(transform.position, DirToTarget, DisToTarget, isWall)) Chasing();
-                else seeable = false;
-            }
-            else seeable = false;
-        }
-        else if (seeable) seeable = false;
-
-        if (!seeable && cooldown < 0)
-        {
-            Idle();
-            cooldown = 2;
-        }
-
-
-        if (Physics.CheckSphere(transform.position, AttackRange, isPlayer))
-        {
-            Attacking();
-            isInRange = true;
-        }
-        else
-        {
-            isInRange = false;
-        }
+        Debug.Log("Awake");
+        StartCoroutine(Resting());
     }
 
     public IEnumerator AlertEnemy()
     {
-        float oldFOV = FOVangle;
-        float oldSight = SightRange;
         float oldSpeed = agent.speed;
 
         agent.speed *= SpeedMuliplier;
         yield return new WaitForSeconds(0.5f);
         agent.speed = oldSpeed;
+    }
 
-        FOVangle = 360;
-        SightRange *= SightMuliplier;
-        yield return new WaitForSeconds(5f);
+    private void Update()
+    {
+        float DistenceToPlayer = Vector3.Distance(transform.position, Player.transform.position);
 
-        FOVangle = oldFOV;
-        SightRange = oldSight;
+        // If player is closer than 20 Units (?) it stops else it'll keep following the player
+        if (DistenceToPlayer <= 20)
+        {
+            agent.SetDestination(transform.position);
+            agent.transform.LookAt(new Vector3(Player.transform.position.x, 0, Player.transform.position.z));
+        }
+        else Chasing();
+
+        // If the player gets too close the queen will attack
+        if (DistenceToPlayer <= 8 && !isAttacking)
+        {
+            isAttacking = true;
+            animationSource.SetTrigger("trAttack");
+            GM.DamagePlayerHazard(MeleeDamage);
+        }
+    }
+
+    public IEnumerator Resting()
+    {
+        Debug.Log("Resting");
+
+        isAttacking = false;
+        agent.speed = 11;
+
+        // Every 5-10 seconds queen tries to attack
+        yield return new WaitForSeconds(Random.Range(5, 10));
+        Attacking();
     }
 
     private void Attacking()
     {
-        agent.SetDestination(transform.position);
-        if (attackCooldown < 0 && !isAttacking)
+
+        if (!isAttacking)
         {
             isAttacking = true;
 
@@ -134,29 +101,16 @@ public class QueenAI : MonoBehaviour
             if (RNDAttack == 0) StartCoroutine(Leap());
             //else if (RNDAttack == 1) SpawnShatter();
             else if (RNDAttack == 2) StartCoroutine(ActivateAcidPools());
-            else if (RNDAttack == 3) SpawnProjectile();
-            else if (RNDAttack == 4) Slam();
-
-
-            attackCooldown = 3;
+            else if (RNDAttack == 3) StartCoroutine(SpawnProjectile());
+            else if (RNDAttack == 4) StartCoroutine(Slam());
         }
+        else Resting();
     }
-
-    // agent.SetDestination(transform.position);
-    // if (attackCooldown< 0)
-    // {
-    // StartCoroutine(GM.DamagePlayer(AttackDamage, this.gameObject));
-    // animationSource.SetTrigger("trAttack");
-    // attackCooldown = 3;
-    // mainSource.clip = attackClips[Random.Range(0, attackClips.Length)];
-    // mainSource.PlayDelayed(1);
-    // }
 
     private void Chasing()
     {
         footstepCooldown -= Time.deltaTime;
         agent.SetDestination(Player.transform.position);
-        seeable = true;
         animationSource.SetTrigger("trChase");
         if (footstepCooldown < 0)
         {
@@ -166,47 +120,11 @@ public class QueenAI : MonoBehaviour
         }
     }
 
-    private void Idle()
-    {
-        if (atDes)
-        {
-            // Gives the enemy a random destination to go to whenever they cant see the player
-            Vector3 offset = new Vector3(Random.Range(-WalkRange, WalkRange), transform.position.y, Random.Range(-WalkRange, WalkRange));
-            agent.SetDestination(agent.transform.position + offset);
-        }
-        else if (agent.remainingDistance <= 1) atDes = true;
-        else atDes = false;
-        animationSource.SetTrigger("trWalk");
-    }
-
     private void SpawnShatter()
     {
-        // 1/3rd chance of being 5 projectiles
-        int ProjectileNum = 3;
-        if (Random.Range(0, 2) == 0) ProjectileNum = 5;
 
-        const double Radius = 1f;
-        float AngleStep = 360f / ProjectileNum;
-        float Angle = 0;
+        
 
-        // Spawns the Projectile at a certian angle depending on the amount of projectiles
-        for (int i = 0; i < ProjectileNum; i++)
-        {
-            // Direction calcutions
-            float ProjDirXPos = (float)(transform.position.x + Math.Sin((Angle * Math.PI) / 180) * Radius);
-            float ProjDirYPos = (float)(transform.position.x + Math.Cos((Angle * Math.PI) / 180) * Radius);
-
-            Vector3 ProjVector = new Vector3(ProjDirXPos, ProjDirYPos, 0);
-            Vector3 ProjMoveDir = (ProjVector = transform.position).normalized * ProjectileVel;
-
-            // Spawns a Projectile and gives it velocity
-            GameObject Projectile = Instantiate(earthShatter, transform.position, Quaternion.identity);
-            //Projectile.GetComponent<Rigidbody>().velocity = new Vector3(ProjMoveDir.x, 0, ProjMoveDir.y);
-
-            Angle += AngleStep;
-        }
-
-        isAttacking = false;
     }
 
     private IEnumerator ActivateAcidPools()
@@ -222,38 +140,47 @@ public class QueenAI : MonoBehaviour
         {
             AcidPools[i].SetActive(false);
         }
-        isAttacking = false;
+        Resting();
     }
 
-    private void SpawnProjectile()
+    private IEnumerator SpawnProjectile()
     {
         Debug.Log("acid projectile");
-        // I still dont know how to play the Roar
-        GameObject Projectile = Instantiate(AcidProjectile, AcidLaunchPoint.transform.position, Quaternion.identity, AcidLaunchPoint);
-        //Projectile.GetComponent<Rigidbody>().velocity = AcidLaunchPoint.up * ProjectileVel;
-
-        isAttacking = false;
+        agent.speed = 0;
+        for (int i = 0; i < 2; i++)
+        {
+            Instantiate(AcidProjectile, transform.position, Quaternion.identity);
+            yield return new WaitForSeconds(1);
+        }
+        Resting();
     }
 
     private IEnumerator Leap()
     {
         Debug.Log("Leap");
-        float OldSpeed = agent.speed;
 
-        agent.speed *= SpeedMuliplier;
+        agent.speed = 0;
+        yield return new WaitForSeconds(2);
+        agent.speed = 40;
+
+        // Freezes the Queen for 0.5s and then plays the leap animation
+        this.gameObject.GetComponent<Rigidbody>().freezeRotation = true;
         yield return new WaitForSeconds(0.5f);
-        agent.speed = OldSpeed;
+        animationSource.SetTrigger("trLeap");
+        this.gameObject.GetComponent<Rigidbody>().freezeRotation = false;
 
-        isAttacking = false;
+        Resting();
     }
 
-    private void Slam()
+    private IEnumerator Slam()
     {
         Debug.Log("Slam");
-        animationSource.SetTrigger("trWalk"); // Rename this please to the "Slam" attack
-        if (Physics.CheckSphere(transform.position, AttackRange, isPlayer)) GM.DamagePlayer(AttackDamage, this.gameObject);
-        Destroy(Instantiate(SlamPartical, transform.position, Quaternion.identity), 1f);
-        isAttacking = false;
+        agent.speed = 0;
+        yield return new WaitForSeconds(0.5f);
+        animationSource.SetTrigger("trSlam");
+        Destroy(Instantiate(SlamPartical, new Vector3(transform.position.x, 0, transform.position.z), Quaternion.identity), 3f);
+
+        Resting();
     }
 
     public void QueenDeath()

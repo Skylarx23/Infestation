@@ -32,7 +32,7 @@ public class AiScript : MonoBehaviour
 
     float cooldown = 0;
     public float attackCooldown;
-    public bool isInRange = false;
+    public bool Attackable = false;
     float footstepCooldown = 0;
 
     public AudioSource mainSource;
@@ -84,11 +84,11 @@ public class AiScript : MonoBehaviour
         if (Physics.CheckSphere(transform.position, AttackRange, isPlayer))
         {
             Attacking();
-            isInRange = true;
+            Attackable = true;
         }
         else
         {
-            isInRange = false;
+            Attackable = false;
         }
     }
 
