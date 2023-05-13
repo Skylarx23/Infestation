@@ -5,7 +5,7 @@ using UnityEngine.AI;
 using UnityEngine.Animations;
 using Random = UnityEngine.Random;
 
-public class QueenAi : MonoBehaviour
+public class QueenAI : MonoBehaviour
 {
 
     [Range(1, 360)]
@@ -132,7 +132,7 @@ public class QueenAi : MonoBehaviour
 
             int RNDAttack = Random.Range(0, 4);
             if (RNDAttack == 0) StartCoroutine(Leap());
-            else if (RNDAttack == 1) SpawnShatter();
+            //else if (RNDAttack == 1) SpawnShatter();
             else if (RNDAttack == 2) StartCoroutine(ActivateAcidPools());
             else if (RNDAttack == 3) SpawnProjectile();
             else if (RNDAttack == 4) Slam();
@@ -201,7 +201,7 @@ public class QueenAi : MonoBehaviour
 
             // Spawns a Projectile and gives it velocity
             GameObject Projectile = Instantiate(earthShatter, transform.position, Quaternion.identity);
-            Projectile.GetComponent<Rigidbody>().velocity = new Vector3(ProjMoveDir.x, 0, ProjMoveDir.y);
+            //Projectile.GetComponent<Rigidbody>().velocity = new Vector3(ProjMoveDir.x, 0, ProjMoveDir.y);
 
             Angle += AngleStep;
         }
@@ -211,6 +211,7 @@ public class QueenAi : MonoBehaviour
 
     private IEnumerator ActivateAcidPools()
     {
+        Debug.Log("acid pools");
         // I dont know how to play the Roar
         for (int i = 0; i < AcidPools.Length; i++)
         {
@@ -226,15 +227,17 @@ public class QueenAi : MonoBehaviour
 
     private void SpawnProjectile()
     {
+        Debug.Log("acid projectile");
         // I still dont know how to play the Roar
-        GameObject Projectile = Instantiate(AcidProjectile, transform.position, Quaternion.identity);
-        Projectile.GetComponent<Rigidbody>().velocity = AcidLaunchPoint.up * ProjectileVel;
+        GameObject Projectile = Instantiate(AcidProjectile, AcidLaunchPoint.transform.position, Quaternion.identity, AcidLaunchPoint);
+        //Projectile.GetComponent<Rigidbody>().velocity = AcidLaunchPoint.up * ProjectileVel;
 
         isAttacking = false;
     }
 
     private IEnumerator Leap()
     {
+        Debug.Log("Leap");
         float OldSpeed = agent.speed;
 
         agent.speed *= SpeedMuliplier;
@@ -246,6 +249,7 @@ public class QueenAi : MonoBehaviour
 
     private void Slam()
     {
+        Debug.Log("Slam");
         animationSource.SetTrigger("trWalk"); // Rename this please to the "Slam" attack
         if (Physics.CheckSphere(transform.position, AttackRange, isPlayer)) GM.DamagePlayer(AttackDamage, this.gameObject);
         Destroy(Instantiate(SlamPartical, transform.position, Quaternion.identity), 1f);
