@@ -242,8 +242,9 @@ Transform:
   m_Children:
   - {fileID: 5746022062082071741}
   - {fileID: 1022215386068661378}
+  - {fileID: 7749915879646794650}
   m_Father: {fileID: 0}
-  m_RootOrder: 11
+  m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!114 &6564559053848497988
 MonoBehaviour:
@@ -254,7 +255,7 @@ MonoBehaviour:
   m_GameObject: {fileID: 5746022062206315128}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 6d0d21aab41676141911dfcae382dcd9, type: 3}
+  m_Script: {fileID: 11500000, guid: 3f5425b444329ff46b70d562de1a07bf, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
   FOVangle: 360
@@ -270,28 +271,26 @@ MonoBehaviour:
   agent: {fileID: 0}
   isPlayer:
     serializedVersion: 2
-    m_Bits: 0
+    m_Bits: 4
   isWall:
     serializedVersion: 2
-    m_Bits: 0
+    m_Bits: 64
   AcidPools: []
   earthShatter: {fileID: 7150106635380650361, guid: 571d6303baf844344bfd6e34aacb0a49, type: 3}
-  AcidlunchPoint: {fileID: 0}
+  SlamPartical: {fileID: 4530689999602429642, guid: 295803b041dbdc54386cb8a58df96a34, type: 3}
+  AcidLaunchPoint: {fileID: 7749915879646794650}
   AcidProjectile: {fileID: 0}
-  ProjectileVel: 0
-  animationSource: {fileID: 5397041477625096964}
+  ProjectileVel: 4
+  LeapMultiplier: 4
   attackCooldown: 0
   isInRange: 0
-  mainSource: {fileID: 5746022062206315122}
-  backgroundSource: {fileID: 5746022062206315121}
-  idleClips:
-  - {fileID: 0}
-  chaseClips:
-  - {fileID: 0}
-  backgroundClips:
-  - {fileID: 0}
-  attackClips:
-  - {fileID: 0}
+  animationSource: {fileID: 0}
+  mainSource: {fileID: 0}
+  backgroundSource: {fileID: 0}
+  idleClips: []
+  chaseClips: []
+  backgroundClips: []
+  attackClips: []
   deathClip: {fileID: 0}
 --- !u!195 &5746022062206315133
 NavMeshAgent:
@@ -860,6 +859,37 @@ RectTransform:
   m_AnchoredPosition: {x: -5, y: 0}
   m_SizeDelta: {x: -20, y: 0}
   m_Pivot: {x: 0.5, y: 0.5}
+--- !u!1 &7855032366387038736
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 7749915879646794650}
+  m_Layer: 0
+  m_Name: AcidLaunchPoint
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &7749915879646794650
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7855032366387038736}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 4.75, z: 7.5}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 5746022062206315123}
+  m_RootOrder: -1
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1001 &694990335741449065
 PrefabInstance:
   m_ObjectHideFlags: 0

@@ -28,8 +28,11 @@ public class SpawnScript : MonoBehaviour
             if (GOHazard.gameObject.CompareTag("Hazard")) Destroy(GOHazard, 5f);
             else
             {
-                GOHazard.GetComponent<AiScript>().Spawner = this.gameObject;
-                Enemies.Add(GOHazard);
+                if (GOHazard.GetComponent<AiScript>() != null)
+                {
+                    GOHazard.GetComponent<AiScript>().Spawner = this.gameObject;
+                    Enemies.Add(GOHazard);
+                }
             }
         }
     }

@@ -59,7 +59,7 @@ public class GameManager : MonoBehaviour
     public IEnumerator DamagePlayer(float damage, GameObject Enemy)
     {
         yield return new WaitForSeconds(0.5f);
-        if (Enemy.GetComponent<AiScript>().isInRange == true)
+        if (Enemy.GetComponent<AiScript>().isInRange || Enemy.GetComponent<QueenAi>().isInRange  == true)
         {
             HealthBar.value -= damage;
             yield return new WaitForSeconds(0.25f);

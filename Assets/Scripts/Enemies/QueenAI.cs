@@ -5,7 +5,7 @@ using UnityEngine.AI;
 using UnityEngine.Animations;
 using Random = UnityEngine.Random;
 
-public class QueenAI : MonoBehaviour
+public class QueenAi : MonoBehaviour
 {
 
     [Range(1, 360)]
@@ -25,23 +25,27 @@ public class QueenAI : MonoBehaviour
     public LayerMask isPlayer, isWall;
     bool seeable, atDes;
 
-    bool AcidPoolsActive;
+    // Attacks
+    bool isAttacking;
     public GameObject[] AcidPools;
 
     public GameObject earthShatter;
-    public Transform AcidlunchPoint;
+    public GameObject SlamPartical;
+
+    public Transform AcidLaunchPoint;
     public GameObject AcidProjectile;
     public float ProjectileVel;
 
-    GameManager GM;
-
-    public Animator animationSource;
+    public float LeapMultiplier;
 
     float cooldown = 0;
     public float attackCooldown;
     public bool isInRange = false;
+
+
     float footstepCooldown = 0;
 
+    public Animator animationSource;
     public AudioSource mainSource;
     public AudioSource backgroundSource;
     public AudioClip[] idleClips;
@@ -50,12 +54,14 @@ public class QueenAI : MonoBehaviour
     public AudioClip[] attackClips;
     public AudioClip deathClip;
 
+    GameManager GM;
     public void Awake()
     {
         //animationSource = GetComponent<Animator>();
         agent = GetComponent<NavMeshAgent>();
         GM = GameObject.Find("GameManager").GetComponent<GameManager>();
         Player = GameObject.Find("First Person Player");
+        Debug.Log("Spawned!");
         Idle();
     }
 
@@ -81,10 +87,10 @@ public class QueenAI : MonoBehaviour
         }
         else if (seeable) seeable = false;
 
-        if (!seeable && cooldown < 0) 
+        if (!seeable && cooldown < 0)
         {
-             Idle();
-             cooldown = 2;
+            Idle();
+            cooldown = 2;
         }
 
 
@@ -120,14 +126,17 @@ public class QueenAI : MonoBehaviour
     private void Attacking()
     {
         agent.SetDestination(transform.position);
-        if (attackCooldown < 0)
+        if (attackCooldown < 0 && !isAttacking)
         {
+            isAttacking = true;
+
             int RNDAttack = Random.Range(0, 4);
-            if (RNDAttack == 0) Leap();
+            if (RNDAttack == 0) StartCoroutine(Leap());
             else if (RNDAttack == 1) SpawnShatter();
-            else if (RNDAttack == 2 && !AcidPoolsActive) StartCoroutine(ActivateAcidPools());
+            else if (RNDAttack == 2) StartCoroutine(ActivateAcidPools());
             else if (RNDAttack == 3) SpawnProjectile();
             else if (RNDAttack == 4) Slam();
+
 
             attackCooldown = 3;
         }
@@ -143,17 +152,17 @@ public class QueenAI : MonoBehaviour
     // mainSource.PlayDelayed(1);
     // }
 
-private void Chasing()
+    private void Chasing()
     {
         footstepCooldown -= Time.deltaTime;
         agent.SetDestination(Player.transform.position);
         seeable = true;
         animationSource.SetTrigger("trChase");
-        if(footstepCooldown < 0)
+        if (footstepCooldown < 0)
         {
-        backgroundSource.clip = backgroundClips[0];
-        backgroundSource.Play();
-        footstepCooldown = 2;
+            backgroundSource.clip = backgroundClips[0];
+            backgroundSource.Play();
+            footstepCooldown = 2;
         }
     }
 
@@ -172,8 +181,9 @@ private void Chasing()
 
     private void SpawnShatter()
     {
+        // 1/3rd chance of being 5 projectiles
         int ProjectileNum = 3;
-        if (Random.Range(0, 1) == 0) ProjectileNum = 5;
+        if (Random.Range(0, 2) == 0) ProjectileNum = 5;
 
         const double Radius = 1f;
         float AngleStep = 360f / ProjectileNum;
@@ -185,53 +195,65 @@ private void Chasing()
             // Direction calcutions
             float ProjDirXPos = (float)(transform.position.x + Math.Sin((Angle * Math.PI) / 180) * Radius);
             float ProjDirYPos = (float)(transform.position.x + Math.Cos((Angle * Math.PI) / 180) * Radius);
-            
+
             Vector3 ProjVector = new Vector3(ProjDirXPos, ProjDirYPos, 0);
             Vector3 ProjMoveDir = (ProjVector = transform.position).normalized * ProjectileVel;
-            
+
+            // Spawns a Projectile and gives it velocity
             GameObject Projectile = Instantiate(earthShatter, transform.position, Quaternion.identity);
             Projectile.GetComponent<Rigidbody>().velocity = new Vector3(ProjMoveDir.x, 0, ProjMoveDir.y);
 
             Angle += AngleStep;
         }
+
+        isAttacking = false;
     }
 
-    private IEnumerator ActivateAcidPools() 
+    private IEnumerator ActivateAcidPools()
     {
         // I dont know how to play the Roar
-
-        AcidPoolsActive = true;
         for (int i = 0; i < AcidPools.Length; i++)
         {
             AcidPools[i].SetActive(true);
         }
-        yield return new WaitForSeconds(Random.Range(10, 15));  
+        yield return new WaitForSeconds(Random.Range(10, 15));
         for (int i = 0; i < AcidPools.Length; i++)
         {
             AcidPools[i].SetActive(false);
         }
-        AcidPoolsActive = false;
+        isAttacking = false;
     }
 
     private void SpawnProjectile()
     {
         // I still dont know how to play the Roar
         GameObject Projectile = Instantiate(AcidProjectile, transform.position, Quaternion.identity);
-        Projectile.GetComponent<Rigidbody>().velocity = AcidlunchPoint.up * ProjectileVel;
+        Projectile.GetComponent<Rigidbody>().velocity = AcidLaunchPoint.up * ProjectileVel;
+
+        isAttacking = false;
     }
 
-    private void Leap()
+    private IEnumerator Leap()
     {
+        float OldSpeed = agent.speed;
 
+        agent.speed *= SpeedMuliplier;
+        yield return new WaitForSeconds(0.5f);
+        agent.speed = OldSpeed;
+
+        isAttacking = false;
     }
 
     private void Slam()
     {
-        
+        animationSource.SetTrigger("trWalk"); // Rename this please to the "Slam" attack
+        if (Physics.CheckSphere(transform.position, AttackRange, isPlayer)) GM.DamagePlayer(AttackDamage, this.gameObject);
+        Destroy(Instantiate(SlamPartical, transform.position, Quaternion.identity), 1f);
+        isAttacking = false;
     }
 
     public void QueenDeath()
     {
-        
+
     }
 }
