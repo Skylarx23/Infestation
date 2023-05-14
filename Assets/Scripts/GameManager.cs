@@ -71,10 +71,14 @@ public class GameManager : MonoBehaviour
         }
     }
 
-    public void DamagePlayerHazard(float damage)
+    public IEnumerator DamagePlayerHazard(float damage)
     {
         Debug.Log("hazard damage");
         HealthBar.value -= damage;
+        yield return new WaitForSeconds(0.25f);
+        damageUI.SetActive(true);
+        yield return new WaitForSeconds(1f);
+        damageUI.SetActive(false);
     }
 
     public void HealPlayer()
