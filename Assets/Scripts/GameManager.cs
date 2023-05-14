@@ -3,27 +3,30 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
+using TMPro;
 
 public class GameManager : MonoBehaviour
 {
     public Slider HealthBar;
-    public Text healthText;
+    public TextMeshProUGUI healthText;
 
     public AudioSource soundSource;
     public AudioSource alertSource;
     public AudioSource playerSource;
     public AudioClip healingSound;
-    public AudioClip queenFightMusic;
+    public AudioClip queenFightMusic, queenFightMusic2;
     public AudioClip idleMusic1;
     public AudioClip fightTheme;
     public AudioClip ambience1, ambience2;
     public AudioClip alertSound;
     public AudioClip queenSpawn;
+    public AudioClip defeatClip;
 
     private AiScript aiScript;
 
     private float damageAmount;
     public float QueenHealth;
+    private bool isDead = false;
 
     bool hasMedKit = true;
     public GameObject MedIcon;
@@ -36,6 +39,10 @@ public class GameManager : MonoBehaviour
     public GameObject damageUI;
     public GameObject damageAcidUI;
     public GameObject queenUI;
+    public Slider queenSlider;
+    public GameObject UI;
+    public GameObject defeatUI;
+    public Text defeatText;
 
     // Start is called before the first frame update
     void Start()
@@ -50,13 +57,20 @@ public class GameManager : MonoBehaviour
         damageUI.SetActive(false);
         damageAcidUI.SetActive(false);
         queenUI.SetActive(false);
+        defeatUI.SetActive(false);
+        UI.SetActive(true);
     }
 
     private void Update()
     {
         healthText.text = HealthBar.value.ToString();
-
+        queenSlider.value = QueenHealth;
         if (Input.GetKeyUp(KeyCode.K)) StartCoroutine(WaveTest());
+        if (HealthBar.value <= 0 && isDead == false)
+        {
+            PlayerDeath();
+            isDead = true;
+        }
     }
 
     public IEnumerator DamagePlayer(float damage, GameObject Enemy)
@@ -176,5 +190,22 @@ public class GameManager : MonoBehaviour
     public IEnumerator QueenDeath()
     {
         yield return new WaitForSeconds(0.5f);
+    }
+
+    public void QueenPhase2()
+    {
+        soundSource.clip = queenFightMusic2;
+        soundSource.volume = 0.07f;
+        soundSource.Play();
+    }
+
+    public void PlayerDeath()
+    {
+        Time.timeScale = 0f;
+        UI.SetActive(false);
+        defeatUI.SetActive(true);
+        soundSource.clip = defeatClip;
+        soundSource.volume = 0.07f;
+        soundSource.Play();
     }
 }

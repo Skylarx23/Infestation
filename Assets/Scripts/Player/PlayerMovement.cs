@@ -96,11 +96,11 @@ public class PlayerMovement : MonoBehaviour
     {
         if (Collison.gameObject.CompareTag("Hazard")) 
         {
-            GM.DamagePlayerHazard(1);
+            StartCoroutine(GM.DamagePlayerHazard(1));
         }
         else if (Collison.gameObject.CompareTag("Slam")) 
         {
-            GM.DamagePlayerHazard(10);
+            StartCoroutine(GM.DamagePlayerHazard(10));
         }
     }
 }

@@ -46,16 +46,10 @@ public class OptionsMenu : MonoBehaviour
 
     public void FullscreenUpdate()
     {
-        if (isFullscreen)
-        {
-            FullscreenText.text = "Windowed";
-            isFullscreen = false;
-        }
-        else
-        {
-            FullscreenText.text = "Fullscreen";
-            isFullscreen = true;
-        }
+        isFullscreen = !isFullscreen;
+
+        if (!isFullscreen) FullscreenText.text = "Windowed";
+        else FullscreenText.text = "Fullscreen";
     }
 
     public void ResUpdate()
@@ -94,16 +88,9 @@ public class OptionsMenu : MonoBehaviour
 
     void ApplyOptions()
     {
-        BrightSlider.value = PlayerPrefs.GetFloat("Brightness");
-        VolumeSlider.value = PlayerPrefs.GetFloat("Volume");
-
-        ShakeSlider.value = PlayerPrefs.GetFloat("Screenshake");
-
-        isFullscreen = Convert.ToBoolean(PlayerPrefs.GetString("IsFullscreen"));
-        ResText.text = PlayerPrefs.GetString("Resolution");
-
+        // Sets Res and Fullscreen
         Screen.SetResolution(PlayerPrefs.GetInt("ResWidth"), PlayerPrefs.GetInt("ResHeight"),
-        Convert.ToBoolean(PlayerPrefs.GetString("IsFullscreen")));
+        Convert.ToBoolean(PlayerPrefs.GetString("isFullscreen")), PlayerPrefs.GetInt("ResHz"));
 
         UpdateAll();
     }
@@ -115,13 +102,14 @@ public class OptionsMenu : MonoBehaviour
 
         PlayerPrefs.SetFloat("Screenshake", ShakeSlider.value);
 
-        //PlayerPrefs.SetFloat("Screenshake", ShakeSlider.value);
-
-        PlayerPrefs.SetString("IsFullscreen", Convert.ToString(Screen.fullScreen));
+        PlayerPrefs.SetString("isFullscreen", Convert.ToString(isFullscreen));
 
         // Resolution
         PlayerPrefs.SetInt("ResWidth", Width);
         PlayerPrefs.SetInt("ResHeight", Height);
+        PlayerPrefs.SetInt("ResHz", Hz);
+
+        ApplyOptions();
     }
 
     void UpdateAll()
@@ -139,4 +127,3 @@ public class OptionsMenu : MonoBehaviour
         titleScreen.gameObject.SetActive(true);
     }
 }
-

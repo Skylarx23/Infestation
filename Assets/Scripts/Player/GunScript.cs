@@ -4,6 +4,7 @@ using System.Collections.Generic;
 using System.Security.Cryptography;
 using UnityEngine;
 using UnityEngine.UI;
+using TMPro;
 
 public class GunScript : MonoBehaviour
 {
@@ -18,7 +19,7 @@ public class GunScript : MonoBehaviour
     public int AmmoMax = 20;
     private int Ammo;
     public float ReloadTime = 2;
-    public Text AmmoText;
+    public TextMeshProUGUI AmmoText;
 
     public AudioClip shootClip, reloadClip;
     public AudioSource soundSource;

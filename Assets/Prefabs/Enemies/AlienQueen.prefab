@@ -277,7 +277,7 @@ Transform:
   - {fileID: 8839564972038274166}
   - {fileID: 5690187584433222306}
   m_Father: {fileID: 0}
-  m_RootOrder: 12
+  m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!114 &6564559053848497988
 MonoBehaviour:
@@ -292,6 +292,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   SpeedMuliplier: 1
+  Health: 0
   Player: {fileID: 0}
   Spawner: {fileID: 0}
   UILook: {fileID: 0}
@@ -369,7 +370,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   HealthBar: {fileID: 5746022061491342445}
-  Health: 60000
+  Health: 80000
   isQueen: 1
   AcidBlood: {fileID: 5987958044760234494, guid: c3f519d6b1220e94fa348998fb52b689, type: 3}
 --- !u!82 &5746022062206315122

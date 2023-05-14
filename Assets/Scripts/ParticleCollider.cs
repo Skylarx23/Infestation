@@ -15,7 +15,7 @@ public class ParticleCollider : MonoBehaviour
 
     private void OnParticleCollision(GameObject other)
     {
-        GM.DamagePlayerHazard(damageAmount);
+        StartCoroutine(GM.DamagePlayerHazard(damageAmount));
     }
 
 }

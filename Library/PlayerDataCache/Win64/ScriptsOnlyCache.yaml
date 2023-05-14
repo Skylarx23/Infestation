@@ -28,8 +28,10 @@ ScriptsOnlyBuild:
     UnityEditor.Graphs.dll:
     - UnityEditor.Graphs.AnimationBlendTree.Graph
     - UnityEditor.Graphs.AnimationBlendTree.GraphGUI
+    - UnityEditor.Graphs.AnimationStateMachine.AnyStateNode
     - UnityEditor.Graphs.AnimationStateMachine.Graph
     - UnityEditor.Graphs.AnimationStateMachine.GraphGUI
+    - UnityEditor.Graphs.AnimationStateMachine.StateNode
     - UnityEditor.Graphs.AnimatorControllerTool
     UnityEditor.TestRunner.dll:
     - UnityEditor.TestTools.TestRunner.Api.CallbacksHolder
@@ -105,6 +107,9 @@ ScriptsOnlyBuild:
   - assembly: Assembly-CSharp
     fullTypeName: OptionsMenu
     methodName: SaveOptions
+  - assembly: Assembly-CSharp
+    fullTypeName: OptionsMenu
+    methodName: FullscreenUpdate
   - assembly: Assembly-CSharp
     fullTypeName: StartScript
     methodName: QuitGame
@@ -386,7 +391,7 @@ ScriptsOnlyBuild:
     className: UnityOnMouseExitMessageListener
   - hash:
       serializedVersion: 2
-      Hash: 522d5fbc1e3a3ec286c658634ab61142
+      Hash: 49c9a1ccd2f887bb4609b150c38e04d4
     assemblyName: Assembly-CSharp.dll
     namespaceName: 
     className: GunScript
@@ -968,7 +973,7 @@ ScriptsOnlyBuild:
     className: CanvasScaler
   - hash:
       serializedVersion: 2
-      Hash: 3cadb17de3b3c621bec1851019a5c8e5
+      Hash: d27048c2bd739bdc2389f3c4d29b62c5
     assemblyName: Assembly-CSharp.dll
     namespaceName: 
     className: GameManager
@@ -1312,4 +1317,4 @@ ScriptsOnlyBuild:
   scenePathNames:
   - Assets/Scenes/Menu.unity
   - Assets/Scenes/SampleScene.unity
-  playerPath: C:/Users/ewan2/OneDrive/Documents/Unity/Builds/14.06.23 21.58/Infestation.exe
+  playerPath: D:/InfestationBuilt/Infestation.exe
