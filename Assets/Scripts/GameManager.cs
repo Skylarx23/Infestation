@@ -23,6 +23,7 @@ public class GameManager : MonoBehaviour
     private AiScript aiScript;
 
     private float damageAmount;
+    public float QueenHealth;
 
     bool hasMedKit = true;
     public GameObject MedIcon;

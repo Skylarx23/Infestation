@@ -10,6 +10,7 @@ public class QueenAI : MonoBehaviour
 {
     public float SpeedMuliplier;
 
+    public float Health;
     public GameObject Player;
     public GameObject Spawner;
     public Transform UILook;
@@ -65,6 +66,9 @@ public class QueenAI : MonoBehaviour
 
     public void Update()
     {
+        Health = GetComponent<ShotScript>().Health;
+        GM.QueenHealth = Health;
+
         float DistenceToPlayer = Vector3.Distance(transform.position, Player.transform.position);
         meleeCooldown -= Time.deltaTime;
 

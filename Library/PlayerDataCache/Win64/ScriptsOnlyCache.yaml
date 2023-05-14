@@ -11,7 +11,7 @@ ScriptsOnlyBuild:
     - OptionsMenu
     - ParticleCollider
     - PlayerMovement
-    - QueenAi
+    - QueenAI
     - ShotScript
     - SpawnScript
     - StartScript
@@ -25,6 +25,12 @@ ScriptsOnlyBuild:
     - TMPro.TMP_SpriteAsset
     - TMPro.TMP_StyleSheet
     - TMPro.TextMeshProUGUI
+    UnityEditor.Graphs.dll:
+    - UnityEditor.Graphs.AnimationBlendTree.Graph
+    - UnityEditor.Graphs.AnimationBlendTree.GraphGUI
+    - UnityEditor.Graphs.AnimationStateMachine.Graph
+    - UnityEditor.Graphs.AnimationStateMachine.GraphGUI
+    - UnityEditor.Graphs.AnimatorControllerTool
     UnityEditor.TestRunner.dll:
     - UnityEditor.TestTools.TestRunner.Api.CallbacksHolder
     - UnityEditor.TestTools.TestRunner.TestListCacheData
@@ -139,39 +145,39 @@ ScriptsOnlyBuild:
     - Class: 104
       Script: {instanceID: 0}
     - Class: 114
-      Script: {instanceID: 1656}
+      Script: {instanceID: 1754}
     - Class: 114
-      Script: {instanceID: 2304}
+      Script: {instanceID: 2402}
     - Class: 114
-      Script: {instanceID: 2434}
+      Script: {instanceID: 2532}
     - Class: 114
-      Script: {instanceID: 2758}
+      Script: {instanceID: 2856}
     - Class: 114
-      Script: {instanceID: 2988}
+      Script: {instanceID: 3086}
     - Class: 114
-      Script: {instanceID: 3306}
+      Script: {instanceID: 3404}
     - Class: 114
-      Script: {instanceID: 4404}
+      Script: {instanceID: 4502}
     - Class: 114
-      Script: {instanceID: 4686}
+      Script: {instanceID: 4784}
     - Class: 114
-      Script: {instanceID: 5392}
+      Script: {instanceID: 5490}
     - Class: 114
-      Script: {instanceID: 5480}
+      Script: {instanceID: 5578}
     - Class: 114
-      Script: {instanceID: 5764}
+      Script: {instanceID: 5862}
     - Class: 114
-      Script: {instanceID: 6036}
+      Script: {instanceID: 6134}
     - Class: 114
-      Script: {instanceID: 6108}
+      Script: {instanceID: 6206}
     - Class: 114
-      Script: {instanceID: 6264}
+      Script: {instanceID: 6362}
     - Class: 114
-      Script: {instanceID: 6366}
+      Script: {instanceID: 6464}
     - Class: 114
-      Script: {instanceID: 6614}
+      Script: {instanceID: 6712}
     - Class: 114
-      Script: {instanceID: 7920}
+      Script: {instanceID: 8018}
     - Class: 115
       Script: {instanceID: 0}
     - Class: 128
@@ -232,56 +238,58 @@ ScriptsOnlyBuild:
     - Class: 108
       Script: {instanceID: 0}
     - Class: 114
-      Script: {instanceID: 1656}
+      Script: {instanceID: 1754}
     - Class: 114
-      Script: {instanceID: 1870}
+      Script: {instanceID: 1968}
     - Class: 114
-      Script: {instanceID: 2068}
+      Script: {instanceID: 2166}
     - Class: 114
-      Script: {instanceID: 2434}
+      Script: {instanceID: 2532}
     - Class: 114
-      Script: {instanceID: 2758}
+      Script: {instanceID: 2856}
     - Class: 114
-      Script: {instanceID: 2988}
+      Script: {instanceID: 3086}
     - Class: 114
-      Script: {instanceID: 3234}
+      Script: {instanceID: 3332}
     - Class: 114
-      Script: {instanceID: 4148}
+      Script: {instanceID: 4246}
     - Class: 114
-      Script: {instanceID: 4980}
+      Script: {instanceID: 5078}
     - Class: 114
-      Script: {instanceID: 5392}
+      Script: {instanceID: 5490}
     - Class: 114
-      Script: {instanceID: 5480}
+      Script: {instanceID: 5578}
     - Class: 114
-      Script: {instanceID: 5764}
+      Script: {instanceID: 5862}
     - Class: 114
-      Script: {instanceID: 6108}
+      Script: {instanceID: 6206}
     - Class: 114
-      Script: {instanceID: 6170}
+      Script: {instanceID: 6268}
     - Class: 114
-      Script: {instanceID: 6264}
+      Script: {instanceID: 6362}
     - Class: 114
-      Script: {instanceID: 6324}
+      Script: {instanceID: 6422}
     - Class: 114
-      Script: {instanceID: 6614}
+      Script: {instanceID: 6712}
     - Class: 114
-      Script: {instanceID: 6650}
+      Script: {instanceID: 6748}
     - Class: 114
-      Script: {instanceID: 7112}
+      Script: {instanceID: 7210}
     - Class: 114
-      Script: {instanceID: 7390}
+      Script: {instanceID: 7488}
     - Class: 114
-      Script: {instanceID: 7794}
+      Script: {instanceID: 7892}
     - Class: 114
-      Script: {instanceID: 8058}
+      Script: {instanceID: 8156}
     - Class: 114
-      Script: {instanceID: 8470}
+      Script: {instanceID: 8568}
     - Class: 114
-      Script: {instanceID: 8538}
+      Script: {instanceID: 8636}
     - Class: 115
       Script: {instanceID: 0}
     - Class: 128
+      Script: {instanceID: 0}
+    - Class: 135
       Script: {instanceID: 0}
     - Class: 136
       Script: {instanceID: 0}
@@ -798,7 +806,7 @@ ScriptsOnlyBuild:
     className: PostProcessVolume
   - hash:
       serializedVersion: 2
-      Hash: 9f89b429d47b7009bc58a8b336e462a5
+      Hash: 4b32c86189f909c85877b737febe5174
     assemblyName: Assembly-CSharp.dll
     namespaceName: 
     className: AiScript
@@ -960,7 +968,7 @@ ScriptsOnlyBuild:
     className: CanvasScaler
   - hash:
       serializedVersion: 2
-      Hash: 843c0f127f1425a853493961c42602e7
+      Hash: 3cadb17de3b3c621bec1851019a5c8e5
     assemblyName: Assembly-CSharp.dll
     namespaceName: 
     className: GameManager
@@ -984,7 +992,7 @@ ScriptsOnlyBuild:
     className: TextMeshProUGUI
   - hash:
       serializedVersion: 2
-      Hash: 751e5bae2a317288c2ab58d66687092b
+      Hash: add9f3a7be4de71c3a824ebcef42f356
     assemblyName: Assembly-CSharp.dll
     namespaceName: 
     className: ParticleCollider
@@ -1020,10 +1028,10 @@ ScriptsOnlyBuild:
     className: TMP_SubMesh
   - hash:
       serializedVersion: 2
-      Hash: 058c74886f3140cff8177db5fb3506c9
+      Hash: f49140470accc5b7f290d5c76c80ae81
     assemblyName: Assembly-CSharp.dll
     namespaceName: 
-    className: QueenAi
+    className: QueenAI
   - hash:
       serializedVersion: 2
       Hash: be140ea01a11255b651c097661ac55b1
@@ -1304,4 +1312,4 @@ ScriptsOnlyBuild:
   scenePathNames:
   - Assets/Scenes/Menu.unity
   - Assets/Scenes/SampleScene.unity
-  playerPath: C:/Users/ewan2/OneDrive/Documents/Unity/Infestation/Builds/Infestation.exe
+  playerPath: C:/Users/ewan2/OneDrive/Documents/Unity/Builds/14.06.23 21.58/Infestation.exe
