@@ -9590,6 +9590,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 09da7035652bdfa44b70627d204599bb, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  damageAmount: 100
 --- !u!1 &7150106635380650361
 GameObject:
   m_ObjectHideFlags: 0
@@ -9761,7 +9762,7 @@ ParticleSystem:
     startSpeed:
       serializedVersion: 2
       minMaxState: 0
-      scalar: 12
+      scalar: 30
       minScalar: 5
       maxCurve:
         serializedVersion: 2

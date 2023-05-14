@@ -5,6 +5,7 @@ using UnityEngine;
 public class ParticleCollider : MonoBehaviour
 {
     GameManager GM;
+    public float damageAmount;
     // Start is called before the first frame update
 
     private void Awake()
@@ -14,7 +15,7 @@ public class ParticleCollider : MonoBehaviour
 
     private void OnParticleCollision(GameObject other)
     {
-        GM.DamagePlayerHazard(20);
+        GM.DamagePlayerHazard(damageAmount);
     }
 
 }

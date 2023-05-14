@@ -34,6 +34,7 @@ public class GameManager : MonoBehaviour
     public GameObject alertUI;
     public GameObject damageUI;
     public GameObject damageAcidUI;
+    public GameObject queenUI;
 
     // Start is called before the first frame update
     void Start()
@@ -47,6 +48,7 @@ public class GameManager : MonoBehaviour
         alertUI.SetActive(false);
         damageUI.SetActive(false);
         damageAcidUI.SetActive(false);
+        queenUI.SetActive(false);
     }
 
     private void Update()
@@ -159,10 +161,10 @@ public class GameManager : MonoBehaviour
         alertSource.clip = queenSpawn;
         alertSource.volume = 0.05f;
         alertSource.Play();
-        Debug.Log("sc theme");
         soundSource.Play();
         GameObject Model = queenSpawner.GetComponent<SpawnScript>().Model;
         queenSpawner.GetComponent<SpawnScript>().SpawnEnemies(1, Model);
+        queenUI.SetActive(true);
         yield return new WaitForSeconds(0.5f);
     }
 

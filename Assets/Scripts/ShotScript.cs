@@ -24,7 +24,7 @@ public class ShotScript : MonoBehaviour
     private void Update()
     {
         HealthBar.value = Health;
-       // HealthBarGlobal.value = Health;
+        //HealthBarGlobal.value = Health;
     }
     public void TakeDamage(float Amount)
     {

@@ -16,12 +16,17 @@ public class QueenAI : MonoBehaviour
     public NavMeshAgent agent;
     public LayerMask isPlayer, isWall;
     public float MeleeRange;
+    private bool isLeaping;
+    private bool acidAttackInProgess = false;
 
     // Attacks
     public GameObject[] AcidPools;
     public GameObject earthShatter;
+    public GameObject earthShatterLong;
+    public GameObject shatterSpawner;
     public GameObject SlamPartical;
     public GameObject AcidProjectile;
+    public GameObject acidSpawner;
 
     bool isAttacking;
     public float MeleeDamage;
@@ -35,7 +40,9 @@ public class QueenAI : MonoBehaviour
     public AudioClip[] chaseClips;
     public AudioClip[] backgroundClips;
     public AudioClip[] attackClips;
+    public AudioClip[] roarClips;
     public AudioClip deathClip;
+    public AudioClip shatterClip;
 
     GameManager GM;
 
@@ -45,8 +52,6 @@ public class QueenAI : MonoBehaviour
         agent = GetComponent<NavMeshAgent>();
         GM = GameObject.Find("GameManager").GetComponent<GameManager>();
         Player = GameObject.Find("First Person Player");
-
-        Debug.Log("Awake");
         StartCoroutine(Resting());
     }
 
@@ -59,16 +64,23 @@ public class QueenAI : MonoBehaviour
         agent.speed = oldSpeed;
     }
 
-    private void Update()
+    public void Update()
     {
         float DistenceToPlayer = Vector3.Distance(transform.position, Player.transform.position);
         meleeCooldown -= Time.deltaTime;
 
         // If player is closer than 20 Units (?) it stops else it'll keep following the player
-        if (DistenceToPlayer <= 20)
+        if (DistenceToPlayer <= 20 && isLeaping == false)
         {
+            agent.speed = 11;
             agent.SetDestination(transform.position);
             agent.transform.LookAt(new Vector3(Player.transform.position.x, 0, Player.transform.position.z));
+        }
+
+        else if (DistenceToPlayer >= 60 && isAttacking == false)
+        {
+            agent.SetDestination(Player.transform.position);
+            agent.speed = 25;
         }
         else Chasing();
 
@@ -90,7 +102,7 @@ public class QueenAI : MonoBehaviour
     {
         Debug.Log("Resting");
         isAttacking = false;
-        agent.speed = 11;
+        agent.speed = 15;
 
         // Every 5-10 seconds queen tries to attack
         yield return new WaitForSeconds(Random.Range(5, 10));
@@ -103,15 +115,15 @@ public class QueenAI : MonoBehaviour
         if (!isAttacking)
         {
             isAttacking = true;
-
-            int RNDAttack = Random.Range(0, 4);
+            int RNDAttack = Random.Range(0, 5);
+            Debug.Log(RNDAttack);
             if (RNDAttack == 0) StartCoroutine(Leap());
-            //else if (RNDAttack == 1) SpawnShatter();
-            else if (RNDAttack == 2) StartCoroutine(ActivateAcidPools());
+            else if (RNDAttack == 1) StartCoroutine(SpawnShatter());
+            else if (acidAttackInProgess == false && RNDAttack == 2) StartCoroutine(ActivateAcidPools());
             else if (RNDAttack == 3) StartCoroutine(SpawnProjectile());
             else if (RNDAttack == 4) StartCoroutine(Slam());
         }
-        else Resting();
+        else StartCoroutine(Resting());
     }
 
     private void Chasing()
@@ -127,72 +139,107 @@ public class QueenAI : MonoBehaviour
         }
     }
 
-    private void SpawnShatter()
+    private IEnumerator SpawnShatter()
     {
+        float oldSpeed = agent.speed;
+        for (int i = 0; i < 3; i++)
+        {
+            agent.speed = 0;
+            mainSource.clip = roarClips[Random.Range(0, roarClips.Length)];
+            mainSource.PlayDelayed(1);
+            animationSource.SetTrigger("trShatter");
+            yield return new WaitForSeconds(0.75f);
+            backgroundSource.PlayOneShot(shatterClip, 0.8f);
+            float DistenceToPlayer = Vector3.Distance(transform.position, Player.transform.position);
+            if (DistenceToPlayer <= 30)
+            {
+                Destroy(Instantiate(earthShatter, shatterSpawner.transform.position, shatterSpawner.transform.rotation), 3f);
+            }
+            else if(DistenceToPlayer >= 30)
+            {
+                Debug.Log("shatterlong");
+                Destroy(Instantiate(earthShatterLong, shatterSpawner.transform.position, shatterSpawner.transform.rotation), 3f);
+            }
+            yield return new WaitForSeconds(1.5f);
+            agent.speed = oldSpeed;
+            yield return new WaitForSeconds(0.5f);
+        }
 
-        
-
+        isAttacking = false;
+        StartCoroutine(Resting());
     }
 
     private IEnumerator ActivateAcidPools()
     {
         Debug.Log("acid pools");
         // I dont know how to play the Roar
+        acidAttackInProgess = true;
+        mainSource.clip = roarClips[Random.Range(0, roarClips.Length)];
+        mainSource.PlayDelayed(1);
         for (int i = 0; i < AcidPools.Length; i++)
         {
             AcidPools[i].SetActive(true);
         }
+        isAttacking = false;
+        StartCoroutine(Resting());
         yield return new WaitForSeconds(Random.Range(10, 15));
         for (int i = 0; i < AcidPools.Length; i++)
         {
             AcidPools[i].SetActive(false);
         }
-        isAttacking = false;
-        Resting();
+        acidAttackInProgess = false;
     }
 
     private IEnumerator SpawnProjectile()
     {
-        Debug.Log("acid projectile");
         float oldSpeed = agent.speed;
-        agent.speed = 0.1f;
+        agent.speed = 6;
         for (int i = 0; i < 2; i++)
         {
-            Instantiate(AcidProjectile, transform.position, Quaternion.identity);
-            yield return new WaitForSeconds(1);
+            GameObject acid = (GameObject)Instantiate(AcidProjectile, acidSpawner.transform.position, acidSpawner.transform.rotation, acidSpawner.transform);
+            yield return new WaitForSeconds(5);
+            Destroy(acid);
         }
         agent.speed = oldSpeed;
         isAttacking = false;
-        Resting();
+        StartCoroutine(Resting());
     }
 
     private IEnumerator Leap()
     {
-        Debug.Log("Leap");
         float oldSpeed = agent.speed;
-        agent.speed = 0;
-        yield return new WaitForSeconds(2);
-        agent.speed = 40;
+        agent.speed = 1;
+        isLeaping = true;
+        animationSource.SetTrigger("trLeap");
+        mainSource.clip = roarClips[Random.Range(0, roarClips.Length)];
+        mainSource.PlayDelayed(1);
+        yield return new WaitForSeconds(0.75f);
 
         // Freezes the Queen for 0.5s and then plays the leap animation
-        this.gameObject.GetComponent<Rigidbody>().freezeRotation = true;
-        yield return new WaitForSeconds(0.5f);
-        animationSource.SetTrigger("trLeap");
-        this.gameObject.GetComponent<Rigidbody>().freezeRotation = false;
+        //this.gameObject.GetComponent<Rigidbody>().freezeRotation = true;
+        //yield return new WaitForSeconds(0.5f);
+        agent.speed = 400;
+        agent.SetDestination(Player.transform.position);
+        yield return new WaitForSeconds(1.5f);
+        //this.gameObject.GetComponent<Rigidbody>().freezeRotation = false;
+        isLeaping = false;
         agent.speed = oldSpeed;
         isAttacking = false;
-        Resting();
+        StartCoroutine(Resting());
     }
 
     private IEnumerator Slam()
     {
-        Debug.Log("Slam");
         agent.speed = 0;
         yield return new WaitForSeconds(0.5f);
+        mainSource.clip = roarClips[Random.Range(0, roarClips.Length)];
+        mainSource.PlayDelayed(1);
         animationSource.SetTrigger("trSlam");
-        Destroy(Instantiate(SlamPartical, new Vector3(transform.position.x, 0, transform.position.z), Quaternion.identity), 3f);
+        yield return new WaitForSeconds(1.5f);
+        Destroy(Instantiate(SlamPartical, shatterSpawner.transform.position, acidSpawner.transform.rotation, acidSpawner.transform), 0.75f);
+        yield return new WaitForSeconds(0.5f);
         isAttacking = false;
-        Resting();
+        StartCoroutine(Resting());
     }
 
     public void QueenDeath()

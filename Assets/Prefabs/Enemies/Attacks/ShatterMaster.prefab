@@ -1,0 +1,358 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!1 &3734110991900521683
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 3734110991900521682}
+  m_Layer: 0
+  m_Name: ShatterMaster
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &3734110991900521682
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3734110991900521683}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children:
+  - {fileID: 5836098803692351243}
+  - {fileID: 5836098802141362090}
+  - {fileID: 5836098803274176611}
+  - {fileID: 4517391086261093088}
+  - {fileID: 4549321888012618689}
+  m_Father: {fileID: 0}
+  m_RootOrder: 12
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!1001 &3734110991142719839
+PrefabInstance:
+  m_ObjectHideFlags: 0
+  serializedVersion: 2
+  m_Modification:
+    serializedVersion: 2
+    m_TransformParent: {fileID: 3734110991900521682}
+    m_Modifications:
+    - target: {fileID: 7147149769193187061, guid: 571d6303baf844344bfd6e34aacb0a49, type: 3}
+      propertyPath: m_RootOrder
+      value: -1
+      objectReference: {fileID: 0}
+    - target: {fileID: 7147149769193187061, guid: 571d6303baf844344bfd6e34aacb0a49, type: 3}
+      propertyPath: m_LocalPosition.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 7147149769193187061, guid: 571d6303baf844344bfd6e34aacb0a49, type: 3}
+      propertyPath: m_LocalPosition.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 7147149769193187061, guid: 571d6303baf844344bfd6e34aacb0a49, type: 3}
+      propertyPath: m_LocalPosition.z
+      value: -6
+      objectReference: {fileID: 0}
+    - target: {fileID: 7147149769193187061, guid: 571d6303baf844344bfd6e34aacb0a49, type: 3}
+      propertyPath: m_LocalRotation.w
+      value: 0.7660445
+      objectReference: {fileID: 0}
+    - target: {fileID: 7147149769193187061, guid: 571d6303baf844344bfd6e34aacb0a49, type: 3}
+      propertyPath: m_LocalRotation.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 7147149769193187061, guid: 571d6303baf844344bfd6e34aacb0a49, type: 3}
+      propertyPath: m_LocalRotation.y
+      value: 0.6427876
+      objectReference: {fileID: 0}
+    - target: {fileID: 7147149769193187061, guid: 571d6303baf844344bfd6e34aacb0a49, type: 3}
+      propertyPath: m_LocalRotation.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 7147149769193187061, guid: 571d6303baf844344bfd6e34aacb0a49, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 7147149769193187061, guid: 571d6303baf844344bfd6e34aacb0a49, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.y
+      value: 80
+      objectReference: {fileID: 0}
+    - target: {fileID: 7147149769193187061, guid: 571d6303baf844344bfd6e34aacb0a49, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 7150106635380650361, guid: 571d6303baf844344bfd6e34aacb0a49, type: 3}
+      propertyPath: m_Name
+      value: EarthShatter
+      objectReference: {fileID: 0}
+    m_RemovedComponents: []
+    m_AddedGameObjects: []
+  m_SourcePrefab: {fileID: 100100000, guid: 571d6303baf844344bfd6e34aacb0a49, type: 3}
+--- !u!4 &5836098802141362090 stripped
+Transform:
+  m_CorrespondingSourceObject: {fileID: 7147149769193187061, guid: 571d6303baf844344bfd6e34aacb0a49, type: 3}
+  m_PrefabInstance: {fileID: 3734110991142719839}
+  m_PrefabAsset: {fileID: 0}
+--- !u!1001 &3734110992141598358
+PrefabInstance:
+  m_ObjectHideFlags: 0
+  serializedVersion: 2
+  m_Modification:
+    serializedVersion: 2
+    m_TransformParent: {fileID: 3734110991900521682}
+    m_Modifications:
+    - target: {fileID: 7147149769193187061, guid: 571d6303baf844344bfd6e34aacb0a49, type: 3}
+      propertyPath: m_RootOrder
+      value: -1
+      objectReference: {fileID: 0}
+    - target: {fileID: 7147149769193187061, guid: 571d6303baf844344bfd6e34aacb0a49, type: 3}
+      propertyPath: m_LocalPosition.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 7147149769193187061, guid: 571d6303baf844344bfd6e34aacb0a49, type: 3}
+      propertyPath: m_LocalPosition.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 7147149769193187061, guid: 571d6303baf844344bfd6e34aacb0a49, type: 3}
+      propertyPath: m_LocalPosition.z
+      value: 6
+      objectReference: {fileID: 0}
+    - target: {fileID: 7147149769193187061, guid: 571d6303baf844344bfd6e34aacb0a49, type: 3}
+      propertyPath: m_LocalRotation.w
+      value: 0.64278764
+      objectReference: {fileID: 0}
+    - target: {fileID: 7147149769193187061, guid: 571d6303baf844344bfd6e34aacb0a49, type: 3}
+      propertyPath: m_LocalRotation.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 7147149769193187061, guid: 571d6303baf844344bfd6e34aacb0a49, type: 3}
+      propertyPath: m_LocalRotation.y
+      value: 0.76604444
+      objectReference: {fileID: 0}
+    - target: {fileID: 7147149769193187061, guid: 571d6303baf844344bfd6e34aacb0a49, type: 3}
+      propertyPath: m_LocalRotation.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 7147149769193187061, guid: 571d6303baf844344bfd6e34aacb0a49, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 7147149769193187061, guid: 571d6303baf844344bfd6e34aacb0a49, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.y
+      value: 100
+      objectReference: {fileID: 0}
+    - target: {fileID: 7147149769193187061, guid: 571d6303baf844344bfd6e34aacb0a49, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 7150106635380650361, guid: 571d6303baf844344bfd6e34aacb0a49, type: 3}
+      propertyPath: m_Name
+      value: EarthShatter (1)
+      objectReference: {fileID: 0}
+    m_RemovedComponents: []
+    m_AddedGameObjects: []
+  m_SourcePrefab: {fileID: 100100000, guid: 571d6303baf844344bfd6e34aacb0a49, type: 3}
+--- !u!4 &5836098803274176611 stripped
+Transform:
+  m_CorrespondingSourceObject: {fileID: 7147149769193187061, guid: 571d6303baf844344bfd6e34aacb0a49, type: 3}
+  m_PrefabInstance: {fileID: 3734110992141598358}
+  m_PrefabAsset: {fileID: 0}
+--- !u!1001 &3734110992727820798
+PrefabInstance:
+  m_ObjectHideFlags: 0
+  serializedVersion: 2
+  m_Modification:
+    serializedVersion: 2
+    m_TransformParent: {fileID: 3734110991900521682}
+    m_Modifications:
+    - target: {fileID: 7147149769193187061, guid: 571d6303baf844344bfd6e34aacb0a49, type: 3}
+      propertyPath: m_RootOrder
+      value: -1
+      objectReference: {fileID: 0}
+    - target: {fileID: 7147149769193187061, guid: 571d6303baf844344bfd6e34aacb0a49, type: 3}
+      propertyPath: m_LocalPosition.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 7147149769193187061, guid: 571d6303baf844344bfd6e34aacb0a49, type: 3}
+      propertyPath: m_LocalPosition.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 7147149769193187061, guid: 571d6303baf844344bfd6e34aacb0a49, type: 3}
+      propertyPath: m_LocalPosition.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 7147149769193187061, guid: 571d6303baf844344bfd6e34aacb0a49, type: 3}
+      propertyPath: m_LocalRotation.w
+      value: 0.7071068
+      objectReference: {fileID: 0}
+    - target: {fileID: 7147149769193187061, guid: 571d6303baf844344bfd6e34aacb0a49, type: 3}
+      propertyPath: m_LocalRotation.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 7147149769193187061, guid: 571d6303baf844344bfd6e34aacb0a49, type: 3}
+      propertyPath: m_LocalRotation.y
+      value: 0.7071068
+      objectReference: {fileID: 0}
+    - target: {fileID: 7147149769193187061, guid: 571d6303baf844344bfd6e34aacb0a49, type: 3}
+      propertyPath: m_LocalRotation.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 7147149769193187061, guid: 571d6303baf844344bfd6e34aacb0a49, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 7147149769193187061, guid: 571d6303baf844344bfd6e34aacb0a49, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.y
+      value: 90
+      objectReference: {fileID: 0}
+    - target: {fileID: 7147149769193187061, guid: 571d6303baf844344bfd6e34aacb0a49, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 7150106635380650361, guid: 571d6303baf844344bfd6e34aacb0a49, type: 3}
+      propertyPath: m_Name
+      value: EarthShatter
+      objectReference: {fileID: 0}
+    m_RemovedComponents: []
+    m_AddedGameObjects: []
+  m_SourcePrefab: {fileID: 100100000, guid: 571d6303baf844344bfd6e34aacb0a49, type: 3}
+--- !u!4 &5836098803692351243 stripped
+Transform:
+  m_CorrespondingSourceObject: {fileID: 7147149769193187061, guid: 571d6303baf844344bfd6e34aacb0a49, type: 3}
+  m_PrefabInstance: {fileID: 3734110992727820798}
+  m_PrefabAsset: {fileID: 0}
+--- !u!1001 &6633159029610818868
+PrefabInstance:
+  m_ObjectHideFlags: 0
+  serializedVersion: 2
+  m_Modification:
+    serializedVersion: 2
+    m_TransformParent: {fileID: 3734110991900521682}
+    m_Modifications:
+    - target: {fileID: 7147149769193187061, guid: 571d6303baf844344bfd6e34aacb0a49, type: 3}
+      propertyPath: m_RootOrder
+      value: -1
+      objectReference: {fileID: 0}
+    - target: {fileID: 7147149769193187061, guid: 571d6303baf844344bfd6e34aacb0a49, type: 3}
+      propertyPath: m_LocalPosition.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 7147149769193187061, guid: 571d6303baf844344bfd6e34aacb0a49, type: 3}
+      propertyPath: m_LocalPosition.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 7147149769193187061, guid: 571d6303baf844344bfd6e34aacb0a49, type: 3}
+      propertyPath: m_LocalPosition.z
+      value: -4
+      objectReference: {fileID: 0}
+    - target: {fileID: 7147149769193187061, guid: 571d6303baf844344bfd6e34aacb0a49, type: 3}
+      propertyPath: m_LocalRotation.w
+      value: 0.46174863
+      objectReference: {fileID: 0}
+    - target: {fileID: 7147149769193187061, guid: 571d6303baf844344bfd6e34aacb0a49, type: 3}
+      propertyPath: m_LocalRotation.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 7147149769193187061, guid: 571d6303baf844344bfd6e34aacb0a49, type: 3}
+      propertyPath: m_LocalRotation.y
+      value: 0.8870109
+      objectReference: {fileID: 0}
+    - target: {fileID: 7147149769193187061, guid: 571d6303baf844344bfd6e34aacb0a49, type: 3}
+      propertyPath: m_LocalRotation.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 7147149769193187061, guid: 571d6303baf844344bfd6e34aacb0a49, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 7147149769193187061, guid: 571d6303baf844344bfd6e34aacb0a49, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.y
+      value: 125
+      objectReference: {fileID: 0}
+    - target: {fileID: 7147149769193187061, guid: 571d6303baf844344bfd6e34aacb0a49, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 7150106635380650361, guid: 571d6303baf844344bfd6e34aacb0a49, type: 3}
+      propertyPath: m_Name
+      value: EarthShatter (3)
+      objectReference: {fileID: 0}
+    m_RemovedComponents: []
+    m_AddedGameObjects: []
+  m_SourcePrefab: {fileID: 100100000, guid: 571d6303baf844344bfd6e34aacb0a49, type: 3}
+--- !u!4 &4549321888012618689 stripped
+Transform:
+  m_CorrespondingSourceObject: {fileID: 7147149769193187061, guid: 571d6303baf844344bfd6e34aacb0a49, type: 3}
+  m_PrefabInstance: {fileID: 6633159029610818868}
+  m_PrefabAsset: {fileID: 0}
+--- !u!1001 &6746174106004988949
+PrefabInstance:
+  m_ObjectHideFlags: 0
+  serializedVersion: 2
+  m_Modification:
+    serializedVersion: 2
+    m_TransformParent: {fileID: 3734110991900521682}
+    m_Modifications:
+    - target: {fileID: 7147149769193187061, guid: 571d6303baf844344bfd6e34aacb0a49, type: 3}
+      propertyPath: m_RootOrder
+      value: -1
+      objectReference: {fileID: 0}
+    - target: {fileID: 7147149769193187061, guid: 571d6303baf844344bfd6e34aacb0a49, type: 3}
+      propertyPath: m_LocalPosition.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 7147149769193187061, guid: 571d6303baf844344bfd6e34aacb0a49, type: 3}
+      propertyPath: m_LocalPosition.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 7147149769193187061, guid: 571d6303baf844344bfd6e34aacb0a49, type: 3}
+      propertyPath: m_LocalPosition.z
+      value: 4
+      objectReference: {fileID: 0}
+    - target: {fileID: 7147149769193187061, guid: 571d6303baf844344bfd6e34aacb0a49, type: 3}
+      propertyPath: m_LocalRotation.w
+      value: 0.8870109
+      objectReference: {fileID: 0}
+    - target: {fileID: 7147149769193187061, guid: 571d6303baf844344bfd6e34aacb0a49, type: 3}
+      propertyPath: m_LocalRotation.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 7147149769193187061, guid: 571d6303baf844344bfd6e34aacb0a49, type: 3}
+      propertyPath: m_LocalRotation.y
+      value: 0.46174863
+      objectReference: {fileID: 0}
+    - target: {fileID: 7147149769193187061, guid: 571d6303baf844344bfd6e34aacb0a49, type: 3}
+      propertyPath: m_LocalRotation.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 7147149769193187061, guid: 571d6303baf844344bfd6e34aacb0a49, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 7147149769193187061, guid: 571d6303baf844344bfd6e34aacb0a49, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.y
+      value: 55
+      objectReference: {fileID: 0}
+    - target: {fileID: 7147149769193187061, guid: 571d6303baf844344bfd6e34aacb0a49, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 7150106635380650361, guid: 571d6303baf844344bfd6e34aacb0a49, type: 3}
+      propertyPath: m_Name
+      value: EarthShatter (2)
+      objectReference: {fileID: 0}
+    m_RemovedComponents: []
+    m_AddedGameObjects: []
+  m_SourcePrefab: {fileID: 100100000, guid: 571d6303baf844344bfd6e34aacb0a49, type: 3}
+--- !u!4 &4517391086261093088 stripped
+Transform:
+  m_CorrespondingSourceObject: {fileID: 7147149769193187061, guid: 571d6303baf844344bfd6e34aacb0a49, type: 3}
+  m_PrefabInstance: {fileID: 6746174106004988949}
+  m_PrefabAsset: {fileID: 0}

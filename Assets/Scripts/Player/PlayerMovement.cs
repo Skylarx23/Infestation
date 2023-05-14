@@ -98,5 +98,9 @@ public class PlayerMovement : MonoBehaviour
         {
             GM.DamagePlayerHazard(1);
         }
+        else if (Collison.gameObject.CompareTag("Slam")) 
+        {
+            GM.DamagePlayerHazard(10);
+        }
     }
 }
