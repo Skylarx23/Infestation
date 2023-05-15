@@ -17,7 +17,6 @@ public class QueenAI : MonoBehaviour
     public float MeleeRange;
     private bool isLeaping;
     private bool acidAttackInProgess = false;
-    private bool isPhase1 = false;
     private bool isPhase2 = false;
     private bool isPhase3 = false;
     private bool hasPlayed = false;
@@ -35,6 +34,7 @@ public class QueenAI : MonoBehaviour
     public float MeleeDamage;
     private bool enemiesSpawned = false;
     private bool isDead = false;
+    private float rotationCooldown = 0;
 
     float footstepCooldown = 0;
     public float meleeCooldown = 0;
@@ -48,6 +48,7 @@ public class QueenAI : MonoBehaviour
     public AudioClip[] roarClips;
     public AudioClip deathClip;
     public AudioClip shatterClip;
+    public AudioClip projectileClip;
 
     GameManager GM;
 
@@ -69,11 +70,13 @@ public class QueenAI : MonoBehaviour
             GM.QueenPhase2();
             isPhase2 = true;
             hasPlayed = true;
+            StartCoroutine(GM.QueenSpawns());
         }
         if(Health < 20000 && isPhase3 == false)
         {
             isPhase2 = false;
             isPhase3 = true;
+            //StartCoroutine(GM.QueenSpawns());
         }
         if(Health < 0 && isDead == false)
         {
@@ -82,39 +85,28 @@ public class QueenAI : MonoBehaviour
 
         float DistenceToPlayer = Vector3.Distance(transform.position, Player.transform.position);
         meleeCooldown -= Time.deltaTime;
+        rotationCooldown -= Time.deltaTime;
+        animationSource.SetTrigger("trChase");
 
-        // If player is closer than 20 Units (?) it stops else it'll keep following the player
-        if (DistenceToPlayer <= 20 && isLeaping == false)
+        if(rotationCooldown <= 0 && !isLeaping)
         {
             agent.SetDestination(Player.transform.position);
             agent.transform.LookAt(new Vector3(Player.transform.position.x, 0, Player.transform.position.z));
         }
 
-        else if (DistenceToPlayer >= 60 && isAttacking == false)
-        {
-            agent.SetDestination(Player.transform.position);
-            agent.speed = 25;
-            agent.transform.LookAt(new Vector3(Player.transform.position.x, 0, Player.transform.position.z));
-        }
-        else if (!isLeaping)
-        {
-            agent.SetDestination(Player.transform.position);
-            animationSource.SetTrigger("trChase");
-            agent.transform.LookAt(new Vector3(Player.transform.position.x, 0, Player.transform.position.z));
-        }
-
-        // If the player gets too close the queen will attack
         if (Physics.CheckSphere(transform.position, MeleeRange, isPlayer))
         {
             if (meleeCooldown < 0)
             {
-                GM.DamagePlayerHazard(500);
                 animationSource.SetTrigger("trAttack");
+                Debug.Log("QueenMelee");
+                StartCoroutine(GM.DamagePlayerHazard(400));
                 meleeCooldown = 3;
                 mainSource.clip = attackClips[Random.Range(0, attackClips.Length)];
                 mainSource.PlayDelayed(1);
             }
         }
+        // If player is closer than 20 Units (?) it stops else it'll keep following the player
     }
 
     public IEnumerator Resting()
@@ -149,12 +141,11 @@ public class QueenAI : MonoBehaviour
         {
             isAttacking = true;
 
-            int RNDAttack = Random.Range(0, 5);
+            int RNDAttack = Random.Range(0, 4);
             if (RNDAttack == 0) StartCoroutine(Leap());
             else if (RNDAttack == 1) StartCoroutine(SpawnShatter());
-            else if (acidAttackInProgess == false && RNDAttack == 2) StartCoroutine(ActivateAcidPools());
-            else if (RNDAttack == 3) StartCoroutine(SpawnProjectile());
-            else if (RNDAttack == 4) StartCoroutine(Slam());
+            else if (RNDAttack == 2) StartCoroutine(SpawnProjectile());
+            else if (RNDAttack == 3) StartCoroutine(Slam());
         }
         else StartCoroutine(Resting());
     }
@@ -195,6 +186,7 @@ public class QueenAI : MonoBehaviour
             }
             yield return new WaitForSeconds(1.5f);
             agent.speed = oldSpeed;
+            agent.SetDestination(Player.transform.position);
             yield return new WaitForSeconds(0.5f);
         }
 
@@ -227,9 +219,14 @@ public class QueenAI : MonoBehaviour
     {
         float oldSpeed = agent.speed;
         agent.speed = 6;
-        GameObject acid = (GameObject)Instantiate(AcidProjectile, acidSpawner.transform.position, acidSpawner.transform.rotation, acidSpawner.transform);
-        yield return new WaitForSeconds(5);
-        Destroy(acid);
+        for(int i = 0; i < 15; i++)
+        {
+            yield return new WaitForSeconds(0.5f);
+            GameObject acid = (GameObject)Instantiate(AcidProjectile, acidSpawner.transform.position, acidSpawner.transform.rotation, acidSpawner.transform);
+            backgroundSource.PlayOneShot(projectileClip, 0.8f);
+            yield return new WaitForSeconds(0.25f);
+            Destroy(acid);
+        }
         agent.speed = oldSpeed;
         isAttacking = false;
         StartCoroutine(Resting());
@@ -253,6 +250,7 @@ public class QueenAI : MonoBehaviour
         agent.speed = 400;
         agent.SetDestination(Player.transform.position);
         yield return new WaitForSeconds(2f);
+        agent.SetDestination(Player.transform.position);
         //this.gameObject.GetComponent<Rigidbody>().freezeRotation = false;
         isLeaping = false;
         agent.speed = oldSpeed;

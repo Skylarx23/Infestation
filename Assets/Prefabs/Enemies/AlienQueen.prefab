@@ -291,7 +291,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 3f5425b444329ff46b70d562de1a07bf, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  SpeedMuliplier: 1
   Health: 0
   Player: {fileID: 0}
   Spawner: {fileID: 0}
@@ -335,6 +334,7 @@ MonoBehaviour:
   - {fileID: 8300000, guid: 325b2ee0211158940879eb0482223a2a, type: 3}
   deathClip: {fileID: 0}
   shatterClip: {fileID: 8300000, guid: f4aa3110020f47c4f90cef511c022996, type: 3}
+  projectileClip: {fileID: 8300000, guid: b33f4eb1da461dd4a90774074ee555a6, type: 3}
 --- !u!195 &5746022062206315133
 NavMeshAgent:
   m_ObjectHideFlags: 0
@@ -349,7 +349,7 @@ NavMeshAgent:
   m_Acceleration: 30
   avoidancePriority: 50
   m_AngularSpeed: 250
-  m_StoppingDistance: 25
+  m_StoppingDistance: 20
   m_AutoTraverseOffMeshLink: 1
   m_AutoBraking: 1
   m_AutoRepath: 1

@@ -390,10 +390,7 @@ public class GameManager : MonoBehaviour
         yield return new WaitForSeconds(10f);
         SpawnRunner(2,8);
 
-        yield return new WaitForSeconds(10f);
-        SpawnRunner(2,8);
-
-        yield return new WaitForSeconds(30f); 
+        yield return new WaitForSeconds(15f); 
         SpawnGuard(1);
 
         yield return new WaitUntil(() => endRoomRunnerSpawner.GetComponent<SpawnScript>().Enemies.Count == 0);
@@ -407,9 +404,10 @@ public class GameManager : MonoBehaviour
         {
             StartCoroutine(SpawnQueen());
         }
+    }
 
-        yield return new WaitForSeconds(30f);
-
+    public IEnumerator QueenSpawns()
+    {
         for (int i = 0; i < 10; i++)
         {
             yield return new WaitForSeconds(20f);

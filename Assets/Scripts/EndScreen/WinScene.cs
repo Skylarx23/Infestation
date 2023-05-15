@@ -17,6 +17,7 @@ public class WinScene : MonoBehaviour
         endUI.SetActive(false);
         StartCoroutine(QueenDeath());
         Time.timeScale = 1f;
+        Cursor.lockState = CursorLockMode.None;
     }
 
     private IEnumerator QueenDeath()

@@ -19,7 +19,7 @@ MonoBehaviour:
     width: 2560
     height: 1357
   m_ShowMode: 4
-  m_Title: Project
+  m_Title: Hierarchy
   m_RootView: {fileID: 2}
   m_MinSize: {x: 875, y: 350}
   m_MaxSize: {x: 10000, y: 10000}
@@ -617,9 +617,9 @@ MonoBehaviour:
   m_PlayAudio: 0
   m_AudioPlay: 0
   m_Position:
-    m_Target: {x: -33.906776, y: 75.74038, z: -132.44447}
+    m_Target: {x: -198.35684, y: 7.2685957, z: -185.5114}
     speed: 2
-    m_Value: {x: -33.906776, y: 75.74038, z: -132.44447}
+    m_Value: {x: -198.35684, y: 7.268597, z: -185.5114}
   m_RenderMode: 0
   m_CameraMode:
     drawMode: 0
@@ -665,13 +665,13 @@ MonoBehaviour:
     m_GridAxis: 1
     m_gridOpacity: 0.5
   m_Rotation:
-    m_Target: {x: 0.18542959, y: -0.079456165, z: 0.013304771, w: 0.9797856}
+    m_Target: {x: 0.19742171, y: 0.03775205, z: -0.010514817, w: 0.9799802}
     speed: 2
-    m_Value: {x: 0.18530971, y: -0.08235999, z: 0.013855083, w: 0.9791247}
+    m_Value: {x: 0.19735122, y: 0.036266226, z: -0.010214219, w: 0.97960854}
   m_Size:
-    m_Target: 1.989975
+    m_Target: 10
     speed: 2
-    m_Value: 1.9900177
+    m_Value: 9.999989
   m_Ortho:
     m_Target: 0
     speed: 2
@@ -856,21 +856,21 @@ MonoBehaviour:
       scrollPos: {x: 0, y: 0}
       m_SelectedIDs: 
       m_LastClickedID: 0
-      m_ExpandedIDs: 40eaf2ff0c6df3ffe0eff3ffb096f6ff90e2f7ffe0e2f7ff62e4f7ffe468f8ff5069f8ff96ecf8ff54edf8ff9086f9ff1687f9ff6c11faff3e12faffc219faffc819faff8a9cfaff569efaff6241fbffb45cfbfffc5cfbff4694fbff169bfbfffca5fbff1c24fcff1ac7fcff986cfdffa20ffeff9ab2feff5c56ffffe656ffff0afbffff94440100d0490100785b0100d0e20100fae40100f6b6140006b71400b6b7140022c114007ed71400b60b1500c60b1500760c1500e0151500562c15003a5415006c541500c6541500d654150086551500ec5e150062751500c29d1500d29d1500829e1500e8a7150020af15005ebe1500e4f015005a071600be2f1600ce2f16007e3016004e3b16005648160074511600c4511600b4531600dadf1b0060f01b00c4f41b0086fa1b00e8bd1f00
+      m_ExpandedIDs: 0afbffff6868000020810000cc830000
       m_RenameOverlay:
         m_UserAcceptedRename: 0
-        m_Name: EventSystem (1)
-        m_OriginalName: EventSystem (1)
+        m_Name: 
+        m_OriginalName: 
         m_EditFieldRect:
           serializedVersion: 2
           x: 0
           y: 0
           width: 0
           height: 0
-        m_UserData: -530906
+        m_UserData: 0
         m_IsWaitingForDelay: 0
         m_IsRenaming: 0
-        m_OriginalEventType: 4
+        m_OriginalEventType: 11
         m_IsRenamingFilename: 0
         m_ClientGUIView: {fileID: 8}
       m_SearchString: 
@@ -921,22 +921,22 @@ MonoBehaviour:
     m_SkipHidden: 0
     m_SearchArea: 1
     m_Folders:
-    - Assets/Scenes
+    - Assets/Prefabs
     m_Globs: []
     m_OriginalText: 
   m_ViewMode: 1
   m_StartGridSize: 64
   m_LastFolders:
-  - Assets/Scenes
+  - Assets/Prefabs
   m_LastFoldersGridSize: -1
   m_LastProjectPath: D:\Infestation
   m_LockTracker:
     m_IsLocked: 0
   m_FolderTreeState:
-    scrollPos: {x: 0, y: 79}
-    m_SelectedIDs: 34a70000
-    m_LastClickedID: 42804
-    m_ExpandedIDs: 00000000eca60000eea60000f0a60000f2a60000f4a60000f6a60000f8a60000faa60000fca60000fea6000000a7000002a7000004a7000006a7000008a700000aa700000ca700000ea7000024a7000034a700003ea7000000ca9a3b
+    scrollPos: {x: 0, y: 87}
+    m_SelectedIDs: 12a70000
+    m_LastClickedID: 42770
+    m_ExpandedIDs: 00000000f4a60000f6a60000f8a60000faa60000fca60000fea6000000a7000002a7000004a7000006a7000008a700000aa700000ca700000ea7000010a7000012a7000014a7000016a7000054a7000000ca9a3b
     m_RenameOverlay:
       m_UserAcceptedRename: 0
       m_Name: 
@@ -964,7 +964,7 @@ MonoBehaviour:
     scrollPos: {x: 0, y: 0}
     m_SelectedIDs: 
     m_LastClickedID: 0
-    m_ExpandedIDs: 00000000eca60000eea60000f0a60000f2a60000f4a60000f6a60000f8a60000faa60000fca60000fea6000000a7000002a7000004a7000006a7000008a700000aa700000ca700000ea70000
+    m_ExpandedIDs: 00000000f4a60000f6a60000f8a60000faa60000fca60000fea6000000a7000002a7000004a7000006a7000008a700000aa700000ca700000ea7000010a7000012a7000014a7000016a70000
     m_RenameOverlay:
       m_UserAcceptedRename: 0
       m_Name: 
