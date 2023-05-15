@@ -47,7 +47,6 @@
      <Compile Include="Assets\Scripts\ParticleCollider.cs" />
      <Compile Include="Assets\Scripts\TitleScreen\OptionsMenu.cs" />
      <Compile Include="Assets\Scripts\Enemies\QueenAI.cs" />
-     <Compile Include="Assets\Scripts\Enemies\BossScript.cs" />
      <Compile Include="Assets\Scripts\Enemies\SpawnScript.cs" />
      <Compile Include="Assets\Scripts\ShotScript.cs" />
      <Compile Include="Assets\Scripts\CPTrigger.cs" />

@@ -6,6 +6,9 @@ public class CPTrigger : MonoBehaviour
     GameManager GM;
     public bool isQueenSpawner = false;
     public bool isDroneSpawner = false;
+    public bool isCheckpoint1 = false;
+    public bool isCheckpoint2 = false;
+    public bool isCheckpoint3 = false;
 
     private void Awake()
     {
@@ -25,6 +28,25 @@ public class CPTrigger : MonoBehaviour
             StartCoroutine(GM.SpawnQueen());
             Destroy(gameObject);
         }
+
+        if (isCheckpoint1 == true && Collision.gameObject.tag == "Player")
+        {
+            GM.FirstRoom();
+            Destroy(gameObject);
+        }
+
+        if (isCheckpoint2 == true && Collision.gameObject.tag == "Player")
+        {
+            GM.EndRoom2();
+            Destroy(gameObject);
+        }
+
+        if (isCheckpoint3 == true && Collision.gameObject.tag == "Player")
+        {
+            GM.EndRoom();
+            Destroy(gameObject);
+        }
+
 
     }
 }

@@ -19,6 +19,7 @@ public class QueenAI : MonoBehaviour
     public float MeleeRange;
     private bool isLeaping;
     private bool acidAttackInProgess = false;
+    private bool isPhase1 = false;
     private bool isPhase2 = false;
     private bool isPhase3 = false;
 
@@ -71,10 +72,16 @@ public class QueenAI : MonoBehaviour
     {
         Health = this.GetComponent<ShotScript>().Health;
         GM.QueenHealth = Health;
-        if(Health < 50000 && isPhase2 == false)
+        if(Health < 40000 && hasPlayed == false)
         {
             GM.QueenPhase2();
             isPhase2 = true;
+            hasPlayed = true;
+        }
+        if(Health < 20000 && isPhase3 == false)
+        {
+            isPhase2 = false;
+            isPhase3 = true;
         }
 
         float DistenceToPlayer = Vector3.Distance(transform.position, Player.transform.position);
@@ -116,8 +123,22 @@ public class QueenAI : MonoBehaviour
         agent.speed = 15;
 
         // Every 5-10 seconds queen tries to attack
-        yield return new WaitForSeconds(Random.Range(5, 10));
-        Attacking();
+        if(isPhase2 == false && isPhase3 == false)
+        {
+            yield return new WaitForSeconds(Random.Range(5, 10));
+            Attacking();
+        }
+        else if(isPhase2 == true)
+        {
+            yield return new WaitForSeconds(Random.Range(4, 8));
+            Attacking();
+        }
+        else if(isPhase3 == true)
+        {
+            Debug.Log("phase 3 attack");
+            yield return new WaitForSeconds(Random.Range(1, 2));
+            Attacking();
+        }
     }
 
     private void Attacking()
@@ -126,8 +147,8 @@ public class QueenAI : MonoBehaviour
         if (!isAttacking)
         {
             isAttacking = true;
+
             int RNDAttack = Random.Range(0, 5);
-            Debug.Log(RNDAttack);
             if (RNDAttack == 0) StartCoroutine(Leap());
             else if (RNDAttack == 1) StartCoroutine(SpawnShatter());
             else if (acidAttackInProgess == false && RNDAttack == 2) StartCoroutine(ActivateAcidPools());
@@ -224,14 +245,14 @@ public class QueenAI : MonoBehaviour
         animationSource.SetTrigger("trLeap");
         mainSource.clip = roarClips[Random.Range(0, roarClips.Length)];
         mainSource.PlayDelayed(1);
-        yield return new WaitForSeconds(0.75f);
+        yield return new WaitForSeconds(0.5f);
 
         // Freezes the Queen for 0.5s and then plays the leap animation
         //this.gameObject.GetComponent<Rigidbody>().freezeRotation = true;
         //yield return new WaitForSeconds(0.5f);
         agent.speed = 400;
         agent.SetDestination(Player.transform.position);
-        yield return new WaitForSeconds(1.5f);
+        yield return new WaitForSeconds(2f);
         //this.gameObject.GetComponent<Rigidbody>().freezeRotation = false;
         isLeaping = false;
         agent.speed = oldSpeed;

@@ -4,6 +4,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
 using TMPro;
+using Random=UnityEngine.Random;
 
 public class GameManager : MonoBehaviour
 {
@@ -44,6 +45,15 @@ public class GameManager : MonoBehaviour
     public GameObject defeatUI;
     public Text defeatText;
 
+    public GameObject startRoom;
+    public GameObject firstWave;
+    public GameObject endRoom;
+    public GameObject firstWaveDoor1;
+    public GameObject firstWaveDoor2;
+    public GameObject endRoomDoor;
+    public GameObject[] Wave1Spawners;
+    public GameObject[] Wave2Spawners;
+
     // Start is called before the first frame update
     void Start()
     {
@@ -59,6 +69,8 @@ public class GameManager : MonoBehaviour
         queenUI.SetActive(false);
         defeatUI.SetActive(false);
         UI.SetActive(true);
+        endRoom.SetActive(false);
+        endRoomDoor.SetActive(false);
     }
 
     private void Update()
@@ -152,20 +164,6 @@ public class GameManager : MonoBehaviour
         // Each Trigger point should have its own function to tell it what to do
     }
 
-    public IEnumerator WaveTest()
-    {
-        for (int i = 0; i < 5; i++)
-        {
-            Debug.Log("Wave" + i);
-            // Grabs the Enemy prefab from the spawner and tries to spawn it X amount of times
-            GameObject Model = droneSpawner.GetComponent<SpawnScript>().Model;
-            WaveSpawner.GetComponent<SpawnScript>().SpawnEnemies(i, Model);
-
-            // Waits until all Enemies are dead 
-            yield return new WaitUntil(() => WaveSpawner.GetComponent<SpawnScript>().Enemies.Count == 0);
-            Debug.Log("Wave" + i + " Finished");
-        }
-    }
 
     private IEnumerator DisableAlert()
     {
@@ -207,5 +205,37 @@ public class GameManager : MonoBehaviour
         soundSource.clip = defeatClip;
         soundSource.volume = 0.07f;
         soundSource.Play();
+    }
+
+    public void FirstRoom()
+    {
+        firstWaveDoor1.SetActive(true);
+        startRoom.SetActive(false);
+    }
+
+    public void EndRoom()
+    {
+        endRoom.SetActive(true);
+    }
+
+    public void EndRoom2()
+    {
+        endRoomDoor.SetActive(true);
+        firstWave.SetActive(false);
+    }
+
+    public IEnumerator WaveTest()
+    {
+        for (int i = 0; i < 5; i++)
+        {
+            Debug.Log("Wave" + i);
+            // Grabs the Enemy prefab from the spawner and tries to spawn it X amount of times
+            GameObject Model = Wave1Spawners[Wave1Spawners.Length].GetComponent<SpawnScript>().Model;
+            Wave1Spawners[Random.Range(0, Wave1Spawners.Length)].GetComponent<SpawnScript>().SpawnEnemies(i * 2, Model);
+
+            // Waits until all Enemies are dead 
+            yield return new WaitUntil(() => Wave1Spawners[i].GetComponent<SpawnScript>().Enemies.Count == 0);
+            Debug.Log("Wave" + i + " Finished");
+        }
     }
 }
