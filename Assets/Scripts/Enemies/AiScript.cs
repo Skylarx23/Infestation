@@ -25,6 +25,7 @@ public class AiScript : MonoBehaviour
     public LayerMask isPlayer, isWall;
     bool seeable, atDes;
     public bool isQueen;
+    private bool isAttacking;
 
     GameManager GM;
 
@@ -83,7 +84,7 @@ public class AiScript : MonoBehaviour
 
         if (Physics.CheckSphere(transform.position, AttackRange, isPlayer))
         {
-            Attacking();
+            StartCoroutine(Attacking());
             Attackable = true;
         }
         else
@@ -110,16 +111,22 @@ public class AiScript : MonoBehaviour
         SightRange = oldSight;
     }
 
-    private void Attacking()
+    private IEnumerator Attacking()
     {
-        agent.SetDestination(transform.position);
+        //agent.SetDestination(transform.position);
         if (attackCooldown < 0)
-        {
-        StartCoroutine(GM.DamagePlayer(AttackDamage, this.gameObject));
-        animationSource.SetTrigger("trAttack");
-        attackCooldown = 3;
-        mainSource.clip = attackClips[Random.Range(0, attackClips.Length)];
-        mainSource.PlayDelayed(1);
+        {   
+            isAttacking = true;
+            float oldSpeed = agent.speed;
+            agent.speed = oldSpeed * 1.5f;
+            StartCoroutine(GM.DamagePlayer(AttackDamage, this.gameObject));
+            animationSource.SetTrigger("trAttack");
+            attackCooldown = 2;
+            mainSource.clip = attackClips[Random.Range(0, attackClips.Length)];
+            mainSource.PlayDelayed(1);
+            yield return new WaitForSeconds(1f);
+            isAttacking = false;
+            agent.speed = oldSpeed;
         }
     }
 

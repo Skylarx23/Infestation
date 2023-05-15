@@ -6,7 +6,6 @@ ScriptsOnlyBuild:
     - GameManager
     - GunScript
     - GunSwitcher
-    - MedKit
     - MouseLook
     - OptionsMenu
     - ParticleCollider
@@ -28,10 +27,8 @@ ScriptsOnlyBuild:
     UnityEditor.Graphs.dll:
     - UnityEditor.Graphs.AnimationBlendTree.Graph
     - UnityEditor.Graphs.AnimationBlendTree.GraphGUI
-    - UnityEditor.Graphs.AnimationStateMachine.AnyStateNode
     - UnityEditor.Graphs.AnimationStateMachine.Graph
     - UnityEditor.Graphs.AnimationStateMachine.GraphGUI
-    - UnityEditor.Graphs.AnimationStateMachine.StateNode
     - UnityEditor.Graphs.AnimatorControllerTool
     UnityEditor.TestRunner.dll:
     - UnityEditor.TestTools.TestRunner.Api.CallbacksHolder
@@ -150,39 +147,39 @@ ScriptsOnlyBuild:
     - Class: 104
       Script: {instanceID: 0}
     - Class: 114
-      Script: {instanceID: 1754}
+      Script: {instanceID: 1656}
     - Class: 114
-      Script: {instanceID: 2402}
+      Script: {instanceID: 2304}
     - Class: 114
-      Script: {instanceID: 2532}
+      Script: {instanceID: 2434}
     - Class: 114
-      Script: {instanceID: 2856}
+      Script: {instanceID: 2758}
     - Class: 114
-      Script: {instanceID: 3086}
+      Script: {instanceID: 2988}
     - Class: 114
-      Script: {instanceID: 3404}
+      Script: {instanceID: 3306}
     - Class: 114
-      Script: {instanceID: 4502}
+      Script: {instanceID: 4404}
     - Class: 114
-      Script: {instanceID: 4784}
+      Script: {instanceID: 4686}
     - Class: 114
-      Script: {instanceID: 5490}
+      Script: {instanceID: 5392}
     - Class: 114
-      Script: {instanceID: 5578}
+      Script: {instanceID: 5480}
     - Class: 114
-      Script: {instanceID: 5862}
+      Script: {instanceID: 5764}
     - Class: 114
-      Script: {instanceID: 6134}
+      Script: {instanceID: 6036}
     - Class: 114
-      Script: {instanceID: 6206}
+      Script: {instanceID: 6108}
     - Class: 114
-      Script: {instanceID: 6362}
+      Script: {instanceID: 6264}
     - Class: 114
-      Script: {instanceID: 6464}
+      Script: {instanceID: 6366}
     - Class: 114
-      Script: {instanceID: 6712}
+      Script: {instanceID: 6614}
     - Class: 114
-      Script: {instanceID: 8018}
+      Script: {instanceID: 7918}
     - Class: 115
       Script: {instanceID: 0}
     - Class: 128
@@ -243,53 +240,51 @@ ScriptsOnlyBuild:
     - Class: 108
       Script: {instanceID: 0}
     - Class: 114
-      Script: {instanceID: 1754}
+      Script: {instanceID: 1656}
     - Class: 114
-      Script: {instanceID: 1968}
+      Script: {instanceID: 2068}
     - Class: 114
-      Script: {instanceID: 2166}
+      Script: {instanceID: 2434}
     - Class: 114
-      Script: {instanceID: 2532}
+      Script: {instanceID: 2758}
     - Class: 114
-      Script: {instanceID: 2856}
+      Script: {instanceID: 2988}
     - Class: 114
-      Script: {instanceID: 3086}
+      Script: {instanceID: 3234}
     - Class: 114
-      Script: {instanceID: 3332}
+      Script: {instanceID: 4148}
     - Class: 114
-      Script: {instanceID: 4246}
+      Script: {instanceID: 4980}
     - Class: 114
-      Script: {instanceID: 5078}
+      Script: {instanceID: 5392}
     - Class: 114
-      Script: {instanceID: 5490}
+      Script: {instanceID: 5480}
     - Class: 114
-      Script: {instanceID: 5578}
+      Script: {instanceID: 5764}
     - Class: 114
-      Script: {instanceID: 5862}
+      Script: {instanceID: 6108}
     - Class: 114
-      Script: {instanceID: 6206}
+      Script: {instanceID: 6170}
     - Class: 114
-      Script: {instanceID: 6268}
+      Script: {instanceID: 6264}
     - Class: 114
-      Script: {instanceID: 6362}
+      Script: {instanceID: 6324}
     - Class: 114
-      Script: {instanceID: 6422}
+      Script: {instanceID: 6614}
     - Class: 114
-      Script: {instanceID: 6712}
+      Script: {instanceID: 6650}
     - Class: 114
-      Script: {instanceID: 6748}
+      Script: {instanceID: 7110}
     - Class: 114
-      Script: {instanceID: 7210}
+      Script: {instanceID: 7388}
     - Class: 114
-      Script: {instanceID: 7488}
+      Script: {instanceID: 7792}
     - Class: 114
-      Script: {instanceID: 7892}
+      Script: {instanceID: 8056}
     - Class: 114
-      Script: {instanceID: 8156}
+      Script: {instanceID: 8468}
     - Class: 114
-      Script: {instanceID: 8568}
-    - Class: 114
-      Script: {instanceID: 8636}
+      Script: {instanceID: 8536}
     - Class: 115
       Script: {instanceID: 0}
     - Class: 128
@@ -973,7 +968,7 @@ ScriptsOnlyBuild:
     className: CanvasScaler
   - hash:
       serializedVersion: 2
-      Hash: d27048c2bd739bdc2389f3c4d29b62c5
+      Hash: bb0c23ca7894081be53bf48cd5073b74
     assemblyName: Assembly-CSharp.dll
     namespaceName: 
     className: GameManager
@@ -1049,12 +1044,6 @@ ScriptsOnlyBuild:
     assemblyName: UnityEngine.TestRunner.dll
     namespaceName: UnityEngine.TestTools
     className: BeforeAfterTestCommandState
-  - hash:
-      serializedVersion: 2
-      Hash: db802ecaeae5eb3d1db562c9e9d15e5d
-    assemblyName: Assembly-CSharp.dll
-    namespaceName: 
-    className: BossScript
   - hash:
       serializedVersion: 2
       Hash: f4f39b64f410b0cd98b49df4bad0eb7e
@@ -1207,7 +1196,7 @@ ScriptsOnlyBuild:
     className: ScrollRect
   - hash:
       serializedVersion: 2
-      Hash: 7b7a6e3054d94ebd906e17273df8c1da
+      Hash: 36b9d3f5e805249936aeec104bb5a24a
     assemblyName: Assembly-CSharp.dll
     namespaceName: 
     className: CPTrigger

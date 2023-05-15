@@ -22,20 +22,20 @@ public class GameManager : MonoBehaviour
     public AudioClip alertSound;
     public AudioClip queenSpawn;
     public AudioClip defeatClip;
+    public AudioClip endFightTheme;
 
     private AiScript aiScript;
 
     private float damageAmount;
     public float QueenHealth;
     private bool isDead = false;
+    private bool queenSpawned = false;
 
     bool hasMedKit = true;
     public GameObject MedIcon;
     public GameObject RifleUI;
     public GameObject PistolUI;
-    public GameObject droneSpawner;
     public GameObject queenSpawner;
-    public GameObject WaveSpawner;
     public GameObject alertUI;
     public GameObject damageUI;
     public GameObject damageAcidUI;
@@ -51,8 +51,13 @@ public class GameManager : MonoBehaviour
     public GameObject firstWaveDoor1;
     public GameObject firstWaveDoor2;
     public GameObject endRoomDoor;
-    public GameObject[] Wave1Spawners;
-    public GameObject[] Wave2Spawners;
+    public GameObject room1RunnerSpawner;
+    public GameObject room1DroneSpawner;
+    public GameObject room1WarriorSpawner;
+    public GameObject endRoomRunnerSpawner;
+    public GameObject endRoomDroneSpawner;
+    public GameObject endRoomWarriorSpawner;
+    public GameObject endRoomGuardSpawner;
 
     // Start is called before the first frame update
     void Start()
@@ -77,7 +82,7 @@ public class GameManager : MonoBehaviour
     {
         healthText.text = HealthBar.value.ToString();
         queenSlider.value = QueenHealth;
-        if (Input.GetKeyUp(KeyCode.K)) StartCoroutine(WaveTest());
+        //if (Input.GetKeyUp(KeyCode.K)) StartCoroutine(WaveTest());
         if (HealthBar.value <= 0 && isDead == false)
         {
             PlayerDeath();
@@ -87,7 +92,7 @@ public class GameManager : MonoBehaviour
 
     public IEnumerator DamagePlayer(float damage, GameObject Enemy)
     {
-        yield return new WaitForSeconds(0.5f);
+        yield return new WaitForSeconds(1f);
         if (Enemy.GetComponent<AiScript>().Attackable == true)
         {
             HealthBar.value -= damage;
@@ -116,7 +121,7 @@ public class GameManager : MonoBehaviour
             hasMedKit = false;
             playerSource.PlayOneShot(healingSound);
             //MedIcon.SetActive(false);
-            MedIcon.transform.GetComponent<Image>().color = new Vector4(1, 1, 1, 0.2f);
+            MedIcon.transform.GetComponent<Image>().color = new Vector4(190, 33, 33, 0.1f);
         }
     }
 
@@ -127,7 +132,7 @@ public class GameManager : MonoBehaviour
             hasMedKit = true;
             Destroy(MedKit);
             //MedIcon.SetActive(true);
-            MedIcon.transform.GetComponent<Image>().color = new Vector4(0, 0, 0, 1f);
+            MedIcon.transform.GetComponent<Image>().color = new Vector4(190, 33, 33, 1f);
         }
     }
 
@@ -148,23 +153,6 @@ public class GameManager : MonoBehaviour
         }
     }
 
-    public void StartTest()
-    {
-        Debug.Log("Test Started!");
-        soundSource.clip = fightTheme;
-        soundSource.volume = 0.06f;
-        soundSource.PlayDelayed(2.5f);
-        alertSource.clip = alertSound;
-        alertSource.Play();
-        GameObject Model = droneSpawner.GetComponent<SpawnScript>().Model;
-        droneSpawner.GetComponent<SpawnScript>().SpawnEnemies(1, Model);
-        alertUI.SetActive(true);
-        StartCoroutine(DisableAlert());
-        // You can put whatever you want in here; spawing enemies, playing music, etc.
-        // Each Trigger point should have its own function to tell it what to do
-    }
-
-
     private IEnumerator DisableAlert()
     {
         yield return new WaitForSeconds(3f);
@@ -173,12 +161,15 @@ public class GameManager : MonoBehaviour
 
     public IEnumerator SpawnQueen()
     {
-        soundSource.clip = queenFightMusic;
-        soundSource.volume = 0.07f;
+        queenSpawned = true;
         alertSource.clip = queenSpawn;
         alertSource.volume = 0.05f;
         alertSource.Play();
+        yield return new WaitForSeconds(2f);
+        soundSource.clip = queenFightMusic;
+        soundSource.volume = 0.07f;
         soundSource.Play();
+        yield return new WaitForSeconds(2f);
         GameObject Model = queenSpawner.GetComponent<SpawnScript>().Model;
         queenSpawner.GetComponent<SpawnScript>().SpawnEnemies(1, Model);
         queenUI.SetActive(true);
@@ -211,6 +202,7 @@ public class GameManager : MonoBehaviour
     {
         firstWaveDoor1.SetActive(true);
         startRoom.SetActive(false);
+        StartCoroutine(WavesFirstRoom());
     }
 
     public void EndRoom()
@@ -222,20 +214,202 @@ public class GameManager : MonoBehaviour
     {
         endRoomDoor.SetActive(true);
         firstWave.SetActive(false);
+        StartCoroutine(EndRoomWaves());
     }
 
-    public IEnumerator WaveTest()
-    {
-        for (int i = 0; i < 5; i++)
-        {
-            Debug.Log("Wave" + i);
+    //public IEnumerator WaveTest()
+    //{
+        //for (int i = 0; i < 5; i++)
+        //{
+            //Debug.Log("Wave" + i);
             // Grabs the Enemy prefab from the spawner and tries to spawn it X amount of times
-            GameObject Model = Wave1Spawners[Wave1Spawners.Length].GetComponent<SpawnScript>().Model;
-            Wave1Spawners[Random.Range(0, Wave1Spawners.Length)].GetComponent<SpawnScript>().SpawnEnemies(i * 2, Model);
+            //GameObject Model = Wave1Spawners[Wave1Spawners.Length].GetComponent<SpawnScript>().Model;
+           // Wave1Spawners[Random.Range(0, Wave1Spawners.Length)].GetComponent<SpawnScript>().SpawnEnemies(i * 2, Model);
 
             // Waits until all Enemies are dead 
-            yield return new WaitUntil(() => Wave1Spawners[i].GetComponent<SpawnScript>().Enemies.Count == 0);
-            Debug.Log("Wave" + i + " Finished");
+           // yield return new WaitUntil(() => Wave1Spawners[i].GetComponent<SpawnScript>().Enemies.Count == 0);
+            //Debug.Log("Wave" + i + " Finished");
+        //}
+    //}
+
+    public IEnumerator WavesFirstRoom()
+    {
+        // written by Skylar
+        // warning: wall of text incoming
+        // the spawn enemies could have been made a function but I have one massive excuse (read below)
+        soundSource.clip = fightTheme;
+        soundSource.volume = 0.06f;
+        soundSource.PlayDelayed(1f);
+        yield return new WaitForSeconds(1.5f);
+        
+        SpawnRunner(1, 3);
+        yield return new WaitUntil(() => room1RunnerSpawner.GetComponent<SpawnScript>().Enemies.Count == 0);
+        
+        yield return new WaitForSeconds(2f);
+        SpawnRunner(1,5);
+        yield return new WaitUntil(() => room1RunnerSpawner.GetComponent<SpawnScript>().Enemies.Count == 0);
+
+        yield return new WaitForSeconds(2f);
+        SpawnRunner(1,2);
+        SpawnWarrior(1,1);
+        yield return new WaitUntil(() => room1RunnerSpawner.GetComponent<SpawnScript>().Enemies.Count == 0);
+        yield return new WaitUntil(() => room1WarriorSpawner.GetComponent<SpawnScript>().Enemies.Count == 0);
+
+        yield return new WaitForSeconds(2f);
+        SpawnDrone(1,1);
+        yield return new WaitUntil(() => room1DroneSpawner.GetComponent<SpawnScript>().Enemies.Count == 0);
+        
+        yield return new WaitForSeconds(2f);
+        SpawnWarrior(1,3);
+        yield return new WaitUntil(() => room1WarriorSpawner.GetComponent<SpawnScript>().Enemies.Count == 0);
+
+        yield return new WaitForSeconds(2f);
+        SpawnRunner(1,6);
+        SpawnWarrior(1,1);
+
+        yield return new WaitForSeconds(10f);
+        SpawnDrone(1,2);
+        yield return new WaitUntil(() => room1RunnerSpawner.GetComponent<SpawnScript>().Enemies.Count == 0);
+        yield return new WaitUntil(() => room1WarriorSpawner.GetComponent<SpawnScript>().Enemies.Count == 0);
+        yield return new WaitUntil(() => room1DroneSpawner.GetComponent<SpawnScript>().Enemies.Count == 0);
+
+        yield return new WaitForSeconds(2f);
+        SpawnRunner(1,6);
+        SpawnWarrior(1,2);
+
+        yield return new WaitForSeconds(20f);
+        SpawnDrone(1,2);
+
+        yield return new WaitForSeconds(30f);
+        SpawnWarrior(1,1);
+
+        yield return new WaitUntil(() => room1RunnerSpawner.GetComponent<SpawnScript>().Enemies.Count == 0);
+        yield return new WaitUntil(() => room1WarriorSpawner.GetComponent<SpawnScript>().Enemies.Count == 0);
+        yield return new WaitUntil(() => room1DroneSpawner.GetComponent<SpawnScript>().Enemies.Count == 0);
+
+        soundSource.Stop();
+        firstWaveDoor2.SetActive(false);
+        // the excuse is that i am lazy and i already wrote half of it xd
+    }
+
+    public void SpawnRunner(int stage, int amount)
+    {
+        GameObject ModelRunner = room1RunnerSpawner.GetComponent<SpawnScript>().Model;
+        GameObject ModelRunnerEnd = endRoomRunnerSpawner.GetComponent<SpawnScript>().Model;
+        
+        if(stage == 1)
+        {
+            room1RunnerSpawner.GetComponent<SpawnScript>().SpawnEnemies(amount, ModelRunner);
+        }
+        else if(stage == 2)
+        {
+            endRoomRunnerSpawner.GetComponent<SpawnScript>().SpawnEnemies(amount, ModelRunnerEnd);
+        }
+    }
+
+      public void SpawnDrone(int stage, int amount)
+    {
+        GameObject ModelDrone = room1DroneSpawner.GetComponent<SpawnScript>().Model;
+        GameObject ModelDroneEnd = endRoomDroneSpawner.GetComponent<SpawnScript>().Model;
+        
+        if(stage == 1)
+        {
+            room1DroneSpawner.GetComponent<SpawnScript>().SpawnEnemies(amount, ModelDrone);
+        }
+        else if(stage == 2)
+        {
+            endRoomDroneSpawner.GetComponent<SpawnScript>().SpawnEnemies(amount, ModelDroneEnd);
+        }
+        alertUI.SetActive(true);
+        alertSource.clip = alertSound;
+        alertSource.Play();
+        StartCoroutine(DisableAlert());
+    }
+
+      public void SpawnWarrior(int stage, int amount)
+    {
+        GameObject ModelWarrior = room1WarriorSpawner.GetComponent<SpawnScript>().Model;
+        GameObject ModelWarriorEnd = endRoomWarriorSpawner.GetComponent<SpawnScript>().Model;
+
+        if(stage == 1)
+        {
+            room1WarriorSpawner.GetComponent<SpawnScript>().SpawnEnemies(amount, ModelWarrior);
+        }
+        else if(stage == 2)
+        {
+            endRoomWarriorSpawner.GetComponent<SpawnScript>().SpawnEnemies(amount, ModelWarriorEnd);
+        }
+    }
+
+      public void SpawnGuard(int amount)
+    {
+        GameObject ModelGuard = endRoomGuardSpawner.GetComponent<SpawnScript>().Model;
+        endRoomGuardSpawner.GetComponent<SpawnScript>().SpawnEnemies(amount, ModelGuard);
+    }
+
+    public IEnumerator EndRoomWaves()
+    {
+        soundSource.clip = endFightTheme;
+        soundSource.volume = 0.07f;
+        soundSource.Play();
+        yield return new WaitForSeconds(1.5f);
+        
+        SpawnWarrior(2,2);
+        yield return new WaitUntil(() => endRoomWarriorSpawner.GetComponent<SpawnScript>().Enemies.Count == 0);
+
+        yield return new WaitForSeconds(3f);
+        SpawnRunner(2,20);
+        yield return new WaitForSeconds(15f);
+        SpawnDrone(2,2);
+        yield return new WaitUntil(() => endRoomDroneSpawner.GetComponent<SpawnScript>().Enemies.Count == 0);
+        yield return new WaitUntil(() => endRoomRunnerSpawner.GetComponent<SpawnScript>().Enemies.Count == 0);
+
+        yield return new WaitForSeconds(3f);
+        SpawnGuard(1);
+        yield return new WaitUntil(() => endRoomGuardSpawner.GetComponent<SpawnScript>().Enemies.Count == 0);
+
+        yield return new WaitForSeconds(3f);
+        SpawnGuard(2);
+        SpawnWarrior(2,1);
+        yield return new WaitUntil(() => endRoomWarriorSpawner.GetComponent<SpawnScript>().Enemies.Count == 0);
+        yield return new WaitUntil(() => endRoomGuardSpawner.GetComponent<SpawnScript>().Enemies.Count == 0);
+
+        yield return new WaitForSeconds(10f);  
+        SpawnRunner(2,10);
+        SpawnWarrior(2,2);
+        SpawnGuard(1);
+
+        yield return new WaitForSeconds(15f);
+        SpawnDrone(2,2);
+
+        yield return new WaitForSeconds(10f);
+        SpawnRunner(2,8);
+
+        yield return new WaitForSeconds(10f);
+        SpawnRunner(2,8);
+
+        yield return new WaitForSeconds(30f); 
+        SpawnGuard(1);
+
+        yield return new WaitUntil(() => endRoomRunnerSpawner.GetComponent<SpawnScript>().Enemies.Count == 0);
+        yield return new WaitUntil(() => endRoomWarriorSpawner.GetComponent<SpawnScript>().Enemies.Count == 0);
+        yield return new WaitUntil(() => endRoomDroneSpawner.GetComponent<SpawnScript>().Enemies.Count == 0);
+        yield return new WaitUntil(() => endRoomGuardSpawner.GetComponent<SpawnScript>().Enemies.Count == 0);
+        yield return new WaitForSeconds(10f);
+
+        StartCoroutine(SpawnQueen());
+        if(queenSpawned == false)
+        {
+            StartCoroutine(SpawnQueen());
+        }
+
+        yield return new WaitForSeconds(30f);
+
+        for (int i = 0; i < 10; i++)
+        {
+            yield return new WaitForSeconds(20f);
+            SpawnDrone(2,3);
+            yield return new WaitUntil(() => endRoomDroneSpawner.GetComponent<SpawnScript>().Enemies.Count == 0);
         }
     }
 }

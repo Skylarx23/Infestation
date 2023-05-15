@@ -20,14 +20,13 @@ public class CPTrigger : MonoBehaviour
     {
         if (isDroneSpawner == true && Collision.gameObject.tag == "Player")
         {
-            GM.StartTest();
             Destroy(gameObject);
         }
-        if (isQueenSpawner == true && Collision.gameObject.tag == "Player")
-        {
-            StartCoroutine(GM.SpawnQueen());
-            Destroy(gameObject);
-        }
+        //if (isQueenSpawner == true && Collision.gameObject.tag == "Player")
+        //{
+            //StartCoroutine(GM.SpawnQueen());
+            //Destroy(gameObject);
+        //}
 
         if (isCheckpoint1 == true && Collision.gameObject.tag == "Player")
         {

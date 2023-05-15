@@ -8,8 +8,6 @@ using Random = UnityEngine.Random;
 
 public class QueenAI : MonoBehaviour
 {
-    public float SpeedMuliplier;
-
     public float Health;
     public GameObject Player;
     public GameObject Spawner;
@@ -22,6 +20,7 @@ public class QueenAI : MonoBehaviour
     private bool isPhase1 = false;
     private bool isPhase2 = false;
     private bool isPhase3 = false;
+    private bool hasPlayed = false;
 
     // Attacks
     public GameObject[] AcidPools;
@@ -34,6 +33,7 @@ public class QueenAI : MonoBehaviour
 
     bool isAttacking;
     public float MeleeDamage;
+    private bool enemiesSpawned = false;
 
     float footstepCooldown = 0;
     public float meleeCooldown = 0;
@@ -59,15 +59,6 @@ public class QueenAI : MonoBehaviour
         StartCoroutine(Resting());
     }
 
-    public IEnumerator AlertEnemy()
-    {
-        float oldSpeed = agent.speed;
-
-        agent.speed *= SpeedMuliplier;
-        yield return new WaitForSeconds(0.5f);
-        agent.speed = oldSpeed;
-    }
-
     public void Update()
     {
         Health = this.GetComponent<ShotScript>().Health;
@@ -90,8 +81,7 @@ public class QueenAI : MonoBehaviour
         // If player is closer than 20 Units (?) it stops else it'll keep following the player
         if (DistenceToPlayer <= 20 && isLeaping == false)
         {
-            agent.speed = 11;
-            agent.SetDestination(transform.position);
+            agent.SetDestination(Player.transform.position);
             agent.transform.LookAt(new Vector3(Player.transform.position.x, 0, Player.transform.position.z));
         }
 
@@ -99,8 +89,14 @@ public class QueenAI : MonoBehaviour
         {
             agent.SetDestination(Player.transform.position);
             agent.speed = 25;
+            agent.transform.LookAt(new Vector3(Player.transform.position.x, 0, Player.transform.position.z));
         }
-        else Chasing();
+        else if (!isLeaping)
+        {
+            agent.SetDestination(Player.transform.position);
+            animationSource.SetTrigger("trChase");
+            agent.transform.LookAt(new Vector3(Player.transform.position.x, 0, Player.transform.position.z));
+        }
 
         // If the player gets too close the queen will attack
         if (Physics.CheckSphere(transform.position, MeleeRange, isPlayer))
@@ -136,7 +132,7 @@ public class QueenAI : MonoBehaviour
         else if(isPhase3 == true)
         {
             Debug.Log("phase 3 attack");
-            yield return new WaitForSeconds(Random.Range(1, 2));
+            yield return new WaitForSeconds(Random.Range(2, 4));
             Attacking();
         }
     }
@@ -226,19 +222,18 @@ public class QueenAI : MonoBehaviour
     {
         float oldSpeed = agent.speed;
         agent.speed = 6;
-        for (int i = 0; i < 2; i++)
-        {
-            GameObject acid = (GameObject)Instantiate(AcidProjectile, acidSpawner.transform.position, acidSpawner.transform.rotation, acidSpawner.transform);
-            yield return new WaitForSeconds(5);
-            Destroy(acid);
-        }
+        GameObject acid = (GameObject)Instantiate(AcidProjectile, acidSpawner.transform.position, acidSpawner.transform.rotation, acidSpawner.transform);
+        yield return new WaitForSeconds(5);
+        Destroy(acid);
         agent.speed = oldSpeed;
         isAttacking = false;
         StartCoroutine(Resting());
     }
 
     private IEnumerator Leap()
-    {
+    {   
+        float oldDistance = agent.stoppingDistance;
+        agent.stoppingDistance = 0;
         float oldSpeed = agent.speed;
         agent.speed = 1;
         isLeaping = true;
@@ -257,6 +252,7 @@ public class QueenAI : MonoBehaviour
         isLeaping = false;
         agent.speed = oldSpeed;
         isAttacking = false;
+        agent.stoppingDistance = oldDistance;
         StartCoroutine(Resting());
     }
 
@@ -269,11 +265,12 @@ public class QueenAI : MonoBehaviour
         animationSource.SetTrigger("trSlam");
         yield return new WaitForSeconds(1.5f);
         Destroy(Instantiate(SlamPartical, shatterSpawner.transform.position, acidSpawner.transform.rotation, acidSpawner.transform), 0.5f);
+        backgroundSource.PlayOneShot(shatterClip, 0.8f);
         yield return new WaitForSeconds(0.5f);
         isAttacking = false;
         StartCoroutine(Resting());
     }
-
+    
     public void QueenDeath()
     {
 
