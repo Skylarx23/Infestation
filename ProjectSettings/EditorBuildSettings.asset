@@ -14,4 +14,7 @@ EditorBuildSettings:
   - enabled: 1
     path: Assets/Scenes/SampleScene.unity
     guid: 500c902c18e21214badd15515ce19ae4
+  - enabled: 1
+    path: Assets/Scenes/QueenDeath.unity
+    guid: cd4a563f73f2ba047b1ed63001aad707
   m_configObjects: {}

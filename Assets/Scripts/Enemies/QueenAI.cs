@@ -34,6 +34,7 @@ public class QueenAI : MonoBehaviour
     bool isAttacking;
     public float MeleeDamage;
     private bool enemiesSpawned = false;
+    private bool isDead = false;
 
     float footstepCooldown = 0;
     public float meleeCooldown = 0;
@@ -73,6 +74,10 @@ public class QueenAI : MonoBehaviour
         {
             isPhase2 = false;
             isPhase3 = true;
+        }
+        if(Health < 0 && isDead == false)
+        {
+            QueenDeath();
         }
 
         float DistenceToPlayer = Vector3.Distance(transform.position, Player.transform.position);
@@ -273,6 +278,7 @@ public class QueenAI : MonoBehaviour
     
     public void QueenDeath()
     {
-
+        StartCoroutine(GM.QueenDeath());
+        isDead = true;
     }
 }

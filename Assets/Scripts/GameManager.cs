@@ -4,6 +4,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
 using TMPro;
+using UnityEngine.SceneManagement;
 using Random=UnityEngine.Random;
 
 public class GameManager : MonoBehaviour
@@ -178,7 +179,11 @@ public class GameManager : MonoBehaviour
 
     public IEnumerator QueenDeath()
     {
+        UI.SetActive(false);
         yield return new WaitForSeconds(0.5f);
+        Time.timeScale = 0f;
+        SceneManager.LoadScene("QueenDeath");
+        
     }
 
     public void QueenPhase2()
