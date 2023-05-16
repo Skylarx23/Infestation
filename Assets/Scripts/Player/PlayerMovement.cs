@@ -88,7 +88,7 @@ public class PlayerMovement : MonoBehaviour
 
         if (groundCheck.position.y  < -5)
             {
-                transform.position = startPosition;
+                GM.ResetPlayer();
             }
     }
 

@@ -116,10 +116,31 @@ ScriptsOnlyBuild:
     methodName: QuitGame
   - assembly: Assembly-CSharp
     fullTypeName: GameManager
+    methodName: PauseScreenExit
+  - assembly: Assembly-CSharp
+    fullTypeName: OptionsMenu
+    methodName: ShakeUpdate
+  - assembly: Assembly-CSharp
+    fullTypeName: OptionsMenu
+    methodName: ResUpdate
+  - assembly: Assembly-CSharp
+    fullTypeName: GameManager
     methodName: MainMenu
+  - assembly: Assembly-CSharp
+    fullTypeName: OptionsMenu
+    methodName: BrightnessUpdate
+  - assembly: Assembly-CSharp
+    fullTypeName: OptionsMenu
+    methodName: VolumeUpdate
   - assembly: Assembly-CSharp
     fullTypeName: GameManager
     methodName: Quit
+  - assembly: Assembly-CSharp
+    fullTypeName: OptionsMenu
+    methodName: FullscreenUpdate
+  - assembly: Assembly-CSharp
+    fullTypeName: OptionsMenu
+    methodName: SaveOptions
   - assembly: Assembly-CSharp
     fullTypeName: WinScene
     methodName: QuitGame
@@ -357,6 +378,8 @@ ScriptsOnlyBuild:
     - Class: 114
       Script: {instanceID: 5482}
     - Class: 114
+      Script: {instanceID: 5766}
+    - Class: 114
       Script: {instanceID: 6110}
     - Class: 114
       Script: {instanceID: 6172}
@@ -364,6 +387,8 @@ ScriptsOnlyBuild:
       Script: {instanceID: 6266}
     - Class: 114
       Script: {instanceID: 6326}
+    - Class: 114
+      Script: {instanceID: 6368}
     - Class: 114
       Script: {instanceID: 6616}
     - Class: 114
@@ -1067,7 +1092,7 @@ ScriptsOnlyBuild:
     className: CanvasScaler
   - hash:
       serializedVersion: 2
-      Hash: bb0c23ca7894081be53bf48cd5073b74
+      Hash: 3083a5a1e0b1bf3c8ff2180ae4d404fd
     assemblyName: Assembly-CSharp.dll
     namespaceName: 
     className: GameManager

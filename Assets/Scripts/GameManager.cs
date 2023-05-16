@@ -31,6 +31,8 @@ public class GameManager : MonoBehaviour
     public float QueenHealth;
     private bool isDead = false;
     private bool queenSpawned = false;
+    private bool isFirstRoom = false;
+    private bool isSecondRoom = false;
 
     bool hasMedKit = true;
     public GameObject MedIcon;
@@ -45,6 +47,7 @@ public class GameManager : MonoBehaviour
     public GameObject UI;
     public GameObject defeatUI;
     public Text defeatText;
+    public GameObject player;
 
     public GameObject startRoom;
     public GameObject firstWave;
@@ -59,6 +62,7 @@ public class GameManager : MonoBehaviour
     public GameObject endRoomDroneSpawner;
     public GameObject endRoomWarriorSpawner;
     public GameObject endRoomGuardSpawner;
+    public GameObject PauseUI;
 
     // Start is called before the first frame update
     void Start()
@@ -77,6 +81,8 @@ public class GameManager : MonoBehaviour
         UI.SetActive(true);
         endRoom.SetActive(false);
         endRoomDoor.SetActive(false);
+        Time.timeScale = 1f;
+        PauseUI.SetActive(false);
     }
 
     private void Update()
@@ -88,6 +94,11 @@ public class GameManager : MonoBehaviour
         {
             StartCoroutine(PlayerDeath());
             isDead = true;
+        }
+
+        if (Input.GetKeyDown(KeyCode.Escape))
+        {
+            PauseScreen();
         }
     }
 
@@ -247,6 +258,7 @@ public class GameManager : MonoBehaviour
         // written by Skylar
         // warning: wall of text incoming
         // the spawn enemies could have been made a function but I have one massive excuse (read below)
+        isFirstRoom = true;
         soundSource.clip = fightTheme;
         soundSource.volume = 0.06f;
         soundSource.PlayDelayed(1f);
@@ -302,6 +314,7 @@ public class GameManager : MonoBehaviour
         soundSource.volume = 0.08f;
         soundSource.Play();
         firstWaveDoor2.SetActive(false);
+        isFirstRoom = false;
         // the excuse is that i am lazy and i already wrote half of it xd
     }
 
@@ -362,6 +375,7 @@ public class GameManager : MonoBehaviour
 
     public IEnumerator EndRoomWaves()
     {
+        isSecondRoom = true;
         soundSource.clip = endFightTheme;
         soundSource.volume = 0.07f;
         soundSource.Play();
@@ -441,6 +455,35 @@ public class GameManager : MonoBehaviour
         foreach(GameObject enemy in enemies)  
         {
 	        GameObject.Destroy(enemy);
+        }
+    }
+
+    public void PauseScreen()
+    {
+        UI.SetActive(false);
+        PauseUI.SetActive(true);
+        Time.timeScale = 0f;
+        Cursor.lockState = CursorLockMode.None;
+    }
+
+    public void PauseScreenExit()
+    {
+        PauseUI.SetActive(false);
+        UI.SetActive(true);
+        Time.timeScale = 1f;
+        Cursor.lockState = CursorLockMode.Locked;
+    }
+
+    public void ResetPlayer()
+    {
+        if (isFirstRoom == true)
+        {
+            player.transform.position = new Vector3(-85, 3, 102);
+        }
+
+        if (isSecondRoom == true)
+        {
+            player.transform.position = new Vector3(-203, 3, -14);
         }
     }
 }
