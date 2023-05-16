@@ -3648,7 +3648,7 @@ MonoBehaviour:
   SightRange: 500
   SightMuliplier: 1
   AttackRange: 10
-  AttackDamage: 75
+  AttackDamage: 65
   hitSpeed: 8
   WalkRange: 15
   Player: {fileID: 0}
