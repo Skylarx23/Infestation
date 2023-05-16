@@ -67,17 +67,18 @@ public class QueenAI : MonoBehaviour
         GM.QueenHealth = Health;
         if(Health < 40000 && hasPlayed == false)
         {
+            mainSource.clip = roarClips[Random.Range(0, roarClips.Length)];
             GM.QueenPhase2();
             isPhase2 = true;
             hasPlayed = true;
             StartCoroutine(GM.QueenSpawns());
         }
-        if(Health < 20000 && isPhase3 == false)
-        {
-            isPhase2 = false;
-            isPhase3 = true;
+        //if(Health < 20000 && isPhase3 == false)
+        //{
+            //isPhase2 = false;
+            //sPhase3 = true;
             //StartCoroutine(GM.QueenSpawns());
-        }
+        //}
         if(Health < 0 && isDead == false)
         {
             QueenDeath();
@@ -93,6 +94,12 @@ public class QueenAI : MonoBehaviour
             agent.SetDestination(Player.transform.position);
             agent.transform.LookAt(new Vector3(Player.transform.position.x, 0, Player.transform.position.z));
         }
+
+        if (DistenceToPlayer >= 50)
+        {
+            agent.speed = 25;
+        }
+        
 
         if (Physics.CheckSphere(transform.position, MeleeRange, isPlayer))
         {
@@ -126,12 +133,12 @@ public class QueenAI : MonoBehaviour
             yield return new WaitForSeconds(Random.Range(4, 8));
             Attacking();
         }
-        else if(isPhase3 == true)
-        {
-            Debug.Log("phase 3 attack");
-            yield return new WaitForSeconds(Random.Range(2, 4));
-            Attacking();
-        }
+        //else if(isPhase3 == true)
+        //{
+           // Debug.Log("phase 3 attack");
+            //yield return new WaitForSeconds(Random.Range(2, 4));
+           // Attacking();
+        //}
     }
 
     private void Attacking()
@@ -141,7 +148,8 @@ public class QueenAI : MonoBehaviour
         {
             isAttacking = true;
 
-            int RNDAttack = Random.Range(0, 4);
+            int RNDAttack = 2;
+            //int RNDAttack = Random.Range(0, 4);
             if (RNDAttack == 0) StartCoroutine(Leap());
             else if (RNDAttack == 1) StartCoroutine(SpawnShatter());
             else if (RNDAttack == 2) StartCoroutine(SpawnProjectile());
@@ -219,12 +227,12 @@ public class QueenAI : MonoBehaviour
     {
         float oldSpeed = agent.speed;
         agent.speed = 6;
-        for(int i = 0; i < 15; i++)
+        for(int i = 0; i < 6; i++)
         {
-            yield return new WaitForSeconds(0.5f);
-            GameObject acid = (GameObject)Instantiate(AcidProjectile, acidSpawner.transform.position, acidSpawner.transform.rotation, acidSpawner.transform);
-            backgroundSource.PlayOneShot(projectileClip, 0.8f);
             yield return new WaitForSeconds(0.25f);
+            GameObject acid = (GameObject)Instantiate(AcidProjectile, acidSpawner.transform.position, acidSpawner.transform.rotation, acidSpawner.transform);
+            backgroundSource.PlayOneShot(projectileClip, 0.9f);
+            yield return new WaitForSeconds(2f);
             Destroy(acid);
         }
         agent.speed = oldSpeed;

@@ -86,7 +86,7 @@ public class GameManager : MonoBehaviour
         //if (Input.GetKeyUp(KeyCode.K)) StartCoroutine(WaveTest());
         if (HealthBar.value <= 0 && isDead == false)
         {
-            PlayerDeath();
+            StartCoroutine(PlayerDeath());
             isDead = true;
         }
     }
@@ -193,14 +193,19 @@ public class GameManager : MonoBehaviour
         soundSource.Play();
     }
 
-    public void PlayerDeath()
+    public IEnumerator PlayerDeath()
     {
-        Time.timeScale = 0f;
+        Cursor.lockState = CursorLockMode.None;
+        AudioListener.volume = 0;
         UI.SetActive(false);
         defeatUI.SetActive(true);
         soundSource.clip = defeatClip;
         soundSource.volume = 0.07f;
         soundSource.Play();
+        DestroyAllObjects();
+        yield return new WaitForSeconds(0.15f);
+        Time.timeScale = 0f;
+        AudioListener.volume = 1;
     }
 
     public void FirstRoom()
@@ -265,7 +270,7 @@ public class GameManager : MonoBehaviour
         yield return new WaitUntil(() => room1DroneSpawner.GetComponent<SpawnScript>().Enemies.Count == 0);
         
         yield return new WaitForSeconds(2f);
-        SpawnWarrior(1,3);
+        SpawnWarrior(1,2);
         yield return new WaitUntil(() => room1WarriorSpawner.GetComponent<SpawnScript>().Enemies.Count == 0);
 
         yield return new WaitForSeconds(2f);
@@ -273,17 +278,17 @@ public class GameManager : MonoBehaviour
         SpawnWarrior(1,1);
 
         yield return new WaitForSeconds(10f);
-        SpawnDrone(1,2);
+        SpawnDrone(1,1);
         yield return new WaitUntil(() => room1RunnerSpawner.GetComponent<SpawnScript>().Enemies.Count == 0);
         yield return new WaitUntil(() => room1WarriorSpawner.GetComponent<SpawnScript>().Enemies.Count == 0);
         yield return new WaitUntil(() => room1DroneSpawner.GetComponent<SpawnScript>().Enemies.Count == 0);
 
         yield return new WaitForSeconds(2f);
         SpawnRunner(1,6);
-        SpawnWarrior(1,2);
+        SpawnWarrior(1,1);
 
-        yield return new WaitForSeconds(20f);
-        SpawnDrone(1,2);
+        yield return new WaitForSeconds(15f);
+        SpawnDrone(1,1);
 
         yield return new WaitForSeconds(30f);
         SpawnWarrior(1,1);
@@ -293,6 +298,9 @@ public class GameManager : MonoBehaviour
         yield return new WaitUntil(() => room1DroneSpawner.GetComponent<SpawnScript>().Enemies.Count == 0);
 
         soundSource.Stop();
+        soundSource.clip = ambience2;
+        soundSource.volume = 0.08f;
+        soundSource.Play();
         firstWaveDoor2.SetActive(false);
         // the excuse is that i am lazy and i already wrote half of it xd
     }
@@ -363,9 +371,10 @@ public class GameManager : MonoBehaviour
         yield return new WaitUntil(() => endRoomWarriorSpawner.GetComponent<SpawnScript>().Enemies.Count == 0);
 
         yield return new WaitForSeconds(3f);
-        SpawnRunner(2,20);
+        SpawnRunner(2,10);
         yield return new WaitForSeconds(15f);
         SpawnDrone(2,2);
+        SpawnRunner(2,10);
         yield return new WaitUntil(() => endRoomDroneSpawner.GetComponent<SpawnScript>().Enemies.Count == 0);
         yield return new WaitUntil(() => endRoomRunnerSpawner.GetComponent<SpawnScript>().Enemies.Count == 0);
 
@@ -374,15 +383,14 @@ public class GameManager : MonoBehaviour
         yield return new WaitUntil(() => endRoomGuardSpawner.GetComponent<SpawnScript>().Enemies.Count == 0);
 
         yield return new WaitForSeconds(3f);
-        SpawnGuard(2);
+        SpawnGuard(1);
         SpawnWarrior(2,1);
         yield return new WaitUntil(() => endRoomWarriorSpawner.GetComponent<SpawnScript>().Enemies.Count == 0);
         yield return new WaitUntil(() => endRoomGuardSpawner.GetComponent<SpawnScript>().Enemies.Count == 0);
 
         yield return new WaitForSeconds(10f);  
         SpawnRunner(2,10);
-        SpawnWarrior(2,2);
-        SpawnGuard(1);
+        SpawnWarrior(2,1);
 
         yield return new WaitForSeconds(15f);
         SpawnDrone(2,2);
@@ -411,8 +419,28 @@ public class GameManager : MonoBehaviour
         for (int i = 0; i < 10; i++)
         {
             yield return new WaitForSeconds(20f);
-            SpawnDrone(2,3);
+            SpawnDrone(2,2);
             yield return new WaitUntil(() => endRoomDroneSpawner.GetComponent<SpawnScript>().Enemies.Count == 0);
+        }
+    }
+
+    public void MainMenu()
+    {
+        SceneManager.LoadScene("Menu");
+    }
+
+    public void Quit()
+    {
+        Application.Quit();
+    }
+
+    public void DestroyAllObjects()
+    {
+
+        GameObject[] enemies = GameObject.FindGameObjectsWithTag("Enemy");   
+        foreach(GameObject enemy in enemies)  
+        {
+	        GameObject.Destroy(enemy);
         }
     }
 }

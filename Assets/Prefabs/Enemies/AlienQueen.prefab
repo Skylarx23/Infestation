@@ -255,7 +255,7 @@ GameObject:
   - component: {fileID: 7500424903769263989}
   m_Layer: 0
   m_Name: AlienQueen
-  m_TagString: Untagged
+  m_TagString: Enemy
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -334,7 +334,7 @@ MonoBehaviour:
   - {fileID: 8300000, guid: 325b2ee0211158940879eb0482223a2a, type: 3}
   deathClip: {fileID: 0}
   shatterClip: {fileID: 8300000, guid: f4aa3110020f47c4f90cef511c022996, type: 3}
-  projectileClip: {fileID: 8300000, guid: b33f4eb1da461dd4a90774074ee555a6, type: 3}
+  projectileClip: {fileID: 8300000, guid: d3c7c8809ffcfb9409219b330a898039, type: 3}
 --- !u!195 &5746022062206315133
 NavMeshAgent:
   m_ObjectHideFlags: 0
