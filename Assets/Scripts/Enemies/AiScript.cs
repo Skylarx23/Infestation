@@ -123,7 +123,7 @@ public class AiScript : MonoBehaviour
             AttackRange *= 0.5f;
             StartCoroutine(GM.DamagePlayer(AttackDamage, this.gameObject));
             animationSource.SetTrigger("trAttack");
-            attackCooldown = 2;
+            attackCooldown = 6;
             mainSource.clip = attackClips[Random.Range(0, attackClips.Length)];
             mainSource.PlayDelayed(1);
             yield return new WaitForSeconds(1.5f);

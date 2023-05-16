@@ -100,7 +100,7 @@ public class PlayerMovement : MonoBehaviour
         }
         else if (Collison.gameObject.CompareTag("Slam")) 
         {
-            StartCoroutine(GM.DamagePlayerHazard(10));
+            StartCoroutine(GM.DamagePlayerHazard(20));
         }
     }
 }

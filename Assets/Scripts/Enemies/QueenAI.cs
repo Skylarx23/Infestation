@@ -110,6 +110,7 @@ public class QueenAI : MonoBehaviour
                 StartCoroutine(GM.DamagePlayerHazard(400));
                 meleeCooldown = 3;
                 mainSource.clip = attackClips[Random.Range(0, attackClips.Length)];
+                mainSource.volume = 1f;
                 mainSource.PlayDelayed(1);
             }
         }
@@ -177,6 +178,7 @@ public class QueenAI : MonoBehaviour
         {
             agent.speed = 0;
             mainSource.clip = roarClips[Random.Range(0, roarClips.Length)];
+            mainSource.volume = 1f;
             mainSource.PlayDelayed(1);
             animationSource.SetTrigger("trShatter");
             yield return new WaitForSeconds(0.75f);
@@ -226,7 +228,7 @@ public class QueenAI : MonoBehaviour
     {
         float oldSpeed = agent.speed;
         agent.speed = 6;
-        for(int i = 0; i < 6; i++)
+        for(int i = 0; i < 5; i++)
         {
             yield return new WaitForSeconds(0.25f);
             GameObject acid = (GameObject)Instantiate(AcidProjectile, acidSpawner.transform.position, acidSpawner.transform.rotation, acidSpawner.transform);
@@ -248,6 +250,7 @@ public class QueenAI : MonoBehaviour
         isLeaping = true;
         animationSource.SetTrigger("trLeap");
         mainSource.clip = roarClips[Random.Range(0, roarClips.Length)];
+        mainSource.volume = 1f;
         mainSource.PlayDelayed(1);
         yield return new WaitForSeconds(0.5f);
 
@@ -271,6 +274,7 @@ public class QueenAI : MonoBehaviour
         agent.speed = 0;
         yield return new WaitForSeconds(0.5f);
         mainSource.clip = roarClips[Random.Range(0, roarClips.Length)];
+        mainSource.volume = 1f;
         mainSource.PlayDelayed(1);
         animationSource.SetTrigger("trSlam");
         yield return new WaitForSeconds(1.5f);
