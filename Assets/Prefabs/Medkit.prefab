@@ -32,7 +32,7 @@ Transform:
   m_Children:
   - {fileID: 3595611048011980658}
   m_Father: {fileID: 0}
-  m_RootOrder: 2
+  m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!114 &2855893891503737757
 MonoBehaviour:
@@ -57,7 +57,7 @@ BoxCollider:
   m_IsTrigger: 1
   m_Enabled: 1
   serializedVersion: 2
-  m_Size: {x: 1, y: 1, z: 1}
+  m_Size: {x: 0.5, y: 0.5, z: 0.5}
   m_Center: {x: 0, y: 0, z: 0}
 --- !u!1001 &3921672446272616601
 PrefabInstance:
@@ -67,6 +67,10 @@ PrefabInstance:
     serializedVersion: 2
     m_TransformParent: {fileID: 5469065148525886675}
     m_Modifications:
+    - target: {fileID: -8961359253771211100, guid: 53e427ed49212794daff931c69331055, type: 3}
+      propertyPath: m_Layer
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: -8679921383154817045, guid: 53e427ed49212794daff931c69331055, type: 3}
       propertyPath: m_RootOrder
       value: -1
@@ -127,9 +131,17 @@ PrefabInstance:
       propertyPath: m_Enabled
       value: 1
       objectReference: {fileID: 0}
+    - target: {fileID: -1063203228461421988, guid: 53e427ed49212794daff931c69331055, type: 3}
+      propertyPath: m_Layer
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 919132149155446097, guid: 53e427ed49212794daff931c69331055, type: 3}
       propertyPath: m_Name
       value: medkit
+      objectReference: {fileID: 0}
+    - target: {fileID: 919132149155446097, guid: 53e427ed49212794daff931c69331055, type: 3}
+      propertyPath: m_Layer
+      value: 0
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_AddedGameObjects: []

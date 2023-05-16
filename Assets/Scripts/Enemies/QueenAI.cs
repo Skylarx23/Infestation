@@ -65,7 +65,7 @@ public class QueenAI : MonoBehaviour
     {
         Health = this.GetComponent<ShotScript>().Health;
         GM.QueenHealth = Health;
-        if(Health < 40000 && hasPlayed == false)
+        if(Health < 20000 && hasPlayed == false)
         {
             mainSource.clip = roarClips[Random.Range(0, roarClips.Length)];
             GM.QueenPhase2();
