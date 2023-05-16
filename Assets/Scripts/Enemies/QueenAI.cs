@@ -95,13 +95,13 @@ public class QueenAI : MonoBehaviour
             agent.transform.LookAt(new Vector3(Player.transform.position.x, 0, Player.transform.position.z));
         }
 
-        if (DistenceToPlayer >= 50)
+        if (DistenceToPlayer >= 50 && !isAttacking && !isLeaping)
         {
             agent.speed = 25;
         }
         
 
-        if (Physics.CheckSphere(transform.position, MeleeRange, isPlayer))
+        if (Physics.CheckSphere(transform.position, MeleeRange, isPlayer) && !isAttacking)
         {
             if (meleeCooldown < 0)
             {
@@ -148,8 +148,7 @@ public class QueenAI : MonoBehaviour
         {
             isAttacking = true;
 
-            int RNDAttack = 2;
-            //int RNDAttack = Random.Range(0, 4);
+            int RNDAttack = Random.Range(0, 4);
             if (RNDAttack == 0) StartCoroutine(Leap());
             else if (RNDAttack == 1) StartCoroutine(SpawnShatter());
             else if (RNDAttack == 2) StartCoroutine(SpawnProjectile());

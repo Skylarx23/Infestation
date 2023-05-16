@@ -290,7 +290,7 @@ public class GameManager : MonoBehaviour
         yield return new WaitForSeconds(15f);
         SpawnDrone(1,1);
 
-        yield return new WaitForSeconds(30f);
+        yield return new WaitForSeconds(20f);
         SpawnWarrior(1,1);
 
         yield return new WaitUntil(() => room1RunnerSpawner.GetComponent<SpawnScript>().Enemies.Count == 0);

@@ -9,7 +9,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 5987958044760234434}
-  - component: {fileID: 5987958044760234492}
+  - component: {fileID: 6999783111871273346}
   m_Layer: 0
   m_Name: Acid Blood
   m_TagString: Hazard
@@ -32,22 +32,21 @@ Transform:
   - {fileID: 1003373712471716419}
   - {fileID: 4859881234896768}
   m_Father: {fileID: 0}
-  m_RootOrder: 1
+  m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!136 &5987958044760234492
-CapsuleCollider:
+--- !u!65 &6999783111871273346
+BoxCollider:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 5987958044760234494}
   m_Material: {fileID: 0}
-  m_IsTrigger: 1
+  m_IsTrigger: 0
   m_Enabled: 1
-  m_Radius: 0.5000001
-  m_Height: 2
-  m_Direction: 1
-  m_Center: {x: 0.000000059604645, y: 0, z: -0.00000008940697}
+  serializedVersion: 2
+  m_Size: {x: 1.4, y: 15, z: 1}
+  m_Center: {x: 0, y: 0, z: 0}
 --- !u!1001 &1101391956
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -198,7 +197,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: -8679921383154817045, guid: 0f21f8aff1af65248b1ad44bb5a583e6, type: 3}
       propertyPath: m_LocalPosition.x
-      value: -0
+      value: 0.071
       objectReference: {fileID: 0}
     - target: {fileID: -8679921383154817045, guid: 0f21f8aff1af65248b1ad44bb5a583e6, type: 3}
       propertyPath: m_LocalPosition.y
@@ -206,23 +205,23 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: -8679921383154817045, guid: 0f21f8aff1af65248b1ad44bb5a583e6, type: 3}
       propertyPath: m_LocalPosition.z
-      value: 0
+      value: -0.089
       objectReference: {fileID: 0}
     - target: {fileID: -8679921383154817045, guid: 0f21f8aff1af65248b1ad44bb5a583e6, type: 3}
       propertyPath: m_LocalRotation.w
-      value: -0.6526104
+      value: -0.69244677
       objectReference: {fileID: 0}
     - target: {fileID: -8679921383154817045, guid: 0f21f8aff1af65248b1ad44bb5a583e6, type: 3}
       propertyPath: m_LocalRotation.x
-      value: 0.65261
+      value: 0.692446
       objectReference: {fileID: 0}
     - target: {fileID: -8679921383154817045, guid: 0f21f8aff1af65248b1ad44bb5a583e6, type: 3}
       propertyPath: m_LocalRotation.y
-      value: 0.2722132
+      value: 0.14324147
       objectReference: {fileID: 0}
     - target: {fileID: -8679921383154817045, guid: 0f21f8aff1af65248b1ad44bb5a583e6, type: 3}
       propertyPath: m_LocalRotation.z
-      value: 0.27221277
+      value: 0.14324105
       objectReference: {fileID: 0}
     - target: {fileID: -8679921383154817045, guid: 0f21f8aff1af65248b1ad44bb5a583e6, type: 3}
       propertyPath: m_LocalEulerAnglesHint.x
@@ -234,7 +233,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: -8679921383154817045, guid: 0f21f8aff1af65248b1ad44bb5a583e6, type: 3}
       propertyPath: m_LocalEulerAnglesHint.z
-      value: 314.717
+      value: 336.625
       objectReference: {fileID: 0}
     - target: {fileID: -7511558181221131132, guid: 0f21f8aff1af65248b1ad44bb5a583e6, type: 3}
       propertyPath: m_Materials.Array.data[0]

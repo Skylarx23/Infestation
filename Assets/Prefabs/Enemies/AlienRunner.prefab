@@ -3644,10 +3644,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 907863b0b3171a0489a517d0cf7dd737, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  FOVangle: 160
+  FOVangle: 360
   SightRange: 500
   SightMuliplier: 1
-  AttackRange: 5
+  AttackRange: 10
   AttackDamage: 75
   hitSpeed: 8
   WalkRange: 15
@@ -3695,7 +3695,7 @@ NavMeshAgent:
   m_Enabled: 1
   m_AgentTypeID: 0
   m_Radius: 2.25
-  m_Speed: 15
+  m_Speed: 14
   m_Acceleration: 30
   avoidancePriority: 50
   m_AngularSpeed: 250
