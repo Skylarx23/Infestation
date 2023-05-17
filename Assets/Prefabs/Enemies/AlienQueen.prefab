@@ -370,7 +370,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   HealthBar: {fileID: 5746022061491342445}
-  Health: 50000
+  Health: 40000
   isQueen: 1
   AcidBlood: {fileID: 5987958044760234494, guid: c3f519d6b1220e94fa348998fb52b689, type: 3}
 --- !u!82 &5746022062206315122

@@ -15,7 +15,7 @@ public class MouseLook : MonoBehaviour
     }
 
     // Update is called once per frame
-    void Update()
+    void LateUpdate()
     {
         // Sets the varibles to the Mouse's Axis
         float mouseX = Input.GetAxis("Mouse X") * mouseSensitivity * Time.deltaTime;

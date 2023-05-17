@@ -375,6 +375,7 @@
 "Assets/Scripts/Player/GunSwitcher.cs"
 "Assets/Scripts/Player/MouseLook.cs"
 "Assets/Scripts/Player/PlayerMovement.cs"
+"Assets/Scripts/Player/WeaponSway.cs"
 "Assets/Scripts/ShotScript.cs"
 "Assets/Scripts/TitleScreen/OptionsMenu.cs"
 "Assets/Scripts/TitleScreen/PauseMenu.cs"
