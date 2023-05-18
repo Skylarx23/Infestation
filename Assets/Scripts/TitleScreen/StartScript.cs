@@ -2,14 +2,20 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine.SceneManagement;
 using UnityEngine;
+using System.Runtime.CompilerServices;
 
 public class StartScript : MonoBehaviour
 {
-    public GameObject titleScreen;
-    public GameObject optionsScreen;
-    // Start is called before the first frame update
+    public GameObject titleScreen, optionsScreen, Loading;
+
+    private void Awake()
+    {
+        Loading.gameObject.SetActive(false);
+    }
+
     public void PressStart()
     {
+        Loading.gameObject.SetActive(true);
         SceneManager.LoadScene("SampleScene");
     }
 

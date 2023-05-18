@@ -17,6 +17,7 @@ ScriptsOnlyBuild:
     - StartScript
     - TitleScript
     - UILook
+    - WeaponSway
     - WinScene
     Unity.Rider.Editor.dll:
     - Packages.Rider.Editor.UnitTesting.CallbackData
@@ -26,14 +27,6 @@ ScriptsOnlyBuild:
     - TMPro.TMP_SpriteAsset
     - TMPro.TMP_StyleSheet
     - TMPro.TextMeshProUGUI
-    UnityEditor.Graphs.dll:
-    - UnityEditor.Graphs.AnimationBlendTree.Graph
-    - UnityEditor.Graphs.AnimationBlendTree.GraphGUI
-    - UnityEditor.Graphs.AnimationStateMachine.AnyStateNode
-    - UnityEditor.Graphs.AnimationStateMachine.Graph
-    - UnityEditor.Graphs.AnimationStateMachine.GraphGUI
-    - UnityEditor.Graphs.AnimationStateMachine.StateNode
-    - UnityEditor.Graphs.AnimatorControllerTool
     UnityEditor.TestRunner.dll:
     - UnityEditor.TestTools.TestRunner.Api.CallbacksHolder
     - UnityEditor.TestTools.TestRunner.TestListCacheData
@@ -98,9 +91,6 @@ ScriptsOnlyBuild:
     methodName: BrightnessUpdate
   - assembly: Assembly-CSharp
     fullTypeName: OptionsMenu
-    methodName: ShakeUpdate
-  - assembly: Assembly-CSharp
-    fullTypeName: OptionsMenu
     methodName: VolumeUpdate
   - assembly: Assembly-CSharp
     fullTypeName: OptionsMenu
@@ -119,7 +109,7 @@ ScriptsOnlyBuild:
     methodName: PauseScreenExit
   - assembly: Assembly-CSharp
     fullTypeName: OptionsMenu
-    methodName: ShakeUpdate
+    methodName: SensitivityUpdate
   - assembly: Assembly-CSharp
     fullTypeName: OptionsMenu
     methodName: ResUpdate
@@ -196,27 +186,27 @@ ScriptsOnlyBuild:
     - Class: 114
       Script: {instanceID: 3306}
     - Class: 114
-      Script: {instanceID: 4406}
+      Script: {instanceID: 4408}
     - Class: 114
-      Script: {instanceID: 4688}
+      Script: {instanceID: 4690}
     - Class: 114
-      Script: {instanceID: 5394}
+      Script: {instanceID: 5396}
     - Class: 114
-      Script: {instanceID: 5482}
+      Script: {instanceID: 5484}
     - Class: 114
-      Script: {instanceID: 5766}
+      Script: {instanceID: 5768}
     - Class: 114
-      Script: {instanceID: 6038}
+      Script: {instanceID: 6040}
     - Class: 114
-      Script: {instanceID: 6110}
+      Script: {instanceID: 6112}
     - Class: 114
-      Script: {instanceID: 6266}
+      Script: {instanceID: 6268}
     - Class: 114
-      Script: {instanceID: 6368}
+      Script: {instanceID: 6370}
     - Class: 114
-      Script: {instanceID: 6616}
+      Script: {instanceID: 6618}
     - Class: 114
-      Script: {instanceID: 7920}
+      Script: {instanceID: 7922}
     - Class: 115
       Script: {instanceID: 0}
     - Class: 128
@@ -283,15 +273,15 @@ ScriptsOnlyBuild:
     - Class: 114
       Script: {instanceID: 3306}
     - Class: 114
-      Script: {instanceID: 4058}
+      Script: {instanceID: 4060}
     - Class: 114
-      Script: {instanceID: 5482}
+      Script: {instanceID: 5484}
     - Class: 114
-      Script: {instanceID: 6110}
+      Script: {instanceID: 6112}
     - Class: 114
-      Script: {instanceID: 6266}
+      Script: {instanceID: 6268}
     - Class: 114
-      Script: {instanceID: 6616}
+      Script: {instanceID: 6618}
     - Class: 115
       Script: {instanceID: 0}
     - Class: 128
@@ -370,41 +360,43 @@ ScriptsOnlyBuild:
     - Class: 114
       Script: {instanceID: 3306}
     - Class: 114
-      Script: {instanceID: 4150}
+      Script: {instanceID: 3890}
     - Class: 114
-      Script: {instanceID: 4982}
+      Script: {instanceID: 4152}
     - Class: 114
-      Script: {instanceID: 5394}
+      Script: {instanceID: 4984}
     - Class: 114
-      Script: {instanceID: 5482}
+      Script: {instanceID: 5396}
     - Class: 114
-      Script: {instanceID: 5766}
+      Script: {instanceID: 5484}
     - Class: 114
-      Script: {instanceID: 6110}
+      Script: {instanceID: 5768}
     - Class: 114
-      Script: {instanceID: 6172}
+      Script: {instanceID: 6112}
     - Class: 114
-      Script: {instanceID: 6266}
+      Script: {instanceID: 6174}
     - Class: 114
-      Script: {instanceID: 6326}
+      Script: {instanceID: 6268}
     - Class: 114
-      Script: {instanceID: 6368}
+      Script: {instanceID: 6328}
     - Class: 114
-      Script: {instanceID: 6616}
+      Script: {instanceID: 6370}
     - Class: 114
-      Script: {instanceID: 6652}
+      Script: {instanceID: 6618}
     - Class: 114
-      Script: {instanceID: 7112}
+      Script: {instanceID: 6654}
     - Class: 114
-      Script: {instanceID: 7390}
+      Script: {instanceID: 7114}
     - Class: 114
-      Script: {instanceID: 7794}
+      Script: {instanceID: 7392}
     - Class: 114
-      Script: {instanceID: 8058}
+      Script: {instanceID: 7796}
     - Class: 114
-      Script: {instanceID: 8470}
+      Script: {instanceID: 8060}
     - Class: 114
-      Script: {instanceID: 8538}
+      Script: {instanceID: 8472}
+    - Class: 114
+      Script: {instanceID: 8540}
     - Class: 115
       Script: {instanceID: 0}
     - Class: 128
@@ -792,6 +784,12 @@ ScriptsOnlyBuild:
     className: UnityOnCollisionExit2DMessageListener
   - hash:
       serializedVersion: 2
+      Hash: 118e612442cad65821d4cb05b81fba43
+    assemblyName: Assembly-CSharp.dll
+    namespaceName: 
+    className: WeaponSway
+  - hash:
+      serializedVersion: 2
       Hash: f6831ac80ec81c5d5b370c0ed0fee997
     assemblyName: Unity.VisualScripting.Flow.dll
     namespaceName: Unity.VisualScripting
@@ -1080,7 +1078,7 @@ ScriptsOnlyBuild:
     className: StateGraphAsset
   - hash:
       serializedVersion: 2
-      Hash: 6a78e48e6a5200f6c760aeea650e377b
+      Hash: 99ead67ccc17114abb29e79ede039ef5
     assemblyName: Assembly-CSharp.dll
     namespaceName: 
     className: StartScript
@@ -1122,7 +1120,7 @@ ScriptsOnlyBuild:
     className: ParticleCollider
   - hash:
       serializedVersion: 2
-      Hash: 81e97b493598cc0245875183bbedfae1
+      Hash: 35624426900f0436d127cf9e13db2f10
     assemblyName: Assembly-CSharp.dll
     namespaceName: 
     className: OptionsMenu
@@ -1416,7 +1414,7 @@ ScriptsOnlyBuild:
     className: TouchInputModule
   - hash:
       serializedVersion: 2
-      Hash: 7d3161e5729cba289a1d74bc3c516df2
+      Hash: 2a32a669b2d724e02599153ca6edc0a2
     assemblyName: Assembly-CSharp.dll
     namespaceName: 
     className: MouseLook
@@ -1431,4 +1429,4 @@ ScriptsOnlyBuild:
   - Assets/Scenes/Menu.unity
   - Assets/Scenes/SampleScene.unity
   - Assets/Scenes/QueenDeath.unity
-  playerPath: D:/InfestationBuilt/Infestation.exe
+  playerPath: C:/Users/ewan2/OneDrive/Documents/Unity/Builds/18.06.23 11.50/Infestation.exe

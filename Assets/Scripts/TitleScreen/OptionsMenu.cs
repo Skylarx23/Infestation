@@ -9,11 +9,11 @@ public class OptionsMenu : MonoBehaviour
 {
     GameManager gameManager;
 
-    // Camera Shake
-    public Text ShakeText;
-    public Slider ShakeSlider;
+    // Camera Sensitivity
+    public Text SensitivityText;
+    public Slider SensitivitySlider;
 
-    // Volume Shake
+    // Volume Sensitivity
     public Text VolumeText;
     public Slider VolumeSlider;
 
@@ -48,7 +48,7 @@ public class OptionsMenu : MonoBehaviour
     {
         isFullscreen = !isFullscreen;
 
-        if (!isFullscreen) FullscreenText.text = "Windowed";
+        if (isFullscreen) FullscreenText.text = "Windowed";
         else FullscreenText.text = "Fullscreen";
     }
 
@@ -62,12 +62,12 @@ public class OptionsMenu : MonoBehaviour
         Hz = resolutions[i].refreshRate;
     }
 
-    public void ShakeUpdate()
+    public void SensitivityUpdate()
     {
-        if ((ShakeSlider.value) == 50) ShakeText.text = "Shake: Normal";
-        else if ((ShakeSlider.value) == 100) ShakeText.text = "Shake: Maximum";
-        else if ((ShakeSlider.value) == 0) ShakeText.text = "Shake: Minimum";
-        else ShakeText.text = "Shake: " + (ShakeSlider.value).ToString() + "%";
+        if ((SensitivitySlider.value) == 50) SensitivityText.text = "Mouse Sensitivity: Normal";
+        else if ((SensitivitySlider.value) == 100) SensitivityText.text = "Mouse Sensitivity: Maximum";
+        else if ((SensitivitySlider.value) == 0) SensitivityText.text = "Mouse Sensitivity: Minimum";
+        else SensitivityText.text = "Mouse Sensitivity: " + (SensitivitySlider.value).ToString() + "%";
     }
 
     public void VolumeUpdate()
@@ -92,6 +92,11 @@ public class OptionsMenu : MonoBehaviour
         Screen.SetResolution(PlayerPrefs.GetInt("ResWidth"), PlayerPrefs.GetInt("ResHeight"),
         Convert.ToBoolean(PlayerPrefs.GetString("isFullscreen")), PlayerPrefs.GetInt("ResHz"));
 
+        AudioListener.volume = PlayerPrefs.GetFloat("Volume") / 50;
+        Screen.brightness = PlayerPrefs.GetFloat("Brightness") / 50;
+
+        MouseLook.mouseSensitivity = PlayerPrefs.GetFloat("Sensitivity") * 5;
+
         UpdateAll();
     }
 
@@ -100,7 +105,7 @@ public class OptionsMenu : MonoBehaviour
         PlayerPrefs.SetFloat("Brightness", BrightSlider.value);
         PlayerPrefs.SetFloat("Volume", VolumeSlider.value);
 
-        PlayerPrefs.SetFloat("Screenshake", ShakeSlider.value);
+        PlayerPrefs.SetFloat("Sensitivity", SensitivitySlider.value);
 
         PlayerPrefs.SetString("isFullscreen", Convert.ToString(isFullscreen));
 
@@ -114,9 +119,17 @@ public class OptionsMenu : MonoBehaviour
 
     void UpdateAll()
     {
+
+        BrightSlider.value = PlayerPrefs.GetFloat("Brightness");
+        VolumeSlider.value = PlayerPrefs.GetFloat("Volume");
+        SensitivitySlider.value = PlayerPrefs.GetFloat("Sensitivity");
+
+        if (Convert.ToBoolean(PlayerPrefs.GetString("isFullscreen"))) FullscreenText.text = "Fullscreen";
+        else FullscreenText.text = "Windowed";
+
         BrightnessUpdate();
         VolumeUpdate();
-        ShakeUpdate();
+        SensitivityUpdate();
         FullscreenUpdate();
         ResUpdate();
     }
