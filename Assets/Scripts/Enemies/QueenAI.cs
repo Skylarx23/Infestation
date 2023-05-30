@@ -68,7 +68,7 @@ public class QueenAI : MonoBehaviour
         if(Health < 20000 && hasPlayed == false)
         {
             mainSource.clip = roarClips[Random.Range(0, roarClips.Length)];
-            GM.QueenPhase2();
+            //GM.QueenPhase2();
             isPhase2 = true;
             hasPlayed = true;
             StartCoroutine(GM.QueenSpawns());
@@ -277,7 +277,7 @@ public class QueenAI : MonoBehaviour
         mainSource.volume = 1f;
         mainSource.PlayDelayed(1);
         animationSource.SetTrigger("trSlam");
-        yield return new WaitForSeconds(1.5f);
+        yield return new WaitForSeconds(3.5f);
         Destroy(Instantiate(SlamPartical, shatterSpawner.transform.position, acidSpawner.transform.rotation, acidSpawner.transform), 0.5f);
         backgroundSource.PlayOneShot(shatterClip, 0.8f);
         yield return new WaitForSeconds(0.5f);

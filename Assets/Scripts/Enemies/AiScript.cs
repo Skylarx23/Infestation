@@ -143,7 +143,7 @@ public class AiScript : MonoBehaviour
         {
         backgroundSource.clip = backgroundClips[0];
         backgroundSource.Play();
-        footstepCooldown = 2;
+        footstepCooldown = 1;
         }
     }
 

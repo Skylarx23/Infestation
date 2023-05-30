@@ -346,10 +346,10 @@ public class GameManager : MonoBehaviour
         {
             endRoomDroneSpawner.GetComponent<SpawnScript>().SpawnEnemies(amount, ModelDroneEnd);
         }
-        alertUI.SetActive(true);
-        alertSource.clip = alertSound;
-        alertSource.Play();
-        StartCoroutine(DisableAlert());
+        //alertUI.SetActive(true);
+        //alertSource.clip = alertSound;
+        //alertSource.Play();
+        //StartCoroutine(DisableAlert());
     }
 
       public void SpawnWarrior(int stage, int amount)

@@ -15,6 +15,7 @@ public class GunScript : MonoBehaviour
     public float FireRate = 10;
     private float NextTimetoFire = 0;
     public bool Reloading, isRunning;
+    private bool isPlaying = false;
 
     public int AmmoMax = 20;
     private int Ammo;
@@ -104,7 +105,7 @@ public class GunScript : MonoBehaviour
 
     void Shoot()
     {
-        animationSource.SetTrigger("trShoot");
+        //animationSource.SetTrigger("trShoot");
         
         RaycastHit hit;
 
