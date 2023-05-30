@@ -380,7 +380,7 @@ MonoBehaviour:
   SightMuliplier: 1
   AttackRange: 10
   AttackDamage: 150
-  hitSpeed: 8
+  hitSpeed: 12
   WalkRange: 15
   Player: {fileID: 0}
   Spawner: {fileID: 0}
@@ -426,7 +426,7 @@ NavMeshAgent:
   m_Enabled: 1
   m_AgentTypeID: 0
   m_Radius: 1
-  m_Speed: 12
+  m_Speed: 14
   m_Acceleration: 30
   avoidancePriority: 50
   m_AngularSpeed: 250
